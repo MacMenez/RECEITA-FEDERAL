@@ -3,6 +3,9 @@ __Com o objetivo de facilitar a compreensão de todos os participantes e para pa
 ___
 
 > **“ Qualquer tolo consegue escrever código que um computador entenda. Bons programadores escrevem código que humanos possam entender.”** Martin Fowler
+## Atribuir Valor Variavel
+Somente por uma questão de uniformidade, vamos adotar a convenção de atributo de valor para variável :=, exemplo: ``` variavel:= valor ``` 
+
 
 ## Nome de Variáveis:
 
