@@ -5,9 +5,9 @@
 - [Padronização](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/Padronizacao.md)
 
 # Referências:
- -[Informações Sobre Receita Federal]( https://www.mag.com.br/blog/dinheiro/artigo/faixas-do-imposto-de-renda-qual-a-sua-aliquota-na-tabela-atualizada-do-ir)
+ - [Informações Sobre Receita Federal]( https://www.mag.com.br/blog/dinheiro/artigo/faixas-do-imposto-de-renda-qual-a-sua-aliquota-na-tabela-atualizada-do-ir)
  
--[Aplicativo da Receita Federal](http://receita.economia.gov.br/interface/cidadao/irpf/2020/download/download-do-programa)
+- [Aplicativo da Receita Federal](http://receita.economia.gov.br/interface/cidadao/irpf/2020/download/download-do-programa)
 
         
 # PROPOSTA:
