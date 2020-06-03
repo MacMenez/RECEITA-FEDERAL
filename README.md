@@ -63,9 +63,4 @@ O objetivo é demostrar como será o dia-a-dia dos programadores ao pegarem cód
         Henrique Novaes
         João Victor
         Gabriel Domingues
-# Dados Pessoais Inseridos pelo Usuário:
-    Nome:
-    Endereço:
-    Estado Civil:
-    Nº de dependentes:
-    CPF:
+
