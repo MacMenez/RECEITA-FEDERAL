@@ -16,10 +16,12 @@ ___
 Esse processo deve validar que seja informado somente dados A-Z, caso não seja satisfeito deve utilizar o processo de mensagem (2) avisando que o campo deve ser preenchido corretamente,  será enviado  uma variável com o nome do campo e uma variável com o espaçamento de digitação do valor, esse processo retorna um valor do tipo caracter com o valor que o usuário informou. 
 ___
 5- Tela de menu do sistema: **Fabricio**
+
 Será necessário uma tela com as opções que o usuário pode utilizar no sistema, esse processo não recebe parâmetro e retorna uma variável do tipo inteiro.
 ___
 6- Vetor de opção
 Esse procedimento irá popular um vetor de opções do tipo caracter de uso global para a montagem do menu de opção.
 ___
 7- Tela de boas vindas **Janine**
+
 será desenhado um tela que ficará por 2 segundos na tela do usuário antes de iniciar o programa, explicando sobre o programa: Título, Curso, Matéria, etc.. 
