@@ -1,5 +1,8 @@
 # RECEITA FEDERAL
  Arquivo dedicado para o projeto de Lógica de Programação
+ 
+# Documentação
+- [Padronização](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/Padronizacao.md)
 
 # Referências:
  -[Informações Sobre Receita Federal]( https://www.mag.com.br/blog/dinheiro/artigo/faixas-do-imposto-de-renda-qual-a-sua-aliquota-na-tabela-atualizada-do-ir)
