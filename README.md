@@ -2,12 +2,14 @@
  Arquivo dedicado para o projeto de Lógica de Programação
 
 # Referências:
-    Link 1:
+    Link 1: Informações Sobre Receita Federal
         https://www.mag.com.br/blog/dinheiro/artigo/faixas-do-imposto-de-renda-qual-a-sua-aliquota-na-tabela-atualizada-do-ir
-
+    
+    Link 2: Aplicativo da Receita Federal
+        http://receita.economia.gov.br/interface/cidadao/irpf/2020/download/download-do-programa
+        
 # PROPOSTA:
     Idealizar um programa que realize as funções semelhantes as da Receita Federal integrando os códigos de todos os grupos formando assim um único código a ser utilizado como produto final. 
-
 # OBJETIVO:
     O objetivo é demostrar como será o dia-a-dia dos programadores ao pegarem códigos incompletos de terceiros ou antigos programadores e fazerem com que funcione dentro do ambiente de trabalho.
 # Grupo 1
@@ -38,7 +40,6 @@
         Marlon
         Igor Henrique
         Paulo Henrique Neves
-
 # Grupo 4
     INTEGRAÇÃO: Responsável pelo Processamento
     MEMBROS:
@@ -49,7 +50,6 @@
         Cristiano
         Thales 
         Leandro
-
 # Grupo 5
     INTEGRAÇÃO: Responsável pelo Processamento
     MEMBROS:

@@ -1,15 +1,16 @@
 Algoritmo "semnome"
 // Disciplina  :  [Linguagem e Lógica de Programação] 
-// Professor   : Antonio Carlos Nicolodi 
-// Descrição   : Aqui você descreve o que o programa faz! (função)
-// Autor(a)    : Nome do(a) aluno(a)
+// Professor   : André Rodrigues
+// Descrição   : Desenvolver um código de Armazenamento de Dados .alg
+// Autor(a)    : Alisson, Amilton, Davi, Gabriel A., Gabriel V., Lucas
 // Data atual  : 02/06/2020
 Var
-// Seção de Declarações das variáveis 
+    // Seção de Declarações das variáveis 
 
+    // Fim Seção de Declarações das variáveis
 
 Inicio
-// Seção de Comandos, procedimento, funções, operadores, etc... 
+    // Seção de Comandos
 
-
+    // Fim Seção de Comandos
 Fimalgoritmo
