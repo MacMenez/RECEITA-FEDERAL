@@ -116,5 +116,5 @@ Evite comentário gigantes, isso pode indicar que o código está difícil de en
 
 
 
-> **"O que torna códigos legíveis são: clareza, simplicidade e consistência de expressão. Robert"** C. Martin
+> **"O que torna códigos legíveis são: clareza, simplicidade e consistência de expressão."** Robert C. Martin
 
