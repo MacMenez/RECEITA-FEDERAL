@@ -19,7 +19,7 @@ __Será informado neste documento os requisitos do sistema, regras de aplicaçã
 | --- | --- |  --- |  --- |  --- |   --- |
 | Nome | Nome do contribuinte  | SIM | Alfabético | 50 | |
 |Endereço | Endereço do contribuinte  | SIM | AlfaNumérico  | 100 | |
-|Estado Civil  | Estado do contribuinte  | SIM | Alfabético  | 1 | <p>C-CASADO</p><p>S-SOLTEIRO</p><p>D-DIVORCIADO</p> V-VIÚVO  |
+|Estado Civil  | Estado civil do contribuinte  | SIM | Alfabético  | 1 | <p>C-CASADO</p><p>S-SOLTEIRO</p><p>D-DIVORCIADO</p> V-VIÚVO  |
 |Dependentes  | Número de Dependentes do contribuinte  | NÃO| Numérico  | 2 | NN |
 |CPF  | Documento   do contribuinte  | SIM | Numérico  | 11 | NNN.NNN.NNN-NN |
 |Total Salário Bruto  |Valor total bruto recebido no ano pelo contribuinte  | SIM | Monetário  | 15 | NN.NNN.NN|
