@@ -16,7 +16,7 @@ __Será informado neste documento os requisitos do sistema, regras de aplicaçã
     
 # Layout de dados 
 | Campo | Descrição | Obrigatório | Tipo | Tamanho | Formatação |
-| --- | --- |  --- |  --- |  --- |   --- |
+| --- | --- |  :---: |  --- |  ---: |   --- |
 | Nome | Nome do contribuinte  | SIM | Alfabético | 50 | |
 |Endereço | Endereço do contribuinte  | SIM | AlfaNumérico  | 100 | |
 |Estado Civil  | Estado civil do contribuinte  | SIM | Alfabético  | 1 | <p>C-CASADO</p><p>S-SOLTEIRO</p><p>D-DIVORCIADO</p> V-VIÚVO  |
