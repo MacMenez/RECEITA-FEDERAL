@@ -3,7 +3,8 @@
  
 # Documentação
 - [Padronização](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/Padronizacao.md)
-- [Requisitos de Software](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/requisitos.md)
+- [Requisitos de Software](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/requisitos.md) 
+- [Diagrama de Processos](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/DiagramaProcesso.md) 
 
 # Referências:
  - [Informações Sobre Receita Federal]( https://www.mag.com.br/blog/dinheiro/artigo/faixas-do-imposto-de-renda-qual-a-sua-aliquota-na-tabela-atualizada-do-ir)
