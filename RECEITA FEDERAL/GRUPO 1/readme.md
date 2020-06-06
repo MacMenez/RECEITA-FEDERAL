@@ -19,7 +19,8 @@ ___
 
 Será necessário uma tela com as opções que o usuário pode utilizar no sistema, esse processo não recebe parâmetro e retorna uma variável do tipo inteiro.
 ___
-6- Vetor de opção
+6- Vetor de opção **Janine**
+
 Esse procedimento irá popular um vetor de opções do tipo caracter de uso global para a montagem do menu de opção.
 ___
 7- Tela de boas vindas **Janine**
