@@ -1,4 +1,3 @@
-```
 Algoritmo "ReceitaFederal"
 //
 //           TRABALHO DE LÓGICA DE PROGRAMAÇÃO
@@ -571,4 +570,4 @@ Inicio
 
 Fimalgoritmo
 
-```
+
