@@ -1,14 +1,18 @@
-Algoritmo "EntradaDadosReceitaFederal"
-// Disciplina  : [Linguagem e Lógica de Programação] 
-// Professor   : André Augusto de Abreu Rodrigues
-// Descrição   : Entrada de dados do sistema de Receita Federal de IRPF
-// Autor(a)    :  Fabricio, Gabriel Santos, Janine, Kevin, Luiz, Paulo Costa, Tiago
-// Data atual  : 02/06/2020
 Var
    finalizarPrograma:logico
-   cadastroPessoa:vetor [1..9] de caracter
+
+   // Estrutura do vetor cadastroPessoa:
+   // 1 - CPF, 2 - Nome, 3 - Endereco, 4 - Estado civil
+   // 5 - Numeros de Dependentes, 6 - Salario Bruto, 7 - Salario Liquido
+   // 8 - Investimento, 9 - Despesas, 10 - Classificacao, 11- imposto devido
+   cadastroPessoa:vetor [1..11] de caracter
+
+   // Estrutura vetor estadoCivil:
+   // 1 - CASADO, 2 - SOLTEIRO, 3 - DIVORCIADO, 4 - VIUVO
    estadoCivil:vetor [1..4] de caracter
 
+   // Utilizada na construção de tela
+   linha:caracter
    //____________________________________________________________________
 
    //________________________Grupo_1_MODULO_1____________________________
@@ -38,13 +42,13 @@ Escreval("":5," |_) |_ /  |_  |  |   /\    |_ |_ | \ |_ |_)  /\   |     ")
 Escreval("":5," | \ |_ \_ |_  |  |  /--\   |  |_ |_/ |_ | \ /--\  |_    ")
 Escreval("","")
 
-timer(200)
+timer 200 on
 _carregando:=" * * * * * * * * * "
 Escreva("":20,"Carregando")
 Para _contador de 1 ate 15 faca
    Escreva(copia(_carregando;_contador,1))
 Fimpara
-timer(0)
+timer 0 off
 
 MudaCor("Preto","Fundos")
 FimProcedimento
@@ -104,14 +108,11 @@ var
    _contador,_quantidadeCaracteres,_camposUmaLinha:inteiro
    _Cpf,_nome,_endereco,_estadoCivil,_numeroDependentes,_salarioBruto:caracter
    _salarioLiquido,_investimento,_despesas:caracter
-   _conteudoCampo,_linha:caracter
+   _conteudoCampo:caracter
 
    _camposTela:vetor [1..9] de caracter
    _tamanhocampo:vetor [1..9] de inteiro
 inicio
-   Para _contador de 1 ate 63 faca
-      _linha:=_linha+"="
-   FimPara
 
    _camposUmaLinha:=3
 
@@ -136,9 +137,9 @@ inicio
    _tamanhocampo[9]:=15
 
    limpatela
-   Escreval(_linha)
+   Escreval(linha)
    Escreval("":5,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
-   Escreval(_linha)
+   Escreval(linha)
 
    Para _contador de 1 ate 9 faca
       _conteudoCampo:=cadastroPessoa[_contador]
@@ -157,7 +158,9 @@ inicio
       fimse
 
    FimPara
-   Escreval(_linha)
+   Escreval(linha)
+
+
 
 FimProcedimento
 
@@ -170,7 +173,7 @@ var
 inicio
    // Tipo de dados 0- Cpf, 1 - numerico , 2 - Alfabetico
    //               3 - AlfaNumerico , 4 - tabela estado civil
-   //                5 - Numerico não obrigatorio
+   //               5 - Numerico não obrigatorio
    _tipoDados[1]:=0
    _tipoDados[2]:=2
    _tipoDados[3]:=3
@@ -186,15 +189,17 @@ inicio
    _entradaDados[3]:="o Endereco Resumido"
    _entradaDados[4]:="o Estado Civil "
    _entradaDados[5]:="Numeros de Dependentes "
-   _entradaDados[6]:="o Total Bruto do Salario Anual"
-   _entradaDados[7]:="o Total Liquido do Salario Anual"
-   _entradaDados[8]:="o Total de Lucros em Investimento Anual"
-   _entradaDados[9]:="o Total de Despesas Dedutiveis Anual"
+   _entradaDados[6]:="o Salario Bruto Anual"
+   _entradaDados[7]:="o Slario Liquido Anual"
+   _entradaDados[8]:="o Lucros em Investimento Anual"
+   _entradaDados[9]:="o Despesas Dedutiveis Anual"
 
    Para _contador de 1 ate 9 faca
       escolha _tipoDados[_contador]
       caso 0
          cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],30)
+         //Verificar se contribuinte já existe no banco de dados
+
       Caso 1
          cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],55)
       caso 2
@@ -209,33 +214,40 @@ inicio
       TelaDadosCadastro
    FimPara
 
+   // Modulo 4
+   ClssificarContribuinte
+
+   // Modulo 3
+   ProcessarDeclaracao
+
+
 FimProcedimento
 
-Procedimento InicializaVariaveis
+Procedimento InicializarVariaveisGlobais
 var
+_contador:inteiro
 inicio
    estadoCivil[1]:="CASADO"
    estadoCivil[2]:="SOLTEIRO"
    estadoCivil[3]:="DIVORCIADO"
    estadoCivil[4]:="VIUVO"
+   
+    Para _contador de 1 ate 62 faca
+      linha:=linha+"="
+   FimPara
+
 
 FimProcedimento
 
-
 procedimento MensagemRodape(_tipoMensagem,_textoMensagem: caracter):caracter
 var
-   _linha:caracter
-   _contador:inteiro
 inicio
-   Para _contador de 1 ate 60 faca
-      _linha:=_linha+"="
-   FimPara
 
-   Escreval("|",_linha,"|")
+   Escreval("|",linha,"|")
    Escreval("|[",_tipoMensagem,"]":5,_textoMensagem,"|")
-   Escreval("|",_linha,"|")
-   timer(2000)
-   timer(0)
+   Escreval("|",linha,"|")
+   timer 2000 on
+   timer 0 off
 
 FimProcedimento
 
@@ -251,7 +263,7 @@ inicio
    Caso 1
       TelaEntradaDados
    Caso 2
-
+      TelaRelatorio
    Caso 3
       TelaSobre
    Caso 4
@@ -269,10 +281,15 @@ var
    _estadoCivil,_char,teste:caracter
    _contador:inteiro
    _estadoCivilValido:logico
+   _iniciarTela:logico
 inicio
 
    enquanto _estadoCivilValido=falso faca
-      TelaDadosCadastro
+      se _iniciarTela=verdadeiro entao
+         TelaDadosCadastro
+      Fimse
+      _iniciarTela:=verdadeiro
+
       escreva("Informe "+_textoCampo+" :":_espacamento)
       leia(_estadoCivil)
       _estadoCivil:=Maiusc(_estadoCivil)
@@ -300,8 +317,7 @@ Funcao ValidarCampoNumericoComZero(_textoCampo:caracter;_espacamento:inteiro):ca
 var
    _campoNumerico:inteiro
 inicio
-   TelaDadosCadastro
-   escreva("Informe "+_textoCampo:_espacamento)
+   escreva("Informe "+_textoCampo+" :":_espacamento)
    leia(_campoNumerico)
 
    retorne Numpcarac(_campoNumerico)
@@ -310,10 +326,15 @@ FimFuncao
 Funcao ValidarCampoAlfaNumero(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
    _campoAlfabetico:caracter
+   _iniciarTela:logico
 inicio
 
    enquanto verdadeiro faca
-      TelaDadosCadastro
+      se _iniciarTela=verdadeiro entao
+         TelaDadosCadastro
+      Fimse
+      _iniciarTela:=verdadeiro
+
       escreva("Informe "+_textoCampo:_espacamento)
       leia(_campoAlfabetico)
       se _campoAlfabetico = "" entao
@@ -331,7 +352,6 @@ Funcao ValidarValorMonetario(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
    _numero:inteiro
 inicio
-   TelaDadosCadastro
    escreva("Informe "+_textoCampo+" maior que (Zero)0: ":_espacamento)
    leia(_numero)
    enquanto _numero<=0 faca
@@ -348,10 +368,14 @@ Funcao ValidarCampoAlfabetico(_textoCampo:caracter;_espacamento:inteiro):caracte
 var
    _campoAlfabetico,_char:caractere
    _contador,_charAscii:inteiro
+   _iniciarTela:logico
 inicio
 
    enquanto verdadeiro faca
-      TelaDadosCadastro
+      se _iniciarTela=verdadeiro entao
+         TelaDadosCadastro
+      Fimse
+      _iniciarTela:=verdadeiro
       Escreva("| Informe "+_textoCampo+" :":_espacamento)
       leia(_campoAlfabetico)
 
@@ -447,7 +471,6 @@ inicio
    retorne _quantidadeCaracteres
 
 Fimfuncao
-
 
 //____________________________________________________________________
 
