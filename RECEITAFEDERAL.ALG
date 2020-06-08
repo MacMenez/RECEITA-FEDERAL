@@ -175,20 +175,19 @@ inicio
    FimPara
    Escreval(linha)
 
-
-
 FimProcedimento
 
 Procedimento TelaEntradaDados
 var
    _contador:inteiro
    _entradaDados:vetor [1..9] de caracter
-   _tipoDados:vetor [1..9] de inteiro
 
-inicio
    // Tipo de dados 0- Cpf, 1 - numerico , 2 - Alfabetico
    //               3 - AlfaNumerico , 4 - tabela estado civil
    //               5 - Numerico não obrigatorio
+   _tipoDados:vetor [1..9] de inteiro
+
+inicio
    _tipoDados[1]:=0
    _tipoDados[2]:=2
    _tipoDados[3]:=3
@@ -213,7 +212,7 @@ inicio
       escolha _tipoDados[_contador]
       caso 0
          cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],30)
-         //Verificar se contribuinte já existe no banco de dados
+         //TODO: Verificar se contribuinte já existe no banco de dados
 
       Caso 1
          cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],55)
@@ -293,7 +292,7 @@ Fimprocedimento
 
 Funcao ValidarCampoEstadoCivil(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
-   _estadoCivil,_char,teste:caracter
+   _estadoCivil,_char:caracter
    _contador:inteiro
    _estadoCivilValido:logico
    _iniciarTela:logico
@@ -315,7 +314,6 @@ inicio
          MensagemRodape("Erro",_textoCampo)
       senao
          Para _contador de 1 ate 4 faca
-            teste:=copia(estadoCivil[_contador];1,1)
             se copia(estadoCivil[_contador];1,1)=_char entao
                _estadoCivilValido:=verdadeiro
                interrompa
@@ -375,6 +373,7 @@ inicio
       escreval("Informe "+_textoCampo+" novamente o valor":_espacamento)
       leia(_numero)
    fimenquanto
+   
    retorne Numpcarac(_numero)
 
 FimFuncao
@@ -501,7 +500,7 @@ Inicio
 
 FimFuncao
 
-Funcao PesquisarContribuinte(_cpf:caracter):logico
+Funcao PesquisarContribuinte(_cpf:caracter):inteiro
 var
 Inicio
 
@@ -521,7 +520,7 @@ inicio
 
  // Salário Liquuido não pode ser maior que salario Bruto
  // se Salário Liquuido <  salario Bruto = retornar verdadeiro
- // se Salário Liquuido <  salario Bruto =  emitir mensagem de alerta e retornar falso
+ // se Salário Liquuido >  salario Bruto =  emitir mensagem de alerta e retornar falso
 
 FimFuncao
 
@@ -529,8 +528,8 @@ Funcao CompararDespesasSalario(_despesas,_salarioLiquido:real):logico
 var
 inicio
 
- // _despesas não pode ser maior que salario Liquuido
- // se falso ok, se verdadeiro emitir mensagem de alerta e retornar falso
+ // Despesas não pode ser maior que salario Liquuido
+ // se Despesas > Salário Liquuido =  emitir mensagem de alerta e retornar falso
 FimFuncao
 
 
@@ -565,9 +564,4 @@ Inicio
    FimEnquanto
 
 
-
-
-
 Fimalgoritmo
-
-
