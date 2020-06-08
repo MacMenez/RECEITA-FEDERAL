@@ -229,7 +229,7 @@ inicio
    FimPara
 
    // Modulo 4
-   ClssificarContribuinte
+   ClassificarContribuinte
 
    // Modulo 3
    ProcessarDeclaracao
@@ -506,7 +506,15 @@ Inicio
 
 FimFuncao
 
+
 //________________________Grupo_3_MODULO_3____________________________
+Procedimento ClassificarContribuinte
+var
+Inicio
+
+FimProcedimento
+
+//________________________Grupo_4_MODULO_4____________________________
 
 Procedimento ProcessarDeclaracao
 var
@@ -533,12 +541,6 @@ inicio
 FimFuncao
 
 
-//________________________Grupo_4_MODULO_4____________________________
-Procedimento ClssificarContribuinte
-var
-Inicio
-
-FimProcedimento
 
 //________________________Grupo_5_MODULO_5____________________________
 
@@ -562,6 +564,9 @@ Inicio
       ExecutarFuncao
       LimpaTela
    FimEnquanto
+
+
+
 
 
 Fimalgoritmo
