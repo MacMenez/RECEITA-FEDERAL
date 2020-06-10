@@ -14,3 +14,18 @@ Inicio
 
     // Fim Seção de Comandos
 Fimalgoritmo
+
+---------------------------------------------------------------------------------------------------------------
+VETOR pessoas[1..100] DE CARACTERE
+VETOR dados[1..11] DE CARACTERE
+
+
+cpf
+nome
+endereco
+estado civil
+n dependentes
+salario bruto anual
+salario liquido anual
+lucros
+despesas
