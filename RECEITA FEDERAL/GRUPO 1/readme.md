@@ -1,6 +1,7 @@
 # Tarefas para Desenvolvimento
 ___
-1- Processo de escolha de função:
+1- Processo de escolha de função: **Fabricio**
+
 Esse processo deve executar uma função conforme escolha do usuário, será enviado uma variável do tipo inteiro e não será necessário retornar valor.
 ___
 2- Processo de mensagem de alerta para usuário: **Kevin Faria**
@@ -15,11 +16,11 @@ ___
 
 Esse processo deve validar que seja informado somente dados A-Z, caso não seja satisfeito deve utilizar o processo de mensagem (2) avisando que o campo deve ser preenchido corretamente,  será enviado  uma variável com o nome do campo e uma variável com o espaçamento de digitação do valor, esse processo retorna um valor do tipo caracter com o valor que o usuário informou. 
 ___
-5- Tela de menu do sistema: **Fabricio**
+5- Tela de menu do sistema: **Janine**
 
 Será necessário uma tela com as opções que o usuário pode utilizar no sistema, esse processo não recebe parâmetro e retorna uma variável do tipo inteiro.
 ___
-6- Vetor de opção **Janine**
+6- Vetor de opção **Fabricio**
 
 Esse procedimento irá popular um vetor de opções do tipo caracter de uso global para a montagem do menu de opção.
 ___
