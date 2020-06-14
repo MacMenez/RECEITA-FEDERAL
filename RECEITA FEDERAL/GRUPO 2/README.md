@@ -1,5 +1,5 @@
 # OBJETIVO:
-**Criar um Banco de Dados** em forma de **algoritmo de Português Estruturado** que, irá receber os valores de retorno dos demais grupos que possuem seus códigos já desenvolvidos. *_ATÉ O MOMENTO_* iremos focar no código do **grupo 1** um cujo líder é o Fabricio. Até então o código deles é o mais completo e o que já possui maiores informações. **Portanto iremos começar montando o código para coletar as informações que ele irá nos enviar.**
+**Criar um Banco de Dados** em forma de **algoritmo de Português Estruturado** que, irá receber os valores de retorno dos demais grupos que possuem seus códigos já desenvolvidos. Iremos focar no código do **grupo 1 e grupo 5**. Até então o código deles é o mais completo e o que já possui maiores informações. **Portanto iremos começar montando o código para coletar as informações que ele irá nos enviar.** 
 
 # ORGANIZAÇÃO:
 **_Montaremos uma  MATRIZ para reliazar a captura de informações._**
