@@ -38,7 +38,7 @@ Var
    // Utilizada na construção de tela
    linha:caracter
 
-
+   teste:real
    //____________________________________________________________________
 
    //________________________Grupo_1_MODULO_1____________________________
@@ -68,7 +68,7 @@ escreval("":5," |_) |_ /  |_  |  |   /\    |_ |_ | \ |_ |_)  /\   |     ")
 escreval("":5," | \ |_ \_ |_  |  |  /--\   |  |_ |_/ |_ | \ /--\  |_    ")
 escreval("","")
 
-timer 200 on
+timer 200
 _carregando:=" * * * * * * * * * "
 escreva("":20,"Carregando")
 para _contador de 1 ate 15 faca
@@ -134,9 +134,10 @@ var
    _dadosTela:vetor [1..3] de caracter
    _contador,_espacamento:inteiro
 inicio
-   _dadosTela[1]:="imposto a Pagar :"
-   _dadosTela[2]:="imposto a Receber :"
-   _dadosTela[3]:="Aliquota Efetiva :"
+   _dadosTela[1]:="Aliquota Efetiva :"
+   _dadosTela[2]:="imposto a Pagar :"
+   _dadosTela[3]:="imposto a Receber :"
+
 
    Limpatela
    escreval(linha)
@@ -144,7 +145,7 @@ inicio
 
    para _contador de 1 ate 3 faca
       _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
-      escreval(_dadosTela[_contador]:_espacamento,"999")
+      escreval(_dadosTela[_contador]:_espacamento,declaracaoCompleta[_contador])
    fimpara
 
    escreval(linha)
@@ -153,7 +154,7 @@ inicio
 
    para _contador de 1 ate 3 faca
       _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
-      escreval(_dadosTela[_contador]:_espacamento,"888")
+      escreval(_dadosTela[_contador]:_espacamento,declaracaoSimplificada[_contador])
    fimpara
    escreval(linha)
 
@@ -163,6 +164,7 @@ Procedimento EntradaDadosTipoDeclaracao
 var
    _tipoDeclaracao:inteiro
 inicio
+
    enquanto _tipoDeclaracao<=0 faca
       TelaTipoDeclaracao
       escreval("Informe o Tipo de Declaracao:")
@@ -177,13 +179,13 @@ inicio
    fimenquanto
 
    se _tipoDeclaracao=1 entao
-      cadastroPessoa[10]:="vetor deduções legais"
-      cadastroPessoa[11]:="vetor deduções legais"
-      cadastroPessoa[12]:="vetor deduções legais"
+      cadastroPessoa[10]:=declaracaoSimplificada[1]
+      cadastroPessoa[11]:=declaracaoSimplificada[2]
+      cadastroPessoa[12]:=declaracaoSimplificada[3]
    senao
-      cadastroPessoa[10]:="vetor desconto simplificado"
-      cadastroPessoa[11]:="vetor desconto simplificado"
-      cadastroPessoa[12]:="vetor desconto simplificado"
+      cadastroPessoa[10]:=declaracaoCompleta[1]
+      cadastroPessoa[11]:=declaracaoCompleta[2]
+      cadastroPessoa[12]:=declaracaoCompleta[3]
    fimse
 
    cadastroPessoa[13]:=Numpcarac(_tipoDeclaracao)
@@ -321,9 +323,6 @@ inicio
 
    se _controleAlterarExcluir < 2 entao
 
-      // Modulo 4
-      ClassificarContribuinte
-
       // Modulo 3
       ProcessarDeclaracao
 
@@ -367,7 +366,7 @@ inicio
    escreval("|",linha,"|")
    escreval("|[",_tipoMensagem,"]":5,_textoMensagem,"|")
    escreval("|",linha,"|")
-   timer 2000 on
+   timer 2000
    timer 0 off
 
 FimProcedimento
@@ -448,9 +447,9 @@ inicio
       _estadoCivil:=Maiusc(_estadoCivil)
       _char:=copia(_estadoCivil;1,1)
 
-      se _char="" entao
+      se (_char="") ou ((_char<>"C") e (_char<>"S") e (_char<>"D") e (_char<>"V")) entao
          escreval("|":15,"C-CASADO, S-SOLTEIRO, D-DIVORCIADO, V-VIUVO")
-         MensagemRodape("Erro",_textoCampo)
+         MensagemRodape("Erro",_textoCampo+" Nao e Valido")
       senao
          para _contador de 1 ate 4 faca
             se copia(estadoCivil[_contador];1,1)=_char entao
@@ -522,57 +521,67 @@ inicio
 
 FimFuncao
 
-Funcao FormataValorMonetario(valor:real):caracter
+Funcao FormataValorMonetario(_valor:real):caracter
 var
-   valorCaracter,valorCaracterFormatado,char:caracter
-   contador,quantideCaracter,decimal,milhar:inteiro
+   _valorCaracter,_valorCaracterFormatado,_char:caracter
+   _contador,_quantideCaracter,_casasDecimal,_decimal,_milhar:inteiro
 inicio
-   valorCaracter:=NumpCarac(valor)
+   _valorCaracter:=NumpCarac(_valor)
 
+   // Realiza a contagem dos caracteres e busca se foi informado valor decimal
    enquanto verdadeiro faca
-      contador:=contador+1
-      char:=copia(valorCaracter;contador,1)
+      _contador:=_contador+1
+      _char:=copia(_valorCaracter;_contador,1)
 
-      se char="" entao
+      se _char="" entao
          interrompa
       fimse
 
-      se char= "." entao
-         decimal:=contador
+      se _char= "." entao
+         _decimal:=_contador
       fimse
 
    fimenquanto
 
-   quantideCaracter:=contador-1
+   _quantideCaracter:=_contador-1
 
-   para contador de quantideCaracter ate 1 passo -1 faca
-      char:=copia(valorCaracter;contador,1)
+   // Formata valor conforme padrão de moeda brasileiro
+   para _contador de _quantideCaracter ate 1 passo -1 faca
+      _char:=copia(_valorCaracter;_contador,1)
 
-      se char <> "." entao
-         valorCaracterFormatado:=char+valorCaracterFormatado
+      se _char <> "." entao
+         _valorCaracterFormatado:=_char+_valorCaracterFormatado
       fimse
-      milhar:=milhar+1
+      _milhar:=_milhar+1
 
-      se (contador=decimal) e (decimal>0) entao
-         valorCaracterFormatado:=","+valorCaracterFormatado
-         milhar:=0
+      se (_contador=_decimal) e (_decimal>0) entao
+         _valorCaracterFormatado:=","+_valorCaracterFormatado
+         _milhar:=0
+         _casasDecimal:=_casasDecimal+1
+         se _casasDecimal=2 entao
+            interrompa
+         fimse
       fimse
 
-      se (milhar=3) e (contador<>1) entao
-         valorCaracterFormatado:="."+valorCaracterFormatado
-         milhar:=0
+      se (_milhar=3) e (_contador<>1) entao
+         _valorCaracterFormatado:="."+_valorCaracterFormatado
+         _milhar:=0
       fimse
 
    fimpara
 
-   se decimal=0 entao
-      valorCaracterFormatado:=valorCaracterFormatado+",00"
+   // Se não existir decimal acresenta dois zeros ao final
+   se _decimal=0 entao
+      _valorCaracterFormatado:=_valorCaracterFormatado+",00"
    fimse
 
-   se ((quantideCaracter-decimal)<2) e(decimal<>0) entao
-      valorCaracterFormatado:=valorCaracterFormatado+"0"
+   // Necessário para valor com final de decimal com 0
+   // formato padrao contem somente 1 zero, entao o sistema
+   // acresenta mais um zero
+   se ((_quantideCaracter-_decimal)<2) e (_decimal<>0) entao
+      _valorCaracterFormatado:=_valorCaracterFormatado+"0"
    fimse
-   retorne valorCaracterFormatado
+   retorne _valorCaracterFormatado
 
 FimFuncao
 
@@ -718,16 +727,88 @@ var
    _salarioBruto,_deducaoInss,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis:real
    _aliquotaIrpf:real
    _dependentes:inteiro
+
 Inicio
-   _dependentes:=Caracpnum(cadastroPessoa[6])
+   _dependentes:=Caracpnum(cadastroPessoa[5])
    _salarioBruto:=ConverteCaracterParaReal(cadastroPessoa[6])
    _impostoRetidoFonte:=ConverteCaracterParaReal(cadastroPessoa[7])
    _lucroInvestimento:=ConverteCaracterParaReal(cadastroPessoa[8])
    _despesasDedutiveis:=ConverteCaracterParaReal(cadastroPessoa[9])
    _deducaoInss:=CalculaDeducaoInss(_salarioBruto)
-
+   CalcularDeclaracaoSimplificada(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
+   CalcularDeclaracaoCompleta(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
 
 FimProcedimento
+
+Procedimento CalcularDeclaracaoSimplificada(_dependentes:inteiro;_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss:real)
+var
+   _deducao,_baseCalculo,_aliquota,_imposto:real
+   _aliquotaEfetiva:caracter
+
+inicio
+   _deducao:=Deduzir(1,_dependentes, _salarioBruto ,_despesasDedutiveis)
+   _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
+   _aliquota:=Aliquota(_baseCalculo)
+   _imposto:=_baseCalculo*_aliquota
+   _imposto:=_imposto-_impostoRetidoFonte
+
+   _aliquotaEfetiva:=Numpcarac((_imposto/_baseCalculo)*100)
+   declaracaoSimplificada[1]:=copia(_aliquotaEfetiva;1:5)+" %"
+   se _imposto<0 entao
+      declaracaoSimplificada[3]:=FormataValorMonetario((_imposto*-1))
+   senao
+      declaracaoSimplificada[2]:=FormataValorMonetario(_imposto)
+   fimse
+
+FimProcedimento
+
+Procedimento CalcularDeclaracaoCompleta(_dependentes:inteiro;_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss:real)
+var
+   _deducao,_baseCalculo,_aliquota,_imposto:real
+   _aliquotaEfetiva:caracter
+
+inicio
+   _deducao:=Deduzir(2,_dependentes, _salarioBruto ,_despesasDedutiveis)
+   _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
+   _aliquota:=Aliquota(_baseCalculo)
+   _imposto:=_baseCalculo*_aliquota
+   _imposto:=_imposto-_impostoRetidoFonte
+
+   _aliquotaEfetiva:=Numpcarac((_imposto/_baseCalculo)*100)
+   declaracaoCompleta[1]:=copia(_aliquotaEfetiva;1:5)+" %"
+
+   se _imposto<0 entao
+      declaracaoCompleta[3]:=FormataValorMonetario((_imposto*-1))
+   senao
+      declaracaoCompleta[2]:=FormataValorMonetario(_imposto)
+   fimse
+
+FimProcedimento
+
+Funcao Aliquota(_baseCalculo:real):real
+var
+   _aliquota:real
+inicio
+   _aliquota:=0
+
+   se (_baseCalculo>=22847.77) ou (_baseCalculo<=33919.80) entao
+      _aliquota:=0.075
+   fimse
+
+   se (_baseCalculo>=33919.81) ou (_baseCalculo<=45012.60) entao
+      _aliquota:=0.15
+   fimse
+
+   se (_baseCalculo>=45012.61) ou (_baseCalculo<=55976.16) entao
+      _aliquota:=0.225
+   fimse
+
+   se (_baseCalculo>55976.16) entao
+      _aliquota:=0.275
+   fimse
+   retorne _aliquota
+
+FimFuncao
 
 Funcao CalculaDeducaoInss(_salarioBruto:real):real
 var
@@ -735,8 +816,8 @@ var
    _valorDeducao:real
    _valoresRefecenciaAnual:vetor[1..2] de real
 inicio
-   _valoresRefecenciaAnual[1]:=(1693.73*12)
-   _valoresRefecenciaAnual[2]:=(2822.90*12)
+   _valoresRefecenciaAnual[1]:=20324.76
+   _valoresRefecenciaAnual[2]:=33874.80
 
 
    se _salarioBruto < _valoresRefecenciaAnual[1] entao
@@ -775,8 +856,12 @@ Fimfuncao
 
 //________________________Grupo_4_MODULO_4____________________________
 
+Funcao Deduzir(_tipodeDeclaracao,_numeroDeDependente:inteiro; _redimentoAnual ,_despesasDedutiveis:real) :real
+var
+inicio
 
-
+   retorne 0
+FimFuncao
 
 
 //________________________Grupo_5_MODULO_5____________________________
@@ -794,6 +879,7 @@ Inicio
    InicializarVariaveisGlobais
    // Ativar em modo Produção
    //TelaAbertura
+
    enquanto finalizarPrograma=falso faca
       TelaMenu
       ExecutarFuncao
