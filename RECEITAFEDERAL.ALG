@@ -730,10 +730,10 @@ var
 
 Inicio
    _dependentes:=Caracpnum(cadastroPessoa[5])
-   _salarioBruto:=ConverteCaracterParaReal(cadastroPessoa[6])
-   _impostoRetidoFonte:=ConverteCaracterParaReal(cadastroPessoa[7])
-   _lucroInvestimento:=ConverteCaracterParaReal(cadastroPessoa[8])
-   _despesasDedutiveis:=ConverteCaracterParaReal(cadastroPessoa[9])
+   _salarioBruto:=RemoverFormatacaoMonetaria(cadastroPessoa[6])
+   _impostoRetidoFonte:=RemoverFormatacaoMonetaria(cadastroPessoa[7])
+   _lucroInvestimento:=RemoverFormatacaoMonetaria(cadastroPessoa[8])
+   _despesasDedutiveis:=RemoverFormatacaoMonetaria(cadastroPessoa[9])
    _deducaoInss:=CalculaDeducaoInss(_salarioBruto)
    CalcularDeclaracaoSimplificada(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
    CalcularDeclaracaoCompleta(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
@@ -834,7 +834,7 @@ inicio
 
 Fimfuncao
 
-Funcao ConverteCaracterParaReal(_numero:caracter):real
+Funcao RemoverFormatacaoMonetaria(_numero:caracter):real
 var
    _contador:inteiro
    _numeroCaracter,_char:caracter
