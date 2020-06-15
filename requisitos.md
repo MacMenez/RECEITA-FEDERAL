@@ -23,7 +23,7 @@ __Será informado neste documento os requisitos do sistema, regras de aplicaçã
 |Dependentes  | Número de Dependentes do contribuinte  | NÃO| Numérico  | 2 | NN |
 |CPF  | Documento   do contribuinte  | SIM | Numérico  | 11 | NNN.NNN.NNN-NN |
 |Total Salário Bruto  |Valor total bruto recebido no ano pelo contribuinte  | SIM | Monetário  | 15 | NN.NNN.NN|
-|Total Imposto Retido  |Valor total imposto retido na fonte  | SIM | Monetário  | 15 | NN.NNN.NN|
+|Total Imposto Retido  |Valor total imposto retido na fonte  | NÃO | Monetário  | 15 | NN.NNN.NN|
 |Total Investimento |Valor total dos lucros de investimento recebidos  no ano pelo contribuinte  | NÃO| Monetário  | 15 | NN.NNN.NN|
 |Total Despesas  |Valor total despesas dedutíveis  no ano pelo contribuinte  | SIM | Monetário  | 15 | NN.NNN.NN|
 |Percentual Alíquota  | Percentual de imposto conforme classificação  | SIM | Numérico  | 2 |NN|
