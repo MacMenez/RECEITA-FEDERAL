@@ -13,6 +13,9 @@ Algoritmo "ReceitaFederal"
 // Consulte a Documentação disponibilizada no GitHub :
 //        github.com/MacMenez/RECEITA-FEDERAL
 // -------------------------------------------------------------------
+//Ativar em ambiente de Produção
+// Arquivo com dados iniciais
+//arquivo "D:\eng.computacao\LP\trabalho_receita_federal\BaseDadosInicial.csv"
 Var
    finalizarPrograma:logico
 
@@ -38,7 +41,9 @@ Var
    // Utilizada na construção de tela
    linha:caracter
 
-   teste:real
+   //matriz temporaia de teste
+   //bancoDeDados:vetor [1..100,1..13] de caracter
+
    //____________________________________________________________________
 
    //________________________Grupo_1_MODULO_1____________________________
@@ -68,13 +73,12 @@ escreval("":5," |_) |_ /  |_  |  |   /\    |_ |_ | \ |_ |_)  /\   |     ")
 escreval("":5," | \ |_ \_ |_  |  |  /--\   |  |_ |_/ |_ | \ /--\  |_    ")
 escreval("","")
 
-timer 200
 _carregando:=" * * * * * * * * * "
 escreva("":20,"Carregando")
 para _contador de 1 ate 15 faca
+   PausaFake(3000)
    escreva(copia(_carregando;_contador,1))
 fimpara
-timer 0 off
 
 MudaCor("Preto","Fundos")
 FimProcedimento
@@ -193,15 +197,12 @@ FimProcedimento
 
 Procedimento TelaDadosCadastro
 var
-   _contador,_quantidadeCaracteres,_camposUmaLinha:inteiro
+   _contador,_quantidadeCaracteres:inteiro
    _conteudoCampo:caracter
 
    _camposTela:vetor [1..9] de caracter
    _tamanhocampo:vetor [1..9] de inteiro
 inicio
-
-   _camposUmaLinha:=3
-
    _camposTela[1]:="CPF :"
    _camposTela[2]:="Nome :"
    _camposTela[3]:="Endereco :"
@@ -323,7 +324,7 @@ inicio
 
    se _controleAlterarExcluir < 2 entao
 
-      // Modulo 3
+      // Modulo 3 e 4
       ProcessarDeclaracao
 
       //Modulo 1
@@ -361,15 +362,26 @@ FimProcedimento
 
 procedimento MensagemRodape(_tipoMensagem,_textoMensagem: caracter)
 var
+
 inicio
 
    escreval("|",linha,"|")
    escreval("|[",_tipoMensagem,"]":5,_textoMensagem,"|")
    escreval("|",linha,"|")
-   timer 2000
-   timer 0 off
-
+   escreva(" ")
+   PausaFake(20000)
 FimProcedimento
+
+procedimento PausaFake(_loopPausa:inteiro)
+var
+_numeroloop,_contador:inteiro
+
+inicio
+   Para _contador de 1 ate _loopPausa faca
+   // loop somente para simular uma pausa
+   _numeroloop:=_numeroloop+1
+   Fimpara
+Fimprocedimento
 
 Procedimento ExecutarFuncao
 var
@@ -721,6 +733,39 @@ var
 inicio
 FimProcedimento
 
+Procedimento DadosIniciais
+var
+   _linhaDado:caracter
+   _NumeroRegistro:inteiro
+
+inicio
+   enquanto verdadeiro faca
+      leia(_linhaDado)
+      se _linhaDado="FIMxBANCOxDADOS" entao
+         interrompa
+      fimse
+      _NumeroRegistro:=_NumeroRegistro+1
+    ExtrairDados(_linhaDado,_NumeroRegistro)
+   fimenquanto
+
+Fimprocedimento
+
+Procedimento ExtrairDados(_linhaDados:caracter;_NumeroRegistro:inteiro)
+var
+   _dadosTemporario:caracter
+   _posicaoInicial,_posicaoFinal,_contador,_quantidadeDados:inteiro
+inicio
+ _posicaoInicial:=1
+ Para _contador de 1 ate 13 faca
+  _posicaoFinal:=Pos("|",_linhaDados)-1
+  _dadosTemporario:=copia(_linhaDados;_posicaoInicial,_posicaoFinal)
+  bancoDeDados[_NumeroRegistro,_contador]:=_dadosTemporario
+  _quantidadeDados:=QuantidadeCaracter(_linhaDados)
+  _linhaDados:=copia(_linhaDados;(_posicaoFinal+2),_quantidadeDados)
+ fimpara
+Fimprocedimento
+
+
 //________________________Grupo_3_MODULO_3____________________________
 Procedimento ProcessarDeclaracao
 var
@@ -876,8 +921,10 @@ FimProcedimento
 
 //________________________Programa_Principal__________________________
 Inicio
+    //Ativar em ambiente de Produção
+   //DadosIniciais
    InicializarVariaveisGlobais
-   // Ativar em modo Produção
+    //Ativar em ambiente de Produção
    //TelaAbertura
 
    enquanto finalizarPrograma=falso faca
