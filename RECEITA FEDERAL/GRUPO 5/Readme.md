@@ -61,4 +61,4 @@ Função nativa no Visualg que gera impressão em tela conforme posição inform
 Exemplo:
 escreva("posicao1":30,"posicao2":15,"posicao3")
 
-![consoleRelatorio] (https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%205/img/consoleRelatorio.png)
+![consoleRelatorio](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%205/img/consoleRelatorio.png)
