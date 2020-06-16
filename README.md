@@ -5,6 +5,7 @@
 - [Padronização](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/Padronizacao.md)
 - [Requisitos de Software](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/requisitos.md) 
 - [Diagrama de Processos](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/DiagramaProcesso.md) 
+- [Instruções Úteis para Geração de Relatório](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%205/Readme.md)
 
 # Referências:
  - [Informações Sobre Receita Federal]( https://www.mag.com.br/blog/dinheiro/artigo/faixas-do-imposto-de-renda-qual-a-sua-aliquota-na-tabela-atualizada-do-ir)
