@@ -97,7 +97,7 @@ inicio
    escreval ("|         _________________     ","    _________________          |")
    escreval ("|        |                 |    ","   |                 |         |")
    escreval ("|        |                 |    ","   |                 |         |")
-   escreval ("|        | ( 1 ) CADASTRO  |    ","   | ( 2 ) RELATÓRIO |         |")
+   escreval ("|        | ( 1 ) CADASTRO  |    ","   | ( 2 ) RELATORIO |         |")
    escreval ("|        |                 |    ","   |                 |         |")
    escreval ("|        |_________________|    ","   |_________________|         |")
    escreval ("|         _________________     ","    _________________          |")
@@ -490,6 +490,96 @@ FimProcedimento
 
 //_____________________RELATORIOS____________________________________
 
+Procedimento ListagemDeclaracoes
+var
+   _indice:inteiro
+   _pausar:caracter
+   _fimDados:logico
+inicio
+   _indice:=100
+   enquanto _fimDados=falso faca
+      ProcessaListagemDeclaracoes(_indice,_fimDados)
+      escreval("| ":10," Pressione Enter para continuar....":52,"|")
+      leia (_pausar)
+      limpatela
+      se _indice=0 entao
+         _fimDados:=verdadeiro
+      fimse
+   fimenquanto
+FImProcedimento
+
+
+Procedimento ProcessaListagemDeclaracoes(var _indice:inteiro;var _fimDados:logico)
+var
+   _contador,_cabecalho,_contador1,_espacamento:inteiro
+   _linha,_cpf,_nome,_aliquota,_imposto,_tipoDeclaracao:caracter
+inicio
+
+   // Inicializa linha com traços
+   para _contador1 de 1 ate 64 faca
+      _linha:=_linha+"-"
+   FimPara
+
+   // Monta quadros da tela
+   limpaTela
+   enquanto _contador<10 faca
+      _contador:=_contador+1
+      se _cabecalho=0 entao
+         escreval (_linha)
+         escrevaL("|":20,"LISTA DECLARAÇÕES ":44,"|")
+         escreval (_linha)
+         escrevaL("|":6,"CPF":9,"|":6,"NOME":10,"|":2,"ALIQ":6,"|":6,"IMPOSTO","|":2,"TIPO":7,"|")
+         escreval (_linha)
+         _cabecalho:=1
+      fimse
+
+      se (bancoDeDados[_indice,1]<>"") entao
+         _cpf:=bancoDeDados[_indice,1]
+         _nome:=copia(bancoDeDados[_indice,2];1,14)
+         _aliquota:=bancoDeDados[_indice,10]
+         _imposto:=bancoDeDados[_indice,11]
+         _tipoDeclaracao:=bancoDeDados[_indice,13]
+
+         se _tipoDeclaracao="1" entao
+            _tipoDeclaracao:="Simp."
+         senao
+            _tipoDeclaracao:="Comp."
+         fimse
+
+         se _imposto="0" entao
+            _imposto:="R "+bancoDeDados[_indice,12]
+         senao
+            _imposto:="P "+_imposto
+         fimse
+
+         _espacamento:=12-QuantidadeCaracter(_imposto)
+         PreencherComEspacos(_imposto,_espacamento)
+
+         _espacamento:=14-QuantidadeCaracter(_nome)
+         PreencherComEspacos(_nome,_espacamento)
+
+         _espacamento:=5-QuantidadeCaracter(_aliquota)
+         PreencherComEspacos(_aliquota,_espacamento)
+
+
+         escreva ("|",_cpf," | ",_nome,"| ",_aliquota," | ",_imposto,"| ",_tipoDeclaracao)
+         escreval ("|")
+      senao
+         _contador:=0
+      fimse
+
+      _indice:=_indice-1
+      se _indice=0 entao
+         _contador:=11
+      fimse
+
+   fimenquanto
+
+   escreval(_linha)
+
+FimProcedimento
+
+
 Procedimento GraficoPercentualAliquota
 var
    _coluna:vetor [1..4] de caracter
@@ -601,7 +691,7 @@ var
 inicio
    escolha _opcao
    caso 1
-      //ExecutarRelatorio
+      ListagemDeclaracoes
    caso 2
       //RelatorioSintetico
    caso 3
@@ -617,16 +707,14 @@ Procedimento Relatorios
 var
    _opcao:inteiro
 inicio
-   enquanto verdadeiro faca
+   enquanto _opcao<>5 faca
       TelaSubMenuRelatorio(3,64,2,6)
-      escreval("| Informe a funcao que deseja realizada :":45)
+      escreva("| Informe a funcao que deseja realizada :":45)
       leia(_opcao)
-      se _opcao=5 entao
-         interrompa
+      se _opcao<>5 entao
+         ExecutarSubMenuRelatorio(_opcao)
+         limpatela
       fimse
-      ExecutarSubMenuRelatorio(_opcao)
-      limpatela
-      _opcao:=0
    fimenquanto
 
 FimProcedimento
@@ -898,31 +986,39 @@ FimFuncao
 
 Funcao ValidarCampoCpf(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
-   _cpfValido:inteiro
-   _cpf:real
-   _cpfFormatado:caracter
+   _cpfValido,_contador,_charAscii:inteiro
+   _cpfFormatado,_cpf,_char:caracter
 inicio
 
    enquanto verdadeiro faca
       TelaDadosCadastro
       escreva("| Informe "+_textoCampo+" :":_espacamento)
-      leia(_cpf)
 
-      se _cpf =0 entao
-         MensagemRodape("Erro",_textoCampo+" nao e valida")
-      senao
-         _cpfValido:=QuantidadeCaracter(Numpcarac(_cpf))
-         se _cpfValido <> 11 entao
-            MensagemRodape("Erro",_textoCampo+" nao e valida")
-         senao
+      leia(_cpf)
+      _cpf:=copia(_cpf;1,11)
+
+      Para _contador de 1 ate 11 faca
+         _char:=copia(_cpf;_contador,1)
+         se _char="" entao
             interrompa
          fimse
+
+         _charAscii:=Asc(_char)
+         se (_charAscii<48)ou(_charAscii>57) entao
+            _cpf:=""
+            interrompa
+         Fimse
+      Fimpara
+      _cpfValido:=QuantidadeCaracter(Numpcarac(_cpf))
+
+      se _cpfValido <> 11 entao
+         MensagemRodape("Erro",_textoCampo+" nao e valida")
+      senao
+         interrompa
       fimse
-
    fimenquanto
+   _cpfFormatado:=Copia(_cpf;1,3)+"."+Copia(_cpf;4,3)+"."+Copia(_cpf;7,3)+"-"+Copia(_cpf;10,2)
 
-   _cpfFormatado:=Numpcarac(_cpf)
-   _cpfFormatado:=Copia(_cpfFormatado;1,3)+"."+Copia(_cpfFormatado;4,3)+"."+Copia(_cpfFormatado;7,3)+"-"+Copia(_cpfFormatado;10,2)
    retorne _cpfFormatado
 
 FimFuncao
