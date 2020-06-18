@@ -14,6 +14,8 @@ var impostoApagar :real
 var valorDeduzido : real
 var deducaoDependentes : real
 var deducaoINSS : real
+var irrf : real
+
 inicio
 
 se (tipodeDeclaracao = 1) entao
@@ -24,8 +26,11 @@ se (tipodeDeclaracao = 1) entao
 senao
 se (tipodeDeclaracao = 2) entao
   //calcular o valor total de dedução por dependente
+	
 	deducaoDependentes := deducaoPorDependentes(numeroDependentes);
 	deducaoINSS := deducaoINSS(rendimentoAnual)
+	irrf := impostoRetinoNaFonte(rendimentoAnual)
+	
 	//Deduzir o rendimento
 	
 	valorDeduzido = rendimentoAnual - deducaoDependentes - despesasDedutiveis - deducaoINSS;
@@ -43,6 +48,24 @@ fimse
 
 retorne impostoApagar
 fimfuncao
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+funcao retidoNaFonte(rendimentoAnual : real) : real
+
+inicio
+
+//Esta função ira receber o rendimento anual do usuário, irá dividir por doze para obter o rendimento mensal, irá verificar na tabela qual a contribuição social mensalmente,
+
+
+
+fimfuncao
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
