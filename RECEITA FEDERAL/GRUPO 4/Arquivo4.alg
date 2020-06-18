@@ -45,17 +45,6 @@ retorne impostoApagar
 fimfuncao
 
 
-funcao impostoRetinoNaFonte(rendimentoAnual : real) : real
-
-
-inicio
-	
-	
-
-fimfuncao
-
-
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 funcao deducaoINSS(rendimentoAnual : real) : real
