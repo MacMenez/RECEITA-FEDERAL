@@ -13,8 +13,8 @@ Algoritmo "ReceitaFederal"
 // Consulte a Documentação disponibilizada no GitHub :
 //        github.com/MacMenez/RECEITA-FEDERAL
 // -------------------------------------------------------------------
-//Ativar em ambiente de Produção
 // Arquivo com dados iniciais
+// Ativar em ambiente de Produção
 //arquivo "D:\eng.computacao\LP\trabalho_receita_federal\BaseDadosInicial.csv"
 Var
    finalizarPrograma:logico
@@ -24,7 +24,7 @@ Var
    // 5 - Numeros de Dependentes, 6 - Salario Bruto, 7 - Imposto retido na fonte
    // 8 - Investimento, 9 - Despesas, 10 - Classificacao, 11- imposto a pagar
    // 12- imposto a receber,13 - Tipo declaracao
-   cadastroPessoa:vetor [1..13] de caracter
+   cadastroPessoa:vetor [1..15] de caracter
 
    // Estrutura vetor estadoCivil:
    // 1 - CASADO, 2 - SOLTEIRO, 3 - DIVORCIADO, 4 - VIUVO
@@ -42,7 +42,7 @@ Var
    linha:caracter
 
    //matriz temporaia de teste
-   //bancoDeDados:vetor [1..100,1..13] de caracter
+   bancoDeDados:vetor [1..100,1..13] de caracter
 
    //____________________________________________________________________
 
@@ -54,6 +54,7 @@ var
    _carregando:caracter
    _contador:inteiro
 inicio
+   Limpatela
 MudaCor("Azul","Fundos")
 escreval("":15, "                   ???      ")
 escreval("":15,"                   ???????     ")
@@ -73,8 +74,10 @@ escreval("":5," |_) |_ /  |_  |  |   /\    |_ |_ | \ |_ |_)  /\   |     ")
 escreval("":5," | \ |_ \_ |_  |  |  /--\   |  |_ |_/ |_ | \ /--\  |_    ")
 escreval("","")
 
+
 _carregando:=" * * * * * * * * * "
 escreva("":20,"Carregando")
+
 para _contador de 1 ate 15 faca
    PausaFake(3000)
    escreva(copia(_carregando;_contador,1))
@@ -99,7 +102,7 @@ inicio
    escreval ("|         _________________     ","    _________________          |")
    escreval ("|        |                 |    ","   |                 |         |")
    escreval ("|        |                 |    ","   |                 |         |")
-   escreval ("|        |  ( 3 ) Sobre    |    ","   |  ( 4 )  SAIR    |         |")
+   escreval ("|        |  ( 3 ) SOBRE    |    ","   |  ( 4 )  SAIR    |         |")
    escreval ("|        |                 |    ","   |                 |         |")
    escreval ("|        |_________________|    ","   |_________________|         |")
    escreval ("|                                                              |")
@@ -118,19 +121,57 @@ inicio
    escreval("":1," ####     ##### |  _|  | |_| | | |    | | |__  |  | |_| |")
    escreval("":1,"  ###  #######  | |    | | | | | |__  | |  __| |  | | | |")
    escreval("":1,"   ##..######   |_|    |_| |_| |____| |_| |____|  |_| |_|")
-   escreval("")
-   escreval("":15,"TRABALHO DE LÓGICA DE PROGRAMAÇÃO")
+   escreval("":15,"TRABALHO DE LÓGICA DE PROGRAMACAO")
    escreval("":10," _                       __")
    escreval("":10,"|_) _  _  _  o _|_ _    |_  _  _| _  __ _  |")
    escreval("":10,"| \(/_(_ (/_ |  | (_|   |  (/_(_|(/_ | (_| |")
    escreval("")
-   escreval("":10,"PROFESSOR : André Augusto de Abreu Rodrigues ")
+   escreval("":10,"PROFESSOR : Andre Augusto de Abreu Rodrigues ")
    escreval("":10,"CURSO     : ANÁLISE E DESENVOLVIMETNO DE SISTEMAS")
-   escreval("":10,"            ENGENHARIA DA COMPUTAÇÃO")
-   escreval("":20, "    2020 - 1º PERIODO")
+   escreval("":10,"            ENGENHARIA DA COMPUTACAO")
+   escreval("":20, " 2020 - 1º PERIODO")
+   escreval("":25, "Versao 1.0")
    escreval(" ":10," Pressione Enter para continuar....":52)
    Leia(_pausar)
 
+FimProcedimento
+
+Procedimento TelaLogoff
+var
+   _contador:inteiro
+inicio
+   Para _contador de 1 ate 60 faca
+      Limpatela
+      PausaFake(1000)
+      escreval("":1,"   ###'''''##    ____   _____   ____   _   ____    _____ ")
+      escreval("":1,"  ###  ##   ##  |  __| |  _  | | ___| | | | ___|  |  _  |")
+      escreval("":1," ###.########## | |_   | | | | | |    | | | |__   | | | |")
+      escreval("":1," ####     ##### |  _|  | |_| | | |    | | |__  |  | |_| |")
+      escreval("":1,"  ###  #######  | |    | | | | | |__  | |  __| |  | | | |")
+      escreval("":1,"   ##..######   |_|    |_| |_| |____| |_| |____|  |_| |_|")
+      escreval("")
+      escreval("":15,"TRABALHO DE LÓGICA DE PROGRAMAÇÃO")
+      escreval("":10," _                       __")
+      escreval("":10,"|_) _  _  _  o _|_ _    |_  _  _| _  __ _  |")
+      escreval("":10,"| \(/_(_ (/_ |  | (_|   |  (/_(_|(/_ | (_| |")
+      escreval("")
+
+      se _contador mod 2 =0 entao
+         escreval("":_contador,"   ( )")
+         escreval("":_contador,"   /|\")
+         escreval("":_contador,"    |")
+         escreval("":_contador,"    | ")
+
+      senao
+         escreval("":_contador,"   ( )")
+         escreval("":_contador,"    |")
+         escreval("":_contador,"    |")
+         escreval("":_contador,"   / \ ")
+
+      fimse
+      escreval("":_contador,"  ")
+   fimpara
+   Limpatela
 FimProcedimento
 
 Procedimento TelaTipoDeclaracao
@@ -171,8 +212,8 @@ inicio
 
    enquanto _tipoDeclaracao<=0 faca
       TelaTipoDeclaracao
-      escreval("Informe o Tipo de Declaracao:")
       escreval("1 - POR DEDUCOES LEGAIS ou 2 - POR DESCONTO SIMPLIFICADO")
+      escreva("Informe o Tipo de Declaracao :":30)
       leia(_tipoDeclaracao)
 
       se (_tipoDeclaracao<=0) ou (_tipoDeclaracao>2) entao
@@ -374,12 +415,12 @@ FimProcedimento
 
 procedimento PausaFake(_loopPausa:inteiro)
 var
-_numeroloop,_contador:inteiro
+   _numeroloop,_contador:inteiro
 
 inicio
    Para _contador de 1 ate _loopPausa faca
-   // loop somente para simular uma pausa
-   _numeroloop:=_numeroloop+1
+      // loop somente para simular uma pausa
+      _numeroloop:=_numeroloop+1
    Fimpara
 Fimprocedimento
 
@@ -395,7 +436,8 @@ inicio
    Caso 1
       EntradaDados
    Caso 2
-      TelaRelatorio
+      GraficoPercentualAliquota
+      //TelaRelatorio
    Caso 3
       TelaSobre
    Caso 4
@@ -414,6 +456,66 @@ Inicio
    para _contador de 1 ate _espacos faca
       _conteudoCampo:=_conteudoCampo+" "
    fimpara
+
+FimProcedimento
+
+Procedimento GraficoPercentualAliquota
+var
+   _coluna:vetor [1..4] de caracter
+   _grafico:vetor [1..4] de real
+   _aliquotas:vetor[1..4] de inteiro
+   _contador,_contador1,_indice,_totalAliquota:inteiro
+   _aliquota,_pausar:caracter
+
+inicio
+
+   enquanto verdadeiro faca
+      _indice:=_indice+1
+      se _indice>100 entao
+         interrompa
+      fimse
+      _aliquota:=bancoDeDados[_indice,10]
+      escolha _aliquota
+      caso "7.5%"
+         _aliquotas[1]:=_aliquotas[1]+1
+      caso "15%"
+         _aliquotas[2]:=_aliquotas[2]+1
+      caso "22.5%"
+         _aliquotas[3]:=_aliquotas[3]+1
+      caso "27.5%"
+         _aliquotas[4]:=_aliquotas[4]+1
+      fimescolha
+   fimenquanto
+
+   Para _contador de 1 ate 4 faca
+      _totalAliquota:=_totalAliquota+_aliquotas[_contador]
+   fimpara
+
+   se _totalAliquota>0 entao
+
+      Para _contador de 1 ate 4 faca
+         _grafico[_contador]:=((100*_aliquotas[_contador])/_totalAliquota)
+      fimpara
+   fimse
+
+   Limpatela
+   escreval("":25,"GRAFICO DE ALIQUOTAS ")
+   escreval(linha)
+
+   Para _contador de 10 ate 1 passo -1 faca
+      Para _contador1 de 1 ate 4 faca
+         _coluna[_contador1]:="   "
+         se  (_grafico[_contador1]>=(_contador*10)) e (_grafico[_contador1]>0) entao
+            _coluna[_contador1]:="|||"
+         fimse
+      fimpara
+      escreval((_contador*10),"%":8,_coluna[1],"":8,_coluna[2],"":8,_coluna[3],"":8,_coluna[4])
+   fimpara
+   escreval(linha)
+   escreval("Aliquota":10,"7.5%","":8,"15%","":8,"22.5%","":8,"27.5%")
+   escreval(linha)
+   escreval(" ":10," Pressione Enter para continuar....":52)
+   Leia(_pausar)
 
 FimProcedimento
 
@@ -745,7 +847,7 @@ inicio
          interrompa
       fimse
       _NumeroRegistro:=_NumeroRegistro+1
-    ExtrairDados(_linhaDado,_NumeroRegistro)
+      ExtrairDados(_linhaDado,_NumeroRegistro)
    fimenquanto
 
 Fimprocedimento
@@ -755,14 +857,14 @@ var
    _dadosTemporario:caracter
    _posicaoInicial,_posicaoFinal,_contador,_quantidadeDados:inteiro
 inicio
- _posicaoInicial:=1
- Para _contador de 1 ate 13 faca
-  _posicaoFinal:=Pos("|",_linhaDados)-1
-  _dadosTemporario:=copia(_linhaDados;_posicaoInicial,_posicaoFinal)
-  bancoDeDados[_NumeroRegistro,_contador]:=_dadosTemporario
-  _quantidadeDados:=QuantidadeCaracter(_linhaDados)
-  _linhaDados:=copia(_linhaDados;(_posicaoFinal+2),_quantidadeDados)
- fimpara
+   _posicaoInicial:=1
+   Para _contador de 1 ate 13 faca
+      _posicaoFinal:=Pos("|",_linhaDados)-1
+      _dadosTemporario:=copia(_linhaDados;_posicaoInicial,_posicaoFinal)
+      bancoDeDados[_NumeroRegistro,_contador]:=_dadosTemporario
+      _quantidadeDados:=QuantidadeCaracter(_linhaDados)
+      _linhaDados:=copia(_linhaDados;(_posicaoFinal+2),_quantidadeDados)
+   fimpara
 Fimprocedimento
 
 
@@ -861,8 +963,8 @@ var
    _valorDeducao:real
    _valoresRefecenciaAnual:vetor[1..2] de real
 inicio
-   _valoresRefecenciaAnual[1]:=20324.76
-   _valoresRefecenciaAnual[2]:=33874.80
+   _valoresRefecenciaAnual[1]:=21963.48
+   _valoresRefecenciaAnual[2]:=36606.24
 
 
    se _salarioBruto < _valoresRefecenciaAnual[1] entao
@@ -921,16 +1023,18 @@ FimProcedimento
 
 //________________________Programa_Principal__________________________
 Inicio
-    //Ativar em ambiente de Produção
+   //Ativar em ambiente de Produção
    //DadosIniciais
    InicializarVariaveisGlobais
-    //Ativar em ambiente de Produção
-   //TelaAbertura
+   //Ativar em ambiente de Produção
+   TelaAbertura
 
    enquanto finalizarPrograma=falso faca
       TelaMenu
       ExecutarFuncao
       Limpatela
    fimenquanto
+
+   TelaLogoff
 
 Fimalgoritmo
