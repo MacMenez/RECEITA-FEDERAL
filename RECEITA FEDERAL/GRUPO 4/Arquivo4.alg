@@ -8,12 +8,12 @@ Algoritmo "Dedução"
 Var
 
 // Seção de Declarações das variáveis
-funcao Deduzir(tipodeDeclaracao :inteiro, redimentoAnual :real,despesasDedutiveis :real,numeroDeDependente :inteiro) :real
+funcao Deduzir(tipodeDeclaracao :inteiro, redimentoAnual :real,despesasDedutiveis :real,numeroDeDependentes :inteiro) :real
 
 var impostoApagar :real
 var valorDeduzido : real
 var deducaoDependentes : real
-
+var deducaoINSS : real
 inicio
 
 se (tipodeDeclaracao = 1) entao
@@ -24,13 +24,14 @@ se (tipodeDeclaracao = 1) entao
 senao
 se (tipodeDeclaracao = 2) entao
   //calcular o valor total de dedução por dependente
-	 deducaoDependentes = numeroDeDependentes * 189,59;
-
+	deducaoDependentes := deducaoPorDependentes(numeroDependentes);
+	deducaoINSS := deducaoINSS(rendimentoAnual)
 	//Deduzir o rendimento
-	 valorDeduzido = rendimentoAnual - deducaoDependentes - despesasDedutiveis;
+	
+	valorDeduzido = rendimentoAnual - deducaoDependentes - despesasDedutiveis - deducaoINSS;
 
 	//passar o valorDeduzido valor como parâmetro da função de base de cálculo, que irá retornar o valor a ser pago como imposto de renda
-	impostoApagar =  BaseDeCalculo(valorDeduzido);
+	impostoApagar =  baseDeCalculo(valorDeduzido);
 
 senao
      //Imprime mensagem de erro
@@ -42,6 +43,59 @@ fimse
 
 retorne impostoApagar
 fimfuncao
+
+
+funcao impostoRetinoNaFonte(rendimentoAnual : real) : real
+
+
+inicio
+	
+	
+
+fimfuncao
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+funcao deducaoINSS(rendimentoAnual : real) : real
+
+inicio
+
+//Esta função ira receber o rendimento anual do usuário, irá dividir por doze para obter o rendimento mensal, irá verificar na tabela qual a contribuição social mensalmente,
+//Com este valor irá multiplicar por 12 e irá retornar o valor total a ser deduzido baseado na contribuição.
+
+
+fimfuncao
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+funcao deducaoPorDependentes(numDependentes : inteiro) : real
+
+inicio
+
+//Função irá retornar o valor total de dedução baseado na quantidade de dependentes, o valor unitário por dependente é 2275,08
+
+fimfuncao
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+funcao baseDeCalculo(valorDeduzido : real) : real
+
+inicio
+
+//Função irá retornar o valor total de impostos a pagar baseado na tabela de imposto de renda anual
+
+fimfuncao
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 Inicio
 // Seção de Comandos, procedimento, funções, operadores, etc... 
