@@ -122,7 +122,7 @@ inicio
    escreval("":1," ####     ##### |  _|  | |_| | | |    | | |__  |  | |_| |")
    escreval("":1,"  ###  #######  | |    | | | | | |__  | |  __| |  | | | |")
    escreval("":1,"   ##..######   |_|    |_| |_| |____| |_| |____|  |_| |_|")
-   escreval("":15,"TRABALHO DE LÓGICA DE PROGRAMACAO")
+   escreval("":15,"TRABALHO DE LOGICA DE PROGRAMACAO")
    escreval("":10," _                       __")
    escreval("":10,"|_) _  _  _  o _|_ _    |_  _  _| _  __ _  |")
    escreval("":10,"| \(/_(_ (/_ |  | (_|   |  (/_(_|(/_ | (_| |")
@@ -130,7 +130,7 @@ inicio
    escreval("":10,"PROFESSOR : Andre Augusto de Abreu Rodrigues ")
    escreval("":10,"CURSO     : ANÁLISE E DESENVOLVIMETNO DE SISTEMAS")
    escreval("":10,"            ENGENHARIA DA COMPUTACAO")
-   escreval("":20, " 2020 - 1º PERIODO")
+   escreval("":20, " 2020 - 1o PERIODO")
    escreval("":25, "Versao 1.0")
    escreval(" ":10," Pressione Enter para continuar....":52)
    Leia(_pausar)
@@ -151,7 +151,7 @@ inicio
       escreval("":1,"  ###  #######  | |    | | | | | |__  | |  __| |  | | | |")
       escreval("":1,"   ##..######   |_|    |_| |_| |____| |_| |____|  |_| |_|")
       escreval("")
-      escreval("":15,"TRABALHO DE LÓGICA DE PROGRAMAÇÃO")
+      escreval("":15,"TRABALHO DE LOGICA DE PROGRAMACAO")
       escreval("":10," _                       __")
       escreval("":10,"|_) _  _  _  o _|_ _    |_  _  _| _  __ _  |")
       escreval("":10,"| \(/_(_ (/_ |  | (_|   |  (/_(_|(/_ | (_| |")
@@ -218,12 +218,13 @@ inicio
       leia(_tipoDeclaracao)
 
       se (_tipoDeclaracao<=0) ou (_tipoDeclaracao>2) entao
-         MensagemRodape("Erro","Tipo de Declaracao não é valida")
+         MensagemRodape("Erro","Tipo de Declaracao nao e valida")
          _tipoDeclaracao:=0
       fimse
 
    fimenquanto
 
+   //Grava os dados do tipo de declaração escolhida
    se _tipoDeclaracao=1 entao
       cadastroPessoa[10]:=declaracaoSimplificada[1]
       cadastroPessoa[11]:=declaracaoSimplificada[2]
@@ -270,11 +271,16 @@ inicio
    escreval("":5,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
    escreval(linha)
 
+   // Desenha tela conforme configuração dos vetores:
+   //_camposTela = descrição do campo na tela
+   // _conteudoCampo = dado informado pelo usuário
    para _contador de 1 ate 9 faca
       _conteudoCampo:=cadastroPessoa[_contador]
       _quantidadeCaracteres:=QuantidadeCaracter(_conteudoCampo)
       _quantidadeCaracteres:=_tamanhocampo[_contador]-_quantidadeCaracteres
 
+      // Prenche com espaço para atenter a formatação do campo
+      // conferme configurado vetor _tamanhocampo
       se _quantidadeCaracteres>0 entao
          PreencherComEspacos(_conteudoCampo,_quantidadeCaracteres)
       fimse
@@ -292,7 +298,7 @@ inicio
 
 FimProcedimento
 
-Procedimento EntradaDados
+Procedimento EntradaDadosTelaCadastro
 var
    _contador,_indiceCpfExistente,_controleAlterarExcluir,_espacamento:inteiro
    _entradaDados:vetor [1..9] de caracter
@@ -324,6 +330,7 @@ inicio
    _entradaDados[8]:="o Lucros em Investimento Anual"
    _entradaDados[9]:="o Despesas Dedutiveis Anual"
 
+   // Entrada de dados conforme o tipo de validação do campo
    para _contador de 1 ate 9 faca
       _dadosValidos:=falso
       escolha _tipoDados[_contador]
@@ -334,7 +341,6 @@ inicio
          _indiceCpfExistente:=PesquisarContribuinte(cadastroPessoa[_contador])
 
          se _indiceCpfExistente>0 entao
-
             _controleAlterarExcluir:=TelaCadastroExiste()
 
             // 1- alterar, 2-excluir, 3-Sair
@@ -349,12 +355,16 @@ inicio
             fimescolha
          fimse
       Caso 1
+
          enquanto _dadosValidos=falso faca
             cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],_espacamento,verdadeiro)
+
             _dadosValidos:=ValidacaoRegraNegocio()
+
             se _dadosValidos=falso entao
                TelaDadosCadastro
             fimse
+
          fimenquanto
 
       caso 2
@@ -366,12 +376,16 @@ inicio
       caso 5
          cadastroPessoa[_contador]:=ValidarCampoNumericoComZero(_entradaDados[_contador],_espacamento)
       Caso 6
+
          enquanto _dadosValidos=falso faca
             cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],_espacamento,falso)
+
             _dadosValidos:=ValidacaoRegraNegocio()
+
             se _dadosValidos=falso entao
                TelaDadosCadastro
             fimse
+
          fimenquanto
       FimEscolha
 
@@ -401,21 +415,6 @@ inicio
    TelaDadosCadastro
 FimProcedimento
 
-Procedimento InicializarVariaveisGlobais
-var
-   _contador:inteiro
-inicio
-   estadoCivil[1]:="CASADO"
-   estadoCivil[2]:="SOLTEIRO"
-   estadoCivil[3]:="DIVORCIADO"
-   estadoCivil[4]:="VIUVO"
-
-   para _contador de 1 ate 62 faca
-      linha:=linha+"="
-   fimpara
-
-FimProcedimento
-
 procedimento MensagemRodape(_tipoMensagem,_textoMensagem: caracter)
 var
 
@@ -428,6 +427,30 @@ inicio
    PausaFake(20000)
 FimProcedimento
 
+Procedimento ExecutarFuncao
+var
+   _opcaoMenu:inteiro
+inicio
+
+   escreva ("Digite a opcao desejada: ")
+   Leia (_opcaoMenu)
+
+   Escolha _opcaoMenu
+   Caso 1
+      EntradaDadosTelaCadastro
+   Caso 2
+      Relatorios
+   Caso 3
+      TelaSobre
+   Caso 4
+      finalizarPrograma:=verdadeiro
+   outrocaso
+      MensagemRodape("Erro","Funcao encolhida nao e valida")
+   FimEscolha
+
+Fimprocedimento
+//_______________Procedimentos__Auxiliares___________________________
+
 procedimento PausaFake(_loopPausa:inteiro)
 var
    _numeroloop,_contador:inteiro
@@ -439,29 +462,6 @@ inicio
    Fimpara
 Fimprocedimento
 
-Procedimento ExecutarFuncao
-var
-   _opcaoMenu:inteiro
-inicio
-
-   escreva ("Digite a opção desejada: ")
-   Leia (_opcaoMenu)
-
-   Escolha _opcaoMenu
-   Caso 1
-      EntradaDados
-   Caso 2
-      Relatorios
-   Caso 3
-      TelaSobre
-   Caso 4
-      finalizarPrograma:=verdadeiro
-   outrocaso
-      MensagemRodape("Erro","Função encolhida não é valida")
-   FimEscolha
-
-Fimprocedimento
-
 // Procedimento para atender a transferencia de valor por referencia
 Procedimento PreencherComEspacos(var _conteudoCampo:caracter;_espacos:inteiro):caracter
 var
@@ -469,6 +469,21 @@ var
 Inicio
    para _contador de 1 ate _espacos faca
       _conteudoCampo:=_conteudoCampo+" "
+   fimpara
+
+FimProcedimento
+
+Procedimento InicializarVariaveisGlobais
+var
+   _contador:inteiro
+inicio
+   estadoCivil[1]:="CASADO"
+   estadoCivil[2]:="SOLTEIRO"
+   estadoCivil[3]:="DIVORCIADO"
+   estadoCivil[4]:="VIUVO"
+
+   para _contador de 1 ate 62 faca
+      linha:=linha+"="
    fimpara
 
 FimProcedimento
@@ -485,6 +500,7 @@ var
 
 inicio
 
+   // Acumula a quantidade de cada aliquotas
    enquanto verdadeiro faca
       _indice:=_indice+1
       se _indice>100 entao
@@ -508,7 +524,7 @@ inicio
    fimpara
 
    se _totalAliquota>0 entao
-
+      // Calculo do percentual de cada aliquota
       Para _contador de 1 ate 4 faca
          _grafico[_contador]:=((100*_aliquotas[_contador])/_totalAliquota)
       fimpara
@@ -518,6 +534,7 @@ inicio
    escreval("":25,"GRAFICO DE ALIQUOTAS ")
    escreval(linha)
 
+   // Desenha tela do grafico
    Para _contador de 10 ate 1 passo -1 faca
       Para _contador1 de 1 ate 4 faca
          _coluna[_contador1]:="   "
@@ -530,7 +547,7 @@ inicio
    escreval(linha)
    escreval("Aliquota":10,"7.5%","":8,"15%","":8,"22.5%","":8,"27.5%")
    escreval(linha)
-   escreval(" ":10," Pressione Enter para continuar....":52)
+   escreval(" ":10," Pressione enter para continuar....":52)
    Leia(_pausar)
 
 FimProcedimento
@@ -565,11 +582,13 @@ Inicio
       fimse
 
       escreval ("|":_numeroColunas-1 ,"|")
+
       para _contador1 de 1 ate _numeroCampo faca
          escreva ("|":_espacamento)
          _numeroDescricao:=_numeroDescricao+1
          escreva (_opcaoRelatorio[_numeroDescricao])
       fimpara
+
       escreval (" |")
       escreval ("|":_numeroColunas-1 ,"|")
       escreval (_linha)
@@ -590,7 +609,7 @@ inicio
    caso 4
       //ReimpressaoRecibo
    outrocaso
-      MensagemRodape("Erro","Função escolhida não é valida")
+      MensagemRodape("Erro","Funcao escolhida nao e valida")
    fimescolha
 Fimprocedimento
 
@@ -600,7 +619,7 @@ var
 inicio
    enquanto verdadeiro faca
       TelaSubMenuRelatorio(3,64,2,6)
-      escreval("| Informe a função que deseja realizada :":45)
+      escreval("| Informe a funcao que deseja realizada :":45)
       leia(_opcao)
       se _opcao=5 entao
          interrompa
@@ -626,7 +645,7 @@ inicio
    _despesasDedutiveis:=RemoverFormatacaoMonetaria(cadastroPessoa[9])
 
    se (_impostoRetido>(_salarioBruto*0.3)) entao
-      MensagemRodape("Erro","Imposto retido ultrapassou 30% do Salário")
+      MensagemRodape("Erro","Imposto retido ultrapassou 30% do Salario")
       cadastroPessoa[7]:=""
       _dadosValidos:=falso
    fimse
@@ -651,7 +670,7 @@ inicio
       escreval("CPF informado ja cadastrado, digite 1- alterar, 2-excluir, 3-Sair ")
       leia(_acao)
       se (_acao<=0) ou (_acao>3) entao
-         MensagemRodape("Erro","Função encolhida não é valida")
+         MensagemRodape("Erro","Funcao encolhida nao e valida")
          _acao:=0
       fimse
    fimenquanto
@@ -837,17 +856,24 @@ inicio
 
       se _campoAlfabetico <> "" entao
 
+         // Conveter toda os dados digitados em MAIUSCULO
          _campoAlfabetico:=Maiusc(_campoAlfabetico)
 
+         // Para de 1 ate 100 pois o maior campo do baco é de 100 posições
          para _contador de 1 ate 100 faca
+            // remove cada caracter dos dados
             _char:=copia(_campoAlfabetico;_contador,1)
 
+            // Verifica final dos dados
             se _char="" entao
                interrompa
             fimse
 
+            // Converte o caracter no numero inteiro que é representado
+            // na tebela ASCII
             _charAscii:=Asc(_char)
 
+            // permite someten A = 65 ate Z = 90  e espaço = 32
             se ((_charAscii<65) ou (_charAscii>90)) e (_charAscii <> 32) entao
                MensagemRodape("Erro",_textoCampo+" deve ter somente caracteres alfabeticos")
                _campoAlfabetico:=""
@@ -859,6 +885,7 @@ inicio
          MensagemRodape("Erro",_textoCampo+" deve ter somente caracteres alfabeticos")
       fimse
 
+      // Caso a variavel seja diferente de vazio o é valido
       se _campoAlfabetico <> "" entao
          interrompa
       fimse
@@ -882,11 +909,11 @@ inicio
       leia(_cpf)
 
       se _cpf =0 entao
-         MensagemRodape("Erro",_textoCampo+" não é valida")
+         MensagemRodape("Erro",_textoCampo+" nao e valida")
       senao
          _cpfValido:=QuantidadeCaracter(Numpcarac(_cpf))
          se _cpfValido <> 11 entao
-            MensagemRodape("Erro",_textoCampo+" não é valida")
+            MensagemRodape("Erro",_textoCampo+" nao e valida")
          senao
             interrompa
          fimse
