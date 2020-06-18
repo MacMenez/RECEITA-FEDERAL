@@ -44,6 +44,7 @@ Var
    //matriz temporaia de teste
    bancoDeDados:vetor [1..100,1..13] de caracter
 
+   teste:logico
    //____________________________________________________________________
 
    //________________________Grupo_1_MODULO_1____________________________
@@ -295,7 +296,7 @@ Procedimento EntradaDados
 var
    _contador,_indiceCpfExistente,_controleAlterarExcluir,_espacamento:inteiro
    _entradaDados:vetor [1..9] de caracter
-
+   _dadosValidos:logico
 
    // Tipo de dados 0- Cpf, 1 - Monetario Obrigatório , 2 - Alfabetico
    //               3 - AlfaNumerico , 4 - tabela estado civil
@@ -324,6 +325,7 @@ inicio
    _entradaDados[9]:="o Despesas Dedutiveis Anual"
 
    para _contador de 1 ate 9 faca
+      _dadosValidos:=falso
       escolha _tipoDados[_contador]
          _espacamento:=QuantidadeCaracter(_entradaDados[_contador])+3
       caso 0
@@ -347,7 +349,14 @@ inicio
             fimescolha
          fimse
       Caso 1
-         cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],_espacamento,verdadeiro)
+         enquanto _dadosValidos=falso faca
+            cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],_espacamento,verdadeiro)
+            _dadosValidos:=ValidacaoRegraNegocio()
+            se _dadosValidos=falso entao
+               TelaDadosCadastro
+            fimse
+         fimenquanto
+
       caso 2
          cadastroPessoa[_contador]:=ValidarCampoAlfabetico(_entradaDados[_contador],_espacamento)
       caso 3
@@ -357,7 +366,13 @@ inicio
       caso 5
          cadastroPessoa[_contador]:=ValidarCampoNumericoComZero(_entradaDados[_contador],_espacamento)
       Caso 6
-         cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],_espacamento,falso)
+         enquanto _dadosValidos=falso faca
+            cadastroPessoa[_contador]:=ValidarValorMonetario(_entradaDados[_contador],_espacamento,falso)
+            _dadosValidos:=ValidacaoRegraNegocio()
+            se _dadosValidos=falso entao
+               TelaDadosCadastro
+            fimse
+         fimenquanto
       FimEscolha
 
       TelaDadosCadastro
@@ -436,8 +451,7 @@ inicio
    Caso 1
       EntradaDados
    Caso 2
-      GraficoPercentualAliquota
-      //TelaRelatorio
+      Relatorios
    Caso 3
       TelaSobre
    Caso 4
@@ -458,6 +472,8 @@ Inicio
    fimpara
 
 FimProcedimento
+
+//_____________________RELATORIOS____________________________________
 
 Procedimento GraficoPercentualAliquota
 var
@@ -519,8 +535,111 @@ inicio
 
 FimProcedimento
 
+Procedimento TelaSubMenuRelatorio(_numeroLinhas,_numeroColunas,_numeroCampo,_espacamento:inteiro)
+var
+   _contador,_contador1,_numeroDescricao:inteiro
+   _linha:caracter
+   _opcaoRelatorio:vetor [1..6] de caracter
+Inicio
+
+   _opcaoRelatorio[1]:="1 - Listagem Declaracoes "
+   _opcaoRelatorio[2]:="2 - Relatorio Sintetico  "
+   _opcaoRelatorio[3]:="3 - Grafico de Aliquotas "
+   _opcaoRelatorio[4]:="4 - Reimpressao de Recibo"
+   _opcaoRelatorio[5]:="5 - Retornar Menu        "
+   _opcaoRelatorio[6]:="                         "
+
+   // Inicializa linha com traços
+   para _contador de 1 ate _numeroColunas faca
+      _linha:=_linha+"-"
+   FimPara
+
+   limpaTela
+
+   // Monta quadros da tela
+   para _contador de 1 ate _numeroLinhas faca
+      se _contador=1 entao
+         escreval (_linha)
+         escreval("|":23,"R E L A T O R I O S":40,"|")
+         escreval (_linha)
+      fimse
+
+      escreval ("|":_numeroColunas-1 ,"|")
+      para _contador1 de 1 ate _numeroCampo faca
+         escreva ("|":_espacamento)
+         _numeroDescricao:=_numeroDescricao+1
+         escreva (_opcaoRelatorio[_numeroDescricao])
+      fimpara
+      escreval (" |")
+      escreval ("|":_numeroColunas-1 ,"|")
+      escreval (_linha)
+   fimpara
+
+FimProcedimento
+
+Procedimento ExecutarSubMenuRelatorio(_opcao:inteiro)
+var
+inicio
+   escolha _opcao
+   caso 1
+      //ExecutarRelatorio
+   caso 2
+      //RelatorioSintetico
+   caso 3
+      GraficoPercentualAliquota
+   caso 4
+      //ReimpressaoRecibo
+   outrocaso
+      MensagemRodape("Erro","Função escolhida não é valida")
+   fimescolha
+Fimprocedimento
+
+Procedimento Relatorios
+var
+   _opcao:inteiro
+inicio
+   enquanto verdadeiro faca
+      TelaSubMenuRelatorio(3,64,2,6)
+      escreval("| Informe a função que deseja realizada :":45)
+      leia(_opcao)
+      se _opcao=5 entao
+         interrompa
+      fimse
+      ExecutarSubMenuRelatorio(_opcao)
+      limpatela
+      _opcao:=0
+   fimenquanto
+
+FimProcedimento
 
 //________________________________Funções______________________________
+
+Funcao ValidacaoRegraNegocio():logico
+var
+   _salarioBruto,_impostoRetido,_investimentos,_despesasDedutiveis:real
+   _dadosValidos:logico
+inicio
+   _dadosValidos:=verdadeiro
+   _salarioBruto:=RemoverFormatacaoMonetaria(cadastroPessoa[6])
+   _impostoRetido:=RemoverFormatacaoMonetaria(cadastroPessoa[7])
+   _investimentos:=RemoverFormatacaoMonetaria(cadastroPessoa[8])
+   _despesasDedutiveis:=RemoverFormatacaoMonetaria(cadastroPessoa[9])
+
+   se (_impostoRetido>(_salarioBruto*0.3)) entao
+      MensagemRodape("Erro","Imposto retido ultrapassou 30% do Salário")
+      cadastroPessoa[7]:=""
+      _dadosValidos:=falso
+   fimse
+
+   se (_despesasDedutiveis>(_investimentos+_salarioBruto)) e (_dadosValidos=verdadeiro) entao
+      MensagemRodape("Erro","Despesas Ultrassou o valor das Receitas")
+      cadastroPessoa[9]:=""
+      _dadosValidos:=falso
+   fimse
+
+   retorne _dadosValidos
+
+Fimfuncao
 
 Funcao TelaCadastroExiste():inteiro
 var
@@ -1027,7 +1146,8 @@ Inicio
    //DadosIniciais
    InicializarVariaveisGlobais
    //Ativar em ambiente de Produção
-   TelaAbertura
+   //TelaAbertura
+
 
    enquanto finalizarPrograma=falso faca
       TelaMenu
