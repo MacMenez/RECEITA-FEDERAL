@@ -54,7 +54,7 @@ O sistema possui quatro tipos de relatórios implementados .
 
 1 - Listagem completa das declarações 
 
-imagem
+![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela9.png)
 
 2- Relatório sintético das declarações
 
