@@ -59,6 +59,7 @@ O sistema possui quatro tipos de relatórios implementados .
 2- Relatório sintético das declarações
 
 imagem
+
 3- Gráfico de percentual de alíquotas cadastradas
 
 ![tela grafico](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela5.png)
