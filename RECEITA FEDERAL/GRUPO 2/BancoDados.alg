@@ -5,111 +5,140 @@ Algoritmo "semnome"
 // Autor(a)    : Alisson, Amilton, Davi, Gabriel A., Gabriel V., Lucas
 // Data atual  : 02/06/2020
 
+*****************************************************************************
+
+Algoritmo "BANCO DE DADOS - RECEITA FEDERAL"
+// Disciplina  :  [Linguagem e Lógica de Programação]
+// Professor   : Antonio Carlos Nicolodi
+// Descrição   : Banco de Dados + Funções Internas do Banco 
+// Autor(a)    : Alisson, Amilton, Davi, Gabriel A., Gabriel V., Lucas M.
+// Data atual  : 20/06/2020
+
 Var
-// Seção de Declarações das variáveis 
-    cadastroPessoa: VETOR [1..15] DE CARACTERE
-    BancoDados: VETOR [1..100, 1..13] DE CARACTERE
+// Seção de Declarações das variáveis
+   Dados: VETOR [1..13] DE CARACTERE //Vetor com os dados dos usuários
+   BancoDados: VETOR [1..100, 1..13] DE CARACTERE //MAtriz com todas as informações
+   contador, indice: INTEIRO //Irá ajudar a identificar o usuário pelo CPF
+// Fim Seção de Declarações das variáveis
 
-    contador, indice: INTEIRO
-    posicao: inteiro
-    numCPF: caractere
-// Fim da Seção de Declarações das variáveis   
+//____________________ÁREA_DE_PESQUISA_DE_DADOS____________________
 
-// Seção de Declarações das Funções
-Funcao Pesquisa(Dados: CARACTERE): INTEIRO
-    Var
-        contador: inteiro
-        infoUsuario: CARACTERE
-    Inicio
-        PARA contador de 1 ATE 13 FACA
-            SE BancoDados [1, contador] = Dados ENTAO
-                Interrompa
-            FIMSE
-        FIMPARA
+//Pesquisará por todos os dados cadastrados, usando a informação inserida nos campos(Recomendado usar CPF)
+Funcao Pesquisar(_dadosCampo: CARACTERE;_indiceCampo:INTEIRO): INTEIRO 
 
-        Retorne contador
-FimFuncao
-
-Funcao Excluir
-    Var
-        teste: vetor[1..5,1..13] de inteiro
-
-        filer, id, desejoDeExclusao:inteiro
-    
-    Inicio
-
-        // a primeira posiçao representa o id do usurio registrado
-
-        para filer de 1 ate 5 faca
-            teste[filer,1]<-filer
-        fimpara
-
-        para filer de 1 ate 5 faca
-            teste[filer,2]<-11
-        fimpara
-
-        para filer de 1 ate 5 faca
-            teste[filer,3]<-22
-        fimpara
-
-        para filer de 1 ate 5 faca
-            teste[filer,4]<-33
-        fimpara
-
-        escreval("Sera exibida uma tabela que representa meros dados imaginarios em uma tabela na qual tera os dados excluidos")
-        escreval("")
-        escreval("")
-        escreval("")
-        escreval("")
-
-        escreval("ID  ","| dado ","| dado ","| dado")
-        para filer de 1 ate 5 faca
-        escreval(teste[filer,1], "  |  ",teste[filer,2], " |  ",teste[filer,3], " | ",teste[filer,4])
-        fimpara
-        escreval("")
-        escreval("")
-        escreval("")
-        escreval("")
-
-        // Desta parte em diante, deve ser pensada em uma funçao que esta sendo executada j no codigo principal
-
-        desejoDeExclusao<- 1
-        enquanto (desejoDeExclusao = 1) faca
-            escreval("Digite o id de usurio a ser excludo: ")
-            leia(id)
-
-            teste[id,1]<-000
-
-            escreval("Usuario de id ", id, " foi excluido!!")
-            
-            escreval("ID  ","| dado ","| dado ","| dado")
-            para filer de 1 ate 5 faca
-                escreval(teste[filer,1], "  |  ",teste[filer,2], " |  ",teste[filer,3], " | ",teste[filer,4])
-            fimpara
-            
-            escreval("para excluir usurios digite 1, para encerrar a execuçao digite 2")
-            leia(desejoDeExclusao)
-        fimenquanto
-FimFuncao
-// Fim Seção de Declarações das Funções
-
+Var
+   _contador,_indice: INTEIRO
 Inicio
-// Seção de Comandos 
-    PARA contador DE 1 ATE 13 FACA
-        BancoDados [1, contador] := Carac((contador+64))
+
+   PARA _contador de 1 ATE 100 FACA //Irá localizar o usuário pelo CPF
+        SE BancoDados [_contador,_indiceCampo] = _dadosCampo ENTAO
+            _indice := _contador //Indice irá identificar o vetor.
+
+            Interrompa
+        FIMSE
+   FIMPARA
+   Retorne _indice
+FimFuncao
+
+Procedimento GravarDados
+var
+   _indiceLivre,_contador:INTEIRO
+inicio
+   PARA _contador de 1 ate 100 FACA
+        SE BancoDados[_contador,1]="" ENTAO
+            _indiceLivre:=_contador
+            Interrompa
+        FIMSE
+   FIMPARA
+
+   PARA _contador de 1 ate 13 faca
+      BancoDados[_indiceLivre,_contador] := Dados[_contador]
+      Dados[_contador]:=""
     FIMPARA
 
-    numCPF := "12345678900"
+Fimprocedimento
 
-    escolha contador
-    caso contador[1,1]
-    contador[1,1] := numCPF
-    outrocaso
-    escreval("não existe")
-    fimescolha
-    posicao := Pesquisa(numCPF)
-    ESCREVAL("Posição: ", posicao)
-    ESCREVAL(indice)
-    ESCREVAL(contador)
-// Fim Seção de Comandos 
+//Resgata as informações do usuário para ter acesso a elas
+Procedimento RecuperarDados(_indice:inteiro)
+var
+   _contador:inteiro
+inicio
+
+    PARA _contador de 1 ate 13 FACA
+        Dados[_contador] := BancoDados[_indice,_contador]
+    FIMPARA
+
+FimProcedimento
+
+//____________________FIM_ÁREA_DE_PESQUISA_DE_DADOS____________________
+
+//____________________ÁREA_PARA_EXCLUIR_DADOS________________________
+//____________________FIM_ÁREA_PARA_EXCLUIR_DADOS____________________
+
+//____________________ÁREA_PARA_ALTERAR_DADOS________________________
+//____________________FIM_ÁREA_PARA_ALTERA_DADOS_____________________
+
+//____________________ÁREA_PARA_GERAR_RECIBO________________________
+//____________________FIM_ÁREA_PARA_GERAR_RECIBO____________________
+
+
+//************************************************************************************************************
+Inicio
+   // Seção de Comandos, procedimento, funções, operadores, etc...
+
+   GravarDados()
+
+   indice:=Pesquisar("",) //ENTRE "" DIGITE A INFORMAÇÃO. Após a "," digite o campo desejado.
+   
+    SE indice > 0 ENTAO
+        RecuperarDados(indice)
+    FIMSE
+
+    PARA contador de 1 ate 13 faca
+        ESCREVAL(Dados[contador])
+    FIMPARA
+
 Fimalgoritmo
+//************************************************************************************************************
+
+
+PARA REALIZAR TESTES UTILIZE OS EXEMPLOS ABAIXO
+//************************************************************************************************************
+Procedimento dadosUsuario
+Inicio
+   Dados[1] := "123.456.789-00"
+   Dados[2] := "ANONIMO"
+   Dados[3] := "RUA NÃO EXISTE"
+   Dados[4] := "LIVRE DE SOGRA"
+   Dados[5] := "1"
+   Dados[6] := "R$1.300 BRUTO"
+   Dados[7] := "R$13.000 LIQUISO"
+   Dados[8] := "R$5.000 LUCRO"
+   Dados[9] := "R$4.000 DESPESAS"
+   Dados[10] := "VALOR 0"
+   Dados[11] := "VALOR 0"
+   Dados[12] := "VALOR 0"
+   Dados[13] := "VALOR 0"
+FimProcedimento
+
+dadosUsuario() //ACRESCENTAR NA SEÇÃO DE COMANDO
+
+Procedimento dadosUsuario1
+Inicio
+   Dados[1] := "987.654.321-00"
+   Dados[2] := "MARIA"
+   Dados[3] := "RUA NÃO EXISTE"
+   Dados[4] := "LIVRE DE SOGRA"
+   Dados[5] := "1"
+   Dados[6] := "R$1.300 BRUTO"
+   Dados[7] := "R$13.000 LIQUISO"
+   Dados[8] := "R$5.000 LUCRO"
+   Dados[9] := "R$4.000 DESPESAS"
+   Dados[10] := "VALOR 0"
+   Dados[11] := "VALOR 0"
+   Dados[12] := "VALOR 0"
+   Dados[13] := "VALOR 0"
+FimProcedimento
+
+dadosUsuario1() //ACRESCENTAR NA SEÇÃO DE COMANDO
+//***************************************************************
