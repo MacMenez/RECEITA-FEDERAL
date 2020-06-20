@@ -49,3 +49,8 @@ __Será informado neste documento os requisitos do sistema, regras de aplicaçã
 | De R$ 21.963,49 até R$ 36.606,24‬ | 9 %  |
 | Acima de  36.606,24‬ | 11 %  |
   
+# Cálculo Base de Imposto de Renda  
+
+- Soma dos rendimentos tributáveis – soma das deduções = base de cálculo
+- Alíquota de IR é aplicada sobre esta base de cálculo = imposto devido
+- Imposto devido – imposto já pago = imposto a pagar ou a restituir

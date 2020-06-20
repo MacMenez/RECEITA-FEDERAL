@@ -38,6 +38,12 @@ Na tela de cadastro o usuário tem a possibilidade de realizar sua declaração 
 
 ![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela3.png)
 
+Caso já exista o cadastro do CPF o usuário será solicitação a escolher uma entre três opções:  **1- alterar, 2-excluir, 3-Sair**
+
+![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela10.png)
+
+
+
 Após o cadastro, será processada a declaração e o usuário deve escolher entre realizar a declaração por desconto simplificado ou por deduções legais (completa) .
 
 ![tela simulado](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela4.png)
@@ -54,11 +60,12 @@ O sistema possui quatro tipos de relatórios implementados .
 
 1 - Listagem completa das declarações 
 
-imagem
+![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela9.png)
 
 2- Relatório sintético das declarações
 
 imagem
+
 3- Gráfico de percentual de alíquotas cadastradas
 
 ![tela grafico](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela5.png)
