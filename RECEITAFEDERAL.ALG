@@ -152,9 +152,6 @@ inicio
       escreval("":1,"   ##..######   |_|    |_| |_| |____| |_| |____|  |_| |_|")
       escreval("")
       escreval("":15,"TRABALHO DE LOGICA DE PROGRAMACAO")
-      //escreval("":10," _                       __")
-      //escreval("":10,"|_) _  _  _  o _|_ _    |_  _  _| _  __ _  |")
-      //escreval("":10,"| \(/_(_ (/_ |  | (_|   |  (/_(_|(/_ | (_| |")
       escreval("")
 
       _espaco:=_espaco+" "
@@ -373,7 +370,7 @@ inicio
          cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],_espacamento)
 
          _indiceCpfExistente:=PesquisarContribuinte(cadastroPessoa[_contador])
-                               _indiceCpfExistente:=1
+
          se _indiceCpfExistente>0 entao
             _controleAlterarExcluir:=TelaCadastroExiste()
 
@@ -1144,7 +1141,7 @@ Fimprocedimento
 
 
 //________________________Grupo_3_MODULO_3____________________________
-Procedimento ProcessarDeclaracao(var impostoSimplificado,impostoCompleto:real)
+Procedimento ProcessarDeclaracao(var _impostoSimplificado,_impostoCompleto:real)
 var
    _salarioBruto,_deducaoInss,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis:real
    _aliquotaIrpf:real
@@ -1157,8 +1154,8 @@ Inicio
    _lucroInvestimento:=RemoverFormatacaoMonetaria(cadastroPessoa[8])
    _despesasDedutiveis:=RemoverFormatacaoMonetaria(cadastroPessoa[9])
    _deducaoInss:=CalculaDeducaoInss(_salarioBruto)
-   impostoSimplificado:=CalcularDeclaracaoSimplificada(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
-   impostoCompleto:=CalcularDeclaracaoCompleta(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
+   _impostoSimplificado:=CalcularDeclaracaoSimplificada(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
+   _impostoCompleto:=CalcularDeclaracaoCompleta(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
 
 FimProcedimento
 
@@ -1172,18 +1169,23 @@ inicio
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
    _imposto:=_baseCalculo*_aliquota
+   
    se _aliquota>0 entao
       _imposto:=_baseCalculo*_aliquota
    fimse
+
    _imposto:=_imposto-_impostoRetidoFonte
    _aliquotaCalculada:=(_imposto/_baseCalculo)*100
+
    se  _aliquotaCalculada > (_aliquota*100) entao
       _aliquotaCalculada:=_aliquota
    senao
       _aliquotaCalculada:=0
    fimse
+
    _aliquotaEfetiva:=Numpcarac(_aliquotaCalculada)
    declaracaoSimplificada[1]:=copia(_aliquotaEfetiva;1:5)+" %"
+
    se _imposto<0 entao
       _imposto:=_imposto*-1
       declaracaoSimplificada[3]:=FormataValorMonetario(_imposto,".")
@@ -1204,9 +1206,11 @@ inicio
    _deducao:=Deduzir(2,_dependentes, _salarioBruto ,_despesasDedutiveis)
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
+
    se _aliquota>0 entao
       _imposto:=_baseCalculo*_aliquota
    fimse
+
    _imposto:=_imposto-_impostoRetidoFonte
    _aliquotaCalculada:=(_imposto/_baseCalculo)*100
 
@@ -1215,8 +1219,8 @@ inicio
    senao
       _aliquotaCalculada:=0
    fimse
-   _aliquotaEfetiva:=Numpcarac(_aliquotaCalculada)
 
+   _aliquotaEfetiva:=Numpcarac(_aliquotaCalculada)
    declaracaoCompleta[1]:=copia(_aliquotaEfetiva;1:5)+" %"
 
    se _imposto<0 entao
@@ -1263,7 +1267,6 @@ var
 inicio
    _valoresRefecenciaAnual[1]:=21963.48
    _valoresRefecenciaAnual[2]:=36606.24
-
 
    se _salarioBruto < _valoresRefecenciaAnual[1] entao
       _valorDeducao:=_salarioBruto*0.08
@@ -1382,7 +1385,6 @@ Inicio
    InicializarVariaveisGlobais
    //Ativar em ambiente de Produção
    //TelaAbertura
-
 
    enquanto finalizarPrograma=falso faca
       TelaMenu
