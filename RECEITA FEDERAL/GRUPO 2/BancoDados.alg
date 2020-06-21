@@ -162,6 +162,29 @@ Var
    FimProcedimento
 //____________________FIM_ÁREA_PARA_GERAR_RECIBO_______________________
 
+//____________________FORMATAÇÃO_DE_DADOS_INSERIDOS____________________
+   Procedimento MostraTela()
+      Inicio
+         LIMPATELA
+         ESCREVAL ("Sr(a) ", Dados[1], ", inscrito no CPF de Nº ", Dados[2], ", residente no enderço ,",(Dados[3]))
+      ESCREVAL ("Declaro possuir: ")
+      ESCREVAL(" ")
+
+      ESCREVAL("Nº de dependentes :",(Dados[5]) )
+
+      ESCREVAL(" ")
+      ESCREVAL ("Salário bruto: ", (Dados[6]))
+
+      ESCREVAL(" ")
+      ESCREVAL("Imposto retido: ", (Dados[7]))
+
+      ESCREVAL(" ")
+      ESCREVAL("Total de Despesas: ", (Dados[8]))
+
+      ESCREVAL(" ")
+      ESCREVAL ("Total de investimento: ", (Dados[9]))
+   FimProcedimento
+//____________________FIM_FORMATAÇÃO_DE_DADOS_INSERIDOS________________
 
 Inicio
 // Seção de Comandos, procedimento, funções, operadores, etc... 
@@ -169,7 +192,7 @@ Inicio
    GravarDados()
 
    ESCREVAL("Qual meio de pesquisa quer realizar: ")
-   ESCREVAL("1 - CPF":20, "2 - NOME":20, "3 - N° DEPENDENTES")
+   ESCREVAL("1 - CPF":20, "2 - NOME":20, "3 - N° DEPENDENTES", "4 - VISUALIZAR DADOS DISPONÍVEIS")
    LEIA(_respostaUser)
 
    ESCOLHA _respostaUser
@@ -194,7 +217,7 @@ Inicio
       indice:=Pesquisar(X,5)
    FIMESCOLHA
 
-   //COLOCAR A CONDIÇÃO SE para verificar vetor selecionadp.
+   //COLOCAR A CONDIÇÃO SE para verificar vetor selecionado.
    //Usar para reescrever os dados.
    SE indice > 0 ENTAO
       RecuperarDados(indice)
@@ -203,6 +226,8 @@ Inicio
    PARA contador de 1 ate 13 FACA
       ESCREVAL(Dados[contador])
    FIMPARA
+
+   MostraTela() //Irá mostrar as informações digitadas de maneira formatada.
 
    //Irá fazer chamdos para alterar os dados
    ESCREVAL("O que deseja fazer com esta informação?")
@@ -282,3 +307,25 @@ Fimalgoritmo
 dadosUsuario() //ACRESCENTAR NA SEÇÃO DE COMANDO
 dadosUsuario1() //ACRESCENTAR NA SEÇÃO DE COMANDO
 dadosUsuario2() //ACRESCENTAR NA SEÇÃO DE COMANDO
+
+
+         ESCREVAL("Os dados referentes a pesquisa feita são: ")
+         ESCREVAL("")
+         ESCREVAL("")
+         ESCREVAL("Nome: ", Dados[1])
+         ESCREVAL("")
+         ESCREVAL("CPF: ", Dados[2])
+         ESCREVAL("")
+         ESCREVAL ("Endereço: ", Dados[3])
+         ESCREVAL("")
+         ESCREVAL("Estado Civil: ", Dados[4])
+         ESCREVAL("")
+         ESCREVAL("Nº de dependentes: ", Dados[5])
+         ESCREVAL("")
+         ESCREVAL("Total Salário Bruto: ", Dados[6])
+         ESCREVAL("")
+         ESCREVAL("Total Imposto Retido: ", Dados[7])
+         ESCREVAL("")
+         ESCREVAL("Total Despesas: ", Dados[8])
+         ESCREVAL("")
+         ESCREVAL("Total Investimento: ", Dados[9])
