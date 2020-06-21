@@ -203,7 +203,7 @@ Inicio
       LEIA(X)
       indice:=Pesquisar(X,1)
    Caso 2
-      ESCREVAL("AVISO: Para pesquisar por NOME, deve-se colocar o mesmo nome que será impresso no recibo comtodas as informações completas!")
+      ESCREVAL("AVISO: Para pesquisar por NOME COMPLETO, deve-se colocar o mesmo nome que será impresso no recibo comtodas as informações completas!")
       ESCREVA("")
       ESCREVA("Digite o Nome Completo: ")
       LEIA(X)
