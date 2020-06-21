@@ -24,11 +24,11 @@ Algoritmo "BANCO DE DADOS - RECEITA FEDERAL"
 // Data atual  : 21/06/2020
 Var
 // Seção de Declarações das variáveis
-    Dados: VETOR [1..13] DE CARACTERE //Vetor com os dados dos usuários
-    BancoDados: VETOR [1..4, 1..13] DE CARACTERE //MAtriz com todas as informações
-    contador, indice: INTEIRO //Irá ajudar a identificar o usuário pelo CPF
-    X: CARACTERE //Irá ser a variável que receberá o dados que o usuário quer pesquisar
-    OP,PAUSAR: INTEIRO //Interção do usuário
+   Dados: VETOR [1..13] DE CARACTERE //Vetor com os dados dos usuários
+   BancoDados: VETOR [1..100, 1..13] DE CARACTERE //MAtriz com todas as informações
+   contador, indice: INTEIRO //Irá ajudar a identificar o usuário pelo CPF
+   X: CARACTERE //Irá ser a variável que receberá o dados que o usuário quer pesquisar
+   _respostaUser: INTEIRO //Interção do usuário
 // Fim Seção de Declarações das variáveis
 
 
@@ -40,7 +40,7 @@ Var
          Var
             _contador,_indice: inteiro
          Inicio
-            PARA _contador de 1 ATE 10 FACA //Irá localizar o usuário pelo CPF
+            PARA _contador de 1 ATE 100 FACA //Irá localizar o usuário pelo CPF
                SE BancoDados [_contador,_indiceCampo] = _dadosCampo ENTAO
                   _indice := _contador//Indice irá identificar o vetor.
                   Interrompa
@@ -53,7 +53,7 @@ Var
          var
             _indiceLivre,_contador:inteiro
          inicio
-            PARA _contador de 1 ate 10 FACA
+            PARA _contador de 1 ate 100 FACA
                SE BancoDados[_contador,1]="" ENTAO
                   _indiceLivre:=_contador
                   Interrompa
@@ -162,7 +162,7 @@ Inicio
       indice:=Pesquisar(X,5)
    FIMESCOLHA
 
-   //COLOCAR A CONDIÇÃO SE
+   //COLOCAR A CONDIÇÃO SE para verificar vetor selecionadp.
    //Usar para reescrever os dados.
    SE indice > 0 ENTAO
       RecuperarDados(indice)
@@ -174,10 +174,11 @@ Inicio
 
    //Irá fazer chamdos para alterar os dados
    ESCREVAL("O que deseja fazer com esta informação?")
+   ESCREVA("")
    ESCREVAL("1 - ALTERAR":20, "2 - EXCLUIR":20, "3 - RECIBO")
-   LEIA(OP)
+   LEIA(_respostaUser)
 
-   ESCOLHA  OP
+   ESCOLHA  _respostaUser
    CASO 1
       indice:=Pesquisar(X,1)
       AlteraDados() //Ainda em desenvolvimento
