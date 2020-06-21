@@ -4,7 +4,7 @@
 
 O sistema primeiramente realiza a importação do banco de dados com informações de exemplo, ao final é apresentada a tela Splash Screen 
 
-![tela Inicial](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela1.png)
+![tela Inicial](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela1.jpg)
 
 
 
@@ -20,7 +20,7 @@ No menu principal existe quatro opções para navegar no sistema.
 
 ( 4 )  SAIR - Será executar o logoff do sistema apresentando a tela de finalização.
 
-![tela menu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela2.png)
+![tela menu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela2.jpg)
 
 ## Tela de cadastro
 
@@ -36,17 +36,17 @@ Na tela de cadastro o usuário tem a possibilidade de realizar sua declaração 
 - Lucro em investimentos anual
 - Total de despesas dedutíveis
 
-![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela3.png)
+![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela3.jpg)
 
 Caso já exista o cadastro do CPF o usuário será solicitação a escolher uma entre três opções:  **1- alterar, 2-excluir, 3-Sair**
 
-![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela10.png)
+![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela10.jpg)
 
 
 
 Após o cadastro, será processada a declaração e o usuário deve escolher entre realizar a declaração por desconto simplificado ou por deduções legais (completa) .
 
-![tela simulado](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela4.png)
+![tela simulado](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela4.jpg)
 
 Assim que o usuário escolha o tipo de declaração será emitido o recibo de declaração de imposto de renda.
 
@@ -56,11 +56,11 @@ Assim que o usuário escolha o tipo de declaração será emitido o recibo de de
 
 O sistema possui quatro tipos de relatórios implementados .
 
-![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela6.png)
+![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela6.jpg)
 
 1 - Listagem completa das declarações 
 
-![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela9.png)
+![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela9.jpg)
 
 2- Relatório sintético das declarações
 
@@ -68,7 +68,7 @@ imagem
 
 3- Gráfico de percentual de alíquotas cadastradas
 
-![tela grafico](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela5.png)
+![tela grafico](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela5.jpg)
 
 4- Reimpressão do recibo de entrega de declaração 
 
@@ -76,8 +76,8 @@ imagem
 
 SOBRE
 
-![tela sobre](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela7.png)
+![tela sobre](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela7.jpg)
 
 LOGOFF
 
-![tela sair](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela8.png)
+![tela sair](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela8.jpg)
