@@ -77,6 +77,38 @@ Var
 //____________________FIM_ÁREA_DE_PESQUISA_DE_DADOS____________________
 
 //____________________ÁREA_PARA_EXCLUIR_DADOS__________________________
+   ESCREVA(" ______                                 _                      _")
+   ESCREVA("|  ____|                               | |                    | |")
+   ESCREVA("| |__ _   _ _ __   ___ __ _  ___     __| | ___    _____  _____| |_   _ ___  __ _  ___")
+   ESCREVA("|  __| | | | '_ \ / __/ _` |/ _ \   / _` |/ _ \  / _ \ \/ / __| | | | / __|/ _` |/ _ \")
+   ESCREVA("| |  | |_| | | | | (_| (_| | (_) | | (_| |  __/ |  __/>  < (__| | |_| \__ \ (_| | (_) |")
+   ESCREVA("|_|   \__,_|_| |_|\___\__,_|\___/   \__,_|\___|  \___/_/\_\___|_|\__,_|___/\__,_|\___/")
+   ESCREVA("")
+
+   Procedimento Excluir(_indice:INTEIRO):INTEIRO
+      var
+         _contador,_contador1:INTEIRO
+      inicio
+         PARA _contador de 1 ate 13 FACA
+            BancoDados[_indice,_contador]:=""
+         FIMPARA
+
+         PARA _contador de _indice ate 100 FACA
+            PARA _contador1 de 1 ate 13 FACA
+               BancoDados[_contador,_contador1]:=BancoDados[(_contador+1),_contador1]
+               BancoDados[(_contador+1),_contador1]:=""
+            FIMPARA
+
+            SE BancoDados[_contador,1]="" ENTAO
+               interrompa
+            FIMSE
+         FIMPARA
+         ESCREVA(" ")
+         ESCREVA(" ")
+         ESCREVA(" ")
+         ESCREVA(" ")
+         ESCREVAL("==== USUÁRIO EXCLUÍDO COM SUCESSO! ====")
+   FimProcedimento
 //____________________FIM_ÁREA_PARA_EXCLUIR_DADOS______________________
 
 //____________________ÁREA_PARA_ALTERAR_DADOS__________________________
