@@ -579,7 +579,7 @@ inicio
          escreval (_linha)
          escrevaL("|":20,"LISTA DECLARAÇÕES ":44,"|")
          escreval (_linha)
-         escrevaL("|":6,"CPF":9,"|":6,"NOME":10,"|":2,"ALIQ":6,"|":6,"IMPOSTO","|":2,"TIPO":7,"|")
+         escrevaL("|":7,"CPF":10,"|":7,"NOME":9,"|":3,"ALIQ":6,"|":4,"IMPOSTO":10,"|":2,"TIPO":6,"|")
          escreval (_linha)
          _cabecalho:=1
       fimse
@@ -613,8 +613,8 @@ inicio
          PreencherComEspacos(_aliquota,_espacamento)
 
 
-         escreva ("|",_cpf," | ",_nome,"| ",_aliquota," | ",_imposto,"| ",_tipoDeclaracao)
-         escreval ("|")
+         escreva ("| ",_cpf," | ",_nome,"| ",_aliquota," | ",_imposto,"| ",_tipoDeclaracao)
+         escreval (" |")
       senao
          _contador:=0
       fimse
@@ -1247,13 +1247,13 @@ inicio
    fimse
 
    Limpatela
-   escreval (linha)
+   escreval ("="+linha+"=")
    escreval ("Ministerio da Fazenda            Imposto - Pessoa Fisica")
    escreval ("Secretaria da Receita            Exercicio 2020")
    escreval ("Federal do Brasil                Ano-Calendario 2019")
-   escreval (linha)
-   escreval ("=========== Recibo Nº ",_numeroRecibo," da IRPF/2020 ===================")
-   escreval (linha)
+   escreval ("="+linha+"=")
+   escreval ("=========== Recibo Nº  ",_numeroRecibo," da IRPF/2020 ===================")
+   escreval ("="+linha+"=")
    escreval ("Sr(a) ", cadastroPessoa[2], ", inscrito no CPF de Nº ", cadastroPessoa[1])
    escreval ("Residente no endereco: ", cadastroPessoa[3])
    escreval("":25,"DECLARO POSSUIR")
@@ -1263,7 +1263,7 @@ inicio
    escreval("Despesas Dedutiveis :",cadastroPessoa[9],"  Aliquota: ",cadastroPessoa[10])
    escreval("Imposto a Pagar :",cadastroPessoa[11]," Imposto a Recebar : ",cadastroPessoa[12])
    escreval("Tipo Declaracao :",_tipoDeclaracao)
-   escreval (linha)
+   escreval("="+linha+"=")
    escreva(" ":10," Pressione Enter para continuar....":52)
    Leia(_pausar)
 
@@ -1564,36 +1564,19 @@ inicio
          interrompa
       fimse
       _totalSalarioBruto:=_totalSalarioBruto+RemoverFormatacaoMonetaria(bancoDeDados[_indice,6])
-      _totalImpostoRetido:=_totalImpostoRetido+RemoverFormatacaoMonetaria(bancoDeDados[_indice,7])
+       _totalImpostoRetido:=_totalImpostoRetido+RemoverFormatacaoMonetaria(bancoDeDados[_indice,7])
       _totalInvestimento:=_totalInvestimento+RemoverFormatacaoMonetaria(bancoDeDados[_indice,8])
       _toalDespesas:=_toalDespesas+RemoverFormatacaoMonetaria(bancoDeDados[_indice,9])
       _totalImpostoPago:=_totalImpostoPago+RemoverFormatacaoMonetaria(bancoDeDados[_indice,11])
       _totalImpostoReceber:=_totalImpostoReceber+RemoverFormatacaoMonetaria(bancoDeDados[_indice,12])
    fimpara
+
    _totalSalarioBrutoC:=FormataValorMonetario(_totalSalarioBruto,".")
    _totalImpostoRetidoC:=FormataValorMonetario(_totalImpostoRetido,".")
    _totalInvestimentoC:=FormataValorMonetario(_totalInvestimento,".")
    _toalDespesasC:=FormataValorMonetario(_toalDespesas,".")
    _totalImpostoPagoC:=FormataValorMonetario(_totalImpostoPago,".")
    _totalImpostoReceberC:=FormataValorMonetario(_totalImpostoReceber,".")
-
-   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalSalarioBrutoC)
-   PreencherComEspacos(_totalSalarioBrutoC,_quantidadeCaracteres)
-
-   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalImpostoRetidoC)
-   PreencherComEspacos(_totalImpostoRetidoC,_quantidadeCaracteres)
-
-   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalInvestimentoC)
-   PreencherComEspacos(_totalInvestimentoC,_quantidadeCaracteres)
-
-   _quantidadeCaracteres:=15-QuantidadeCaracter(_toalDespesasC)
-   PreencherComEspacos(_toalDespesasC,_quantidadeCaracteres)
-
-   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalImpostoPagoC)
-   PreencherComEspacos(_totalImpostoPagoC,_quantidadeCaracteres)
-
-   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalImpostoReceberC)
-   PreencherComEspacos(_totalImpostoReceberC,_quantidadeCaracteres)
 
 
    Limpatela
