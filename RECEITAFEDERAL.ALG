@@ -187,8 +187,8 @@ var
    _contador,_espacamento:inteiro
 inicio
    _dadosTela[1]:="Aliquota Efetiva :"
-   _dadosTela[2]:="imposto a Pagar :"
-   _dadosTela[3]:="imposto a Receber :"
+   _dadosTela[2]:="Imposto a Pagar :"
+   _dadosTela[3]:="Imposto a Receber :"
 
    Limpatela
    escreval(linha)
@@ -209,11 +209,12 @@ inicio
    fimpara
    escreval(linha)
 
+
 FimProcedimento
 
 Procedimento EntradaDadosTipoDeclaracao
 var
-   _tipoDeclaracao:inteiro
+   _tipoDeclaracao,_contador:inteiro
 inicio
 
    enquanto _tipoDeclaracao<=0 faca
@@ -240,6 +241,11 @@ inicio
       cadastroPessoa[12]:=declaracaoCompleta[3]
    fimse
 
+   Para _contador de 1 ate 3 faca
+      declaracaoSimplificada[_contador]:=""
+      declaracaoCompleta[_contador]:=""
+   Fimpara
+
    cadastroPessoa[13]:=Numpcarac(_tipoDeclaracao)
 FimProcedimento
 
@@ -252,7 +258,7 @@ inicio
    Limpatela
    escreval(linha)
    escreval("":5,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
-    escreval(linha)
+   escreval(linha)
    Para _contador de 1 ate 12 faca
       se _contador=7 entao
          escreval("|":10,_isento:52,"|")
@@ -341,6 +347,11 @@ var
    _tipoDados:vetor [1..9] de inteiro
 
 inicio
+   //Limpa Dados
+   Para _contador de 1 ate 13 faca
+      cadastroPessoa[_contador]:=""
+   Fimpara
+
    _tipoDados[1]:=0
    _tipoDados[2]:=2
    _tipoDados[3]:=3
@@ -369,7 +380,7 @@ inicio
       caso 0
          cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],_espacamento)
 
-         _indiceCpfExistente:=PesquisarContribuinte(cadastroPessoa[_contador])
+         _indiceCpfExistente:=PesquisarContribuinte(cadastroPessoa[_contador],1)
 
          se _indiceCpfExistente>0 entao
             _controleAlterarExcluir:=TelaCadastroExiste()
@@ -432,12 +443,14 @@ inicio
          //Modulo 1
          EntradaDadosTipoDeclaracao
 
+         GravarDadosContribuinte(_indiceCpfExistente)
+
          // Modulo 2
-         EmitirRecibo
+         EmitirRecibo(_indiceCpfExistente)
       senao
          TelaDeclaracaoIsento
       fimse
-      
+
       // GravarDados
 
    Fimse
@@ -448,7 +461,7 @@ Procedimento TelaAterarDados(_indiceCadastro:inteiro)
 var
 
 inicio
-   AlterarDadosContribuinte(_indiceCadastro)
+   RecuperarDadosDeclaracao(_indiceCadastro)
    TelaDadosCadastro
 FimProcedimento
 
@@ -574,7 +587,7 @@ inicio
          _cpf:=bancoDeDados[_indice,1]
          _nome:=copia(bancoDeDados[_indice,2];1,14)
          _aliquota:=bancoDeDados[_indice,10]
-         _imposto:=bancoDeDados[_indice,11]
+         
          _tipoDeclaracao:=bancoDeDados[_indice,13]
 
          se _tipoDeclaracao="1" entao
@@ -583,10 +596,10 @@ inicio
             _tipoDeclaracao:="Comp."
          fimse
 
-         se _imposto="0" entao
+         se bancoDeDados[_indice,12]<>"0,00" entao
             _imposto:="R "+bancoDeDados[_indice,12]
          senao
-            _imposto:="P "+_imposto
+            _imposto:="P "+bancoDeDados[_indice,11]
          fimse
 
          _espacamento:=12-QuantidadeCaracter(_imposto)
@@ -595,7 +608,7 @@ inicio
          _espacamento:=14-QuantidadeCaracter(_nome)
          PreencherComEspacos(_nome,_espacamento)
 
-         _espacamento:=5-QuantidadeCaracter(_aliquota)
+         _espacamento:=6-QuantidadeCaracter(_aliquota)
          PreencherComEspacos(_aliquota,_espacamento)
 
 
@@ -1076,35 +1089,128 @@ Fimfuncao
 
 //________________________Grupo_2_MODULO_2____________________________
 
-Procedimento GravarDadosContribuinte
+Procedimento GravarDadosContribuinte(var _indice:inteiro)
 var
-Inicio
+   _contador:inteiro
+inicio
+   se _indice=0 entao
+      para _contador de 1 ate 100 faca
+         se BancoDeDados[_contador,1]="" entao
+            _indice:=_contador
+            Interrompa
+         fimse
+      fimpara
+   fimse
+
+   para _contador de 1 ate 13 faca
+      BancoDeDados[_indice,_contador]:=cadastroPessoa[_contador]
+      cadastroPessoa[_contador]:=""
+   FIMPARA
 
 FimProcedimento
 
-Procedimento AlterarDadosContribuinte(_indiceCadastro:inteiro)
-var
-Inicio
-
-FimProcedimento
 
 Funcao ExcluirDadosContribuinte(_cpf:caracter):logico
 var
+ _indiceExcluir:inteiro
 Inicio
+
+_indiceExcluir:=PesquisarContribuinte(_cpf,1)
 
 FimFuncao
 
-Funcao PesquisarContribuinte(_cpf:caracter):inteiro
-var
+Funcao PesquisarContribuinte(_dadosCampo: caracter;_indiceCampo:inteiro): inteiro
+Var
+   _contador,_indice: inteiro
 Inicio
+   para _contador de 1 ate 100 faca
+      se BancoDeDados [_contador,_indiceCampo] = _dadosCampo entao
+         _indice := _contador
+         Interrompa
+      fimse
+   fimpara
 
-   retorne 0
+   Retorne _indice
 
 FimFuncao
 
-Procedimento EmitirRecibo
+Procedimento RecuperarDadosDeclaracao(_indice:inteiro)
 var
+   _contador:inteiro
 inicio
+
+   Para _contador de 1 ate 13 faca
+      cadastroPessoa[_contador]:=BancoDeDados[_indice,_contador]
+   Fimpara
+
+
+Fimprocedimento
+
+
+Procedimento EmitirRecibo(_indice:inteiro)
+var
+   _tamanhocampo:vetor[1..12] de inteiro
+   _contador,_quantidadeCaracteres:inteiro
+   _conteudoCampo,_tipoDeclaracao,_numeroRecibo,_pausar:caracter
+inicio
+   RecuperarDadosDeclaracao(_indice)
+   _quantidadeCaracteres:=QuantidadeCaracter(Numpcarac(_indice))
+   _numeroRecibo:=copia("00000000";1,(8-_quantidadeCaracteres))+_numeroRecibo
+
+   _tamanhocampo[1]:=14
+   _tamanhocampo[2]:=20
+   _tamanhocampo[3]:=40
+   _tamanhocampo[4]:=15
+   _tamanhocampo[5]:=2
+   _tamanhocampo[6]:=15
+   _tamanhocampo[7]:=15
+   _tamanhocampo[8]:=15
+   _tamanhocampo[9]:=15
+   _tamanhocampo[10]:=5
+   _tamanhocampo[11]:=15
+   _tamanhocampo[12]:=15
+
+   para _contador de 1 ate 12 faca
+      _conteudoCampo:=cadastroPessoa[_contador]
+      _quantidadeCaracteres:=QuantidadeCaracter(_conteudoCampo)
+      _quantidadeCaracteres:=_tamanhocampo[_contador]-_quantidadeCaracteres
+
+      // Prenche com espaço para atenter a formatação do campo
+      // conferme configurado vetor _tamanhocampo
+      se _quantidadeCaracteres>0 entao
+         PreencherComEspacos(_conteudoCampo,_quantidadeCaracteres)
+      fimse
+      cadastroPessoa[_contador]:=copia(_conteudoCampo;1,_tamanhocampo[_contador])
+   fimpara
+
+   se cadastroPessoa[13]="1" entao
+      _tipoDeclaracao:="Simplificada"
+   senao
+      _tipoDeclaracao:="Completa"
+   fimse
+
+   Limpatela
+   escreval (linha)
+   escreval ("Miniterio da Fazenda             Imposto - Pessoa Fisica")
+   escreval ("Secretaria da Receita            Excercicio 2020")
+   escreval ("Federal do Brasil                Ano-Calendario 2019")
+   escreval (linha)
+   escreval ("=========== Recibo Nº ",_numeroRecibo," da IRPF/2020 ===================")
+   escreval (linha)
+   escreval ("Sr(a) ", cadastroPessoa[2], ", inscrito no CPF de Nº ", cadastroPessoa[1])
+   escreval ("Residente no enderço: ", cadastroPessoa[3])
+   escreval("":25,"DECLARO POSSUIR")
+   escreval ("")
+   escreval("Nº de dependentes :",cadastroPessoa[5],"  Salario bruto: ",cadastroPessoa[6])
+   escreval("Imposto Retido :",cadastroPessoa[7]," Investimento:",cadastroPessoa[8])
+   escreval("Despesas Dedutiveis :",cadastroPessoa[9],"  Aliquota: ",cadastroPessoa[10])
+   escreval("Imposto a Pagar :",cadastroPessoa[11]," Imposto a Recebar : ",cadastroPessoa[12])
+   escreval("Tipo Declaracao :",_tipoDeclaracao)
+   escreval (linha)
+   escreva(" ":10," Pressione Enter para continuar....":52)
+   Leia(_pausar)
+
+
 FimProcedimento
 
 Procedimento DadosIniciais
@@ -1169,8 +1275,8 @@ inicio
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
    _imposto:=_baseCalculo*_aliquota
-   
-   se _aliquota>0 entao
+
+   se _aliquota<>0 entao
       _imposto:=_baseCalculo*_aliquota
    fimse
 
@@ -1179,12 +1285,14 @@ inicio
 
    se  _aliquotaCalculada > (_aliquota*100) entao
       _aliquotaCalculada:=_aliquota
-   senao
+   fimse
+
+   se  _aliquotaCalculada <0 entao
       _aliquotaCalculada:=0
    fimse
 
    _aliquotaEfetiva:=Numpcarac(_aliquotaCalculada)
-   declaracaoSimplificada[1]:=copia(_aliquotaEfetiva;1:5)+" %"
+   declaracaoSimplificada[1]:=copia(_aliquotaEfetiva;1:5)+"%"
 
    se _imposto<0 entao
       _imposto:=_imposto*-1
@@ -1207,7 +1315,7 @@ inicio
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
 
-   se _aliquota>0 entao
+   se _aliquota<>0 entao
       _imposto:=_baseCalculo*_aliquota
    fimse
 
@@ -1216,12 +1324,14 @@ inicio
 
    se  _aliquotaCalculada > (_aliquota*100) entao
       _aliquotaCalculada:=_aliquota
-   senao
+   fimse
+
+   se  _aliquotaCalculada <0 entao
       _aliquotaCalculada:=0
    fimse
 
    _aliquotaEfetiva:=Numpcarac(_aliquotaCalculada)
-   declaracaoCompleta[1]:=copia(_aliquotaEfetiva;1:5)+" %"
+   declaracaoCompleta[1]:=copia(_aliquotaEfetiva;1:5)+"%"
 
    se _imposto<0 entao
       _imposto:=_imposto*-1
@@ -1380,11 +1490,14 @@ FimProcedimento
 
 //________________________Programa_Principal__________________________
 Inicio
+
+
    //Ativar em ambiente de Produção
    //DadosIniciais
    InicializarVariaveisGlobais
    //Ativar em ambiente de Produção
-   //TelaAbertura
+   TelaAbertura
+
 
    enquanto finalizarPrograma=falso faca
       TelaMenu
