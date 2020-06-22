@@ -57,8 +57,13 @@ Caso já exista o cadastro do CPF o usuário será solicitação a escolher uma 
 ![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela10.jpg)
 
 
-
 Após o cadastro, será processada a declaração e o usuário deve escolher entre realizar a declaração por desconto simplificado ou por deduções legais (completa) .
+
+Caso o contribuinte seja isento, o sistema emiti a seguinte tela
+
+![tela simulado](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela13.jpg)
+
+Caso o contribuinte não seja isento o sistema emitira a simulação dos tipos de declarações possíveis 
 
 ![tela simulado](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela4.jpg)
 
