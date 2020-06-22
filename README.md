@@ -19,6 +19,9 @@ Idealizar um programa que realize as funções semelhantes as da Receita Federal
 # OBJETIVO:
 O objetivo é demostrar como será o dia-a-dia dos programadores ao pegarem códigos incompletos de terceiros ou antigos programadores e fazerem com que funcione dentro do ambiente de trabalho.
 # Grupo 1
+
+[Documentação](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/readme.md)
+
     INTEGRAÇÃO: Responsáveis por produzir a Entrada de Dados
     MEMBROS:
         Fabricio(Líder)
