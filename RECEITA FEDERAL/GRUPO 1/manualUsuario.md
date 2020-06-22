@@ -50,7 +50,7 @@ Após o cadastro, será processada a declaração e o usuário deve escolher ent
 
 Assim que o usuário escolha o tipo de declaração será emitido o recibo de declaração de imposto de renda.
 
-[imagem do recibo]
+![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela11.jpg)
 
 ## Relatório
 
@@ -64,7 +64,7 @@ O sistema possui quatro tipos de relatórios implementados .
 
 2- Relatório sintético das declarações
 
-imagem
+[imagem realtorio]
 
 3- Gráfico de percentual de alíquotas cadastradas
 
