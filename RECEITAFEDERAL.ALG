@@ -15,7 +15,7 @@ Algoritmo "ReceitaFederal"
 // -------------------------------------------------------------------
 // Arquivo com dados iniciais
 // Ativar em ambiente de Produção
-//arquivo "D:\eng.computacao\LP\trabalho_receita_federal\BaseDadosInicial.csv"
+arquivo "D:\eng.computacao\LP\trabalho_receita_federal\BaseDadosInicial.csv"
 Var
    finalizarPrograma:logico
 
@@ -390,7 +390,7 @@ inicio
             caso 1
                TelaAterarDados(_indiceCpfExistente)
             caso 2
-               TelaExcluirDados(_indiceCpfExistente)
+               ExcluirDadosContribuinte(_indiceCpfExistente)
                interrompa
             caso 3
                interrompa
@@ -597,7 +597,7 @@ inicio
             _tipoDeclaracao:="Comp."
          fimse
 
-         se bancoDeDados[_indice,12]<>"0,00" entao
+         se bancoDeDados[_indice,12]<>"" entao
             _imposto:="R "+bancoDeDados[_indice,12]
          senao
             _imposto:="P "+bancoDeDados[_indice,11]
@@ -740,10 +740,10 @@ FimProcedimento
 Procedimento TelaReimpressaoRecibo
 var
 inicio
-      Limpatela
-      escreval(linha)
-      escreval("":5,"REIMPRESSAO DE RECIBO DE I.R.P.F ANO-CALENDARIO 2019 ")
-      escreval(linha)
+   Limpatela
+   escreval(linha)
+   escreval("":5,"REIMPRESSAO DE RECIBO DE I.R.P.F ANO-CALENDARIO 2019 ")
+   escreval(linha)
 Fimprocedimento
 
 Procedimento ReimpressaoRecibo
@@ -1074,7 +1074,7 @@ inicio
    enquanto verdadeiro faca
       se _telaCadastro=verdadeiro entao
          TelaDadosCadastro
-         senao
+      senao
          TelaReimpressaoRecibo
       fimse
       escreva("| Informe "+_textoCampo+" :":_espacamento)
@@ -1152,14 +1152,28 @@ inicio
 FimProcedimento
 
 
-Funcao ExcluirDadosContribuinte(_cpf:caracter):logico
+Procedimento ExcluirDadosContribuinte(_indiceExcluir:inteiro)
 var
-   _indiceExcluir:inteiro
+   _contador1, _contador:inteiro
 Inicio
+   Para _contador de 1 ate 13 faca
+      bancoDeDados[_indiceExcluir,_contador]:=""
+   Fimpara
 
-   _indiceExcluir:=PesquisarContribuinte(_cpf,1)
+   Para _contador de _indiceExcluir ate 100 faca
 
-FimFuncao
+      Para _contador1 de 1 ate 13 faca
+         bancoDeDados[_contador,_contador1]:=bancoDeDados[(_contador+1),_contador1]
+         bancoDeDados[(_contador+1),_contador1]:=""
+      Fimpara
+
+      se bancoDeDados[_contador,1]="" entao
+         Interrompa
+      fimse
+
+   Fimpara
+
+FimProcedimento
 
 Funcao PesquisarContribuinte(_dadosCampo: caracter;_indiceCampo:inteiro): inteiro
 Var
@@ -1262,11 +1276,23 @@ var
    _NumeroRegistro:inteiro
 
 inicio
+   escreval("Digite Enter para verificar o erro")
    enquanto verdadeiro faca
       leia(_linhaDado)
       se _linhaDado="FIMxBANCOxDADOS" entao
          interrompa
       fimse
+      se Pos("|",_linhaDado)=0 entao
+         MensagemRodape("Erro","Bando de Dados Incial não foi configurado")
+         finalizarPrograma:=verdadeiro
+         interrompa
+      fimse
+      
+      se _NumeroRegistro=0 entao
+         limpatela
+         escreva("carregando Banco de Dados... ":1)
+      fimse
+
       _NumeroRegistro:=_NumeroRegistro+1
       ExtrairDados(_linhaDado,_NumeroRegistro)
    fimenquanto
@@ -1536,10 +1562,13 @@ Inicio
 
 
    //Ativar em ambiente de Produção
-   //DadosIniciais
-   InicializarVariaveisGlobais
-   //Ativar em ambiente de Produção
-   TelaAbertura
+   DadosIniciais
+
+   se finalizarPrograma=falso entao
+      InicializarVariaveisGlobais
+      //Ativar em ambiente de Produção
+      TelaAbertura
+   fimse
 
 
    enquanto finalizarPrograma=falso faca
@@ -1547,6 +1576,7 @@ Inicio
       ExecutarFuncao
       Limpatela
    fimenquanto
+
 
    TelaLogoff
 
