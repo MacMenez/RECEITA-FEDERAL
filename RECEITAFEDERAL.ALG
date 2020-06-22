@@ -378,7 +378,7 @@ inicio
       escolha _tipoDados[_contador]
          _espacamento:=QuantidadeCaracter(_entradaDados[_contador])+3
       caso 0
-         cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],_espacamento)
+         cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],_espacamento,verdadeiro)
 
          _indiceCpfExistente:=PesquisarContribuinte(cadastroPessoa[_contador],1)
 
@@ -440,18 +440,19 @@ inicio
       ProcessarDeclaracao(_impostoSimplificado,_impostoCompleto)
 
       se (_impostoSimplificado+_impostoCompleto)>0 entao
+
          //Modulo 1
          EntradaDadosTipoDeclaracao
 
+         //  Modulo 2
          GravarDadosContribuinte(_indiceCpfExistente)
 
          // Modulo 2
          EmitirRecibo(_indiceCpfExistente)
       senao
+
          TelaDeclaracaoIsento
       fimse
-
-      // GravarDados
 
    Fimse
 
@@ -587,7 +588,7 @@ inicio
          _cpf:=bancoDeDados[_indice,1]
          _nome:=copia(bancoDeDados[_indice,2];1,14)
          _aliquota:=bancoDeDados[_indice,10]
-         
+
          _tipoDeclaracao:=bancoDeDados[_indice,13]
 
          se _tipoDeclaracao="1" entao
@@ -736,6 +737,43 @@ Inicio
 
 FimProcedimento
 
+Procedimento TelaReimpressaoRecibo
+var
+inicio
+      Limpatela
+      escreval(linha)
+      escreval("":5,"REIMPRESSAO DE RECIBO DE I.R.P.F ANO-CALENDARIO 2019 ")
+      escreval(linha)
+Fimprocedimento
+
+Procedimento ReimpressaoRecibo
+var
+   _indice,_continuar:inteiro
+   _cpf:caracter
+inicio
+
+   enquanto _indice=0 faca
+      TelaReimpressaoRecibo
+      _cpf:=ValidarCampoCpf("o Numero do CPF",28,falso)
+      _indice:=PesquisarContribuinte(_cpf,1)
+
+      se _indice=0 entao
+         MensagemRodape("Erro","Cpf informado nao localizado")
+         escreval("Digite enter para Continuar ou 1 para Retornar")
+         leia(_continuar)
+         se _continuar=1 entao
+            interrompa
+         fimse
+      fimse
+
+   fimenquanto
+
+   se _indice>0 entao
+      EmitirRecibo(_indice)
+   fimse
+
+Fimprocedimento
+
 Procedimento ExecutarSubMenuRelatorio(_opcao:inteiro)
 var
 inicio
@@ -747,7 +785,7 @@ inicio
    caso 3
       GraficoPercentualAliquota
    caso 4
-      //ReimpressaoRecibo
+      ReimpressaoRecibo
    outrocaso
       MensagemRodape("Erro","Funcao escolhida nao e valida")
    fimescolha
@@ -1027,14 +1065,18 @@ inicio
 
 FimFuncao
 
-Funcao ValidarCampoCpf(_textoCampo:caracter;_espacamento:inteiro):caracter
+Funcao ValidarCampoCpf(_textoCampo:caracter;_espacamento:inteiro;_telaCadastro:logico):caracter
 var
    _cpfValido,_contador,_charAscii:inteiro
    _cpfFormatado,_cpf,_char:caracter
 inicio
 
    enquanto verdadeiro faca
-      TelaDadosCadastro
+      se _telaCadastro=verdadeiro entao
+         TelaDadosCadastro
+         senao
+         TelaReimpressaoRecibo
+      fimse
       escreva("| Informe "+_textoCampo+" :":_espacamento)
 
       leia(_cpf)
@@ -1112,10 +1154,10 @@ FimProcedimento
 
 Funcao ExcluirDadosContribuinte(_cpf:caracter):logico
 var
- _indiceExcluir:inteiro
+   _indiceExcluir:inteiro
 Inicio
 
-_indiceExcluir:=PesquisarContribuinte(_cpf,1)
+   _indiceExcluir:=PesquisarContribuinte(_cpf,1)
 
 FimFuncao
 
@@ -1154,7 +1196,8 @@ var
    _conteudoCampo,_tipoDeclaracao,_numeroRecibo,_pausar:caracter
 inicio
    RecuperarDadosDeclaracao(_indice)
-   _quantidadeCaracteres:=QuantidadeCaracter(Numpcarac(_indice))
+   _numeroRecibo:=Numpcarac(_indice)
+   _quantidadeCaracteres:=QuantidadeCaracter(_numeroRecibo)
    _numeroRecibo:=copia("00000000";1,(8-_quantidadeCaracteres))+_numeroRecibo
 
    _tamanhocampo[1]:=14
