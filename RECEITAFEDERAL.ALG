@@ -210,7 +210,6 @@ inicio
    escreval(linha)
 
 
-
 FimProcedimento
 
 Procedimento EntradaDadosTipoDeclaracao
@@ -782,7 +781,7 @@ inicio
    caso 1
       ListagemDeclaracoes
    caso 2
-      //RelatorioSintetico
+      RelatorioSintetico
    caso 3
       GraficoPercentualAliquota
    caso 4
@@ -1234,7 +1233,7 @@ inicio
       _quantidadeCaracteres:=_tamanhocampo[_contador]-_quantidadeCaracteres
 
       // Prenche com espaço para atenter a formatação do campo
-      // conferme configurado vetor _tamanhocampo
+      // confermo configurado vetor _tamanhocampo
       se _quantidadeCaracteres>0 entao
          PreencherComEspacos(_conteudoCampo,_quantidadeCaracteres)
       fimse
@@ -1288,7 +1287,7 @@ inicio
          finalizarPrograma:=verdadeiro
          interrompa
       fimse
-      
+
       se _NumeroRegistro=0 entao
          limpatela
          escreva("carregando Banco de Dados... ":1)
@@ -1550,9 +1549,72 @@ Fimfuncao
 
 //________________________Grupo_5_MODULO_5____________________________
 
-Procedimento GerarRelatorio
+Procedimento RelatorioSintetico
 var
+   _indice,_quantidadeCaracteres:inteiro
+   _totalSalarioBruto,_totalImpostoRetido,_totalInvestimento:real
+   _toalDespesas,_totalImpostoPago,_totalImpostoReceber:real
+   _totalSalarioBrutoC,_totalImpostoRetidoC,_totalInvestimentoC:caracter
+   _toalDespesasC,_totalImpostoPagoC,_totalImpostoReceberC,_pausar:caracter
+
 inicio
+
+   Para _indice de 1 ate 100 faca
+      se BancoDeDados[_indice,1]="" entao
+         interrompa
+      fimse
+      _totalSalarioBruto:=_totalSalarioBruto+RemoverFormatacaoMonetaria(bancoDeDados[_indice,6])
+      _totalImpostoRetido:=_totalImpostoRetido+RemoverFormatacaoMonetaria(bancoDeDados[_indice,7])
+      _totalInvestimento:=_totalInvestimento+RemoverFormatacaoMonetaria(bancoDeDados[_indice,8])
+      _toalDespesas:=_toalDespesas+RemoverFormatacaoMonetaria(bancoDeDados[_indice,9])
+      _totalImpostoPago:=_totalImpostoPago+RemoverFormatacaoMonetaria(bancoDeDados[_indice,11])
+      _totalImpostoReceber:=_totalImpostoReceber+RemoverFormatacaoMonetaria(bancoDeDados[_indice,12])
+   fimpara
+   _totalSalarioBrutoC:=FormataValorMonetario(_totalSalarioBruto,".")
+   _totalImpostoRetidoC:=FormataValorMonetario(_totalImpostoRetido,".")
+   _totalInvestimentoC:=FormataValorMonetario(_totalInvestimento,".")
+   _toalDespesasC:=FormataValorMonetario(_toalDespesas,".")
+   _totalImpostoPagoC:=FormataValorMonetario(_totalImpostoPago,".")
+   _totalImpostoReceberC:=FormataValorMonetario(_totalImpostoReceber,".")
+
+   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalSalarioBrutoC)
+   PreencherComEspacos(_totalSalarioBrutoC,_quantidadeCaracteres)
+
+   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalImpostoRetidoC)
+   PreencherComEspacos(_totalImpostoRetidoC,_quantidadeCaracteres)
+
+   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalInvestimentoC)
+   PreencherComEspacos(_totalInvestimentoC,_quantidadeCaracteres)
+
+   _quantidadeCaracteres:=15-QuantidadeCaracter(_toalDespesasC)
+   PreencherComEspacos(_toalDespesasC,_quantidadeCaracteres)
+
+   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalImpostoPagoC)
+   PreencherComEspacos(_totalImpostoPagoC,_quantidadeCaracteres)
+
+   _quantidadeCaracteres:=15-QuantidadeCaracter(_totalImpostoReceberC)
+   PreencherComEspacos(_totalImpostoReceberC,_quantidadeCaracteres)
+
+
+   Limpatela
+   escreval(" ",linha)
+   escreval("|":5,"RELATORIO DE VALORES DE I.R.P.F ANO-CALENDARIO 2019 ":58,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Salario Bruto ..: ",_totalSalarioBrutoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Imposto Retido .: ",_totalImpostoRetidoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Investimento ...: ",_totalInvestimentoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Despesas .......: ",_toalDespesasC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Imposto Pago ...: ",_totalImpostoPagoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Imposto Receber : ",_totalImpostoReceberC:38,"|")
+   escreval("|",linha,"|")
+
+   escreval(" ":10," Pressione Enter para continuar....":52)
+   Leia(_pausar)
 
 FimProcedimento
 
@@ -1561,17 +1623,15 @@ FimProcedimento
 //________________________Programa_Principal__________________________
 Inicio
 
-
-   //Ativar em ambiente de Produção
+   // carrega do banco de dados inicial
    DadosIniciais
 
    se finalizarPrograma=falso entao
       InicializarVariaveisGlobais
-      //Ativar em ambiente de Produção
       TelaAbertura
    fimse
 
-
+   // loop principal
    enquanto finalizarPrograma=falso faca
       TelaMenu
       ExecutarFuncao
