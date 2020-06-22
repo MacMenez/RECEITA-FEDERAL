@@ -2,9 +2,7 @@
 
 ## Instalação
 
-Passo 1 - Efetuar o cassa
-
-Efetuar o download dos seguintes arquivos:
+Passo 1 - Efetuar o download dos seguintes arquivos:
 
     RECEITAFEDERAL.ALG 
 
