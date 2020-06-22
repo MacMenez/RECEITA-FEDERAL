@@ -1,5 +1,19 @@
 # Manual do usuário 
 
+## Instalação
+
+Passo 1 - Efetuar o cassa
+
+Efetuar o download dos seguintes arquivos:
+
+    RECEITAFEDERAL.ALG 
+
+    BaseDadosInicial.csv
+
+Passo 2 - Alterar o diretório do Banco de Dados inicial na linha 18 do arquivo RECEITAFEDERAL.ALG 
+
+    Exemplo: arquivo "c:\dadosIniciais\BaseDadosInicial.csv"
+
 ## Inicialização do sistema:
 
 O sistema primeiramente realiza a importação do banco de dados com informações de exemplo, ao final é apresentada a tela Splash Screen 
