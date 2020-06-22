@@ -191,23 +191,24 @@ inicio
    _dadosTela[3]:="Imposto a Receber :"
 
    Limpatela
-   escreval(linha)
-   escreval("":20,"TRIBUTACAO POR DEDUCOES LEGAIS")
-
-   para _contador de 1 ate 3 faca
-      _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
-      escreval(_dadosTela[_contador]:_espacamento,declaracaoCompleta[_contador])
-   fimpara
 
    escreval(linha)
-
-   escreval("":20,"TRIBUTACAO POR DESCONTO SIMPLIFICADO")
+   escreval("":20,"1- TRIBUTACAO POR DESCONTO SIMPLIFICADO")
 
    para _contador de 1 ate 3 faca
       _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
       escreval(_dadosTela[_contador]:_espacamento,declaracaoSimplificada[_contador])
    fimpara
    escreval(linha)
+
+   escreval("":20,"2- TRIBUTACAO POR DEDUCOES LEGAIS")
+
+   para _contador de 1 ate 3 faca
+      _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
+      escreval(_dadosTela[_contador]:_espacamento,declaracaoCompleta[_contador])
+   fimpara
+   escreval(linha)
+
 
 
 FimProcedimento
