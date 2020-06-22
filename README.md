@@ -6,6 +6,7 @@
 - [Requisitos de Software](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/requisitos.md) 
 - [Diagrama de Processos](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/DiagramaProcesso.md) 
 - [Instruções Úteis para Geração de Relatório](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%205/Readme.md)
+- [Relatório de Teste](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/relatorioTeste.md)
 - [Manual de Usuário](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/manualUsuario.md)
 
 # Referências:
