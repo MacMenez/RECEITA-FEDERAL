@@ -74,7 +74,6 @@ escreval("":5," |_) |_ /  |_  |  |   /\    |_ |_ | \ |_ |_)  /\   |     ")
 escreval("":5," | \ |_ \_ |_  |  |  /--\   |  |_ |_/ |_ | \ /--\  |_    ")
 escreval("","")
 
-
 _carregando:=" * * * * * * * * * "
 escreva("":20,"Carregando")
 
@@ -85,6 +84,7 @@ fimpara
 
 MudaCor("Preto","Fundos")
 FimProcedimento
+
 
 Procedimento TelaMenu
 
@@ -107,8 +107,7 @@ inicio
    escreval ("|        |_________________|    ","   |_________________|         |")
    escreval ("|                                                              |")
    escreval ("|"+linha+"|")
-
-Fimprocedimento
+FimProcedimento
 
 Procedimento TelaSobre
 var
@@ -130,11 +129,11 @@ inicio
    escreval("":10,"CURSO     : ANÁLISE E DESENVOLVIMENTO DE SISTEMAS")
    escreval("":10,"            ENGENHARIA DA COMPUTACAO")
    escreval("":20, " 2020 - 1º PERIODO")
-   escreval("":25, "Versao 1.0")
+   escreval("":25, "Versao 1.1")
    escreval(" ":10," Pressione Enter para continuar....":52)
    Leia(_pausar)
-
 FimProcedimento
+
 
 Procedimento TelaLogoff
 var
@@ -181,6 +180,7 @@ inicio
    Limpatela
 FimProcedimento
 
+
 Procedimento TelaTipoDeclaracao
 var
    _dadosTela:vetor [1..3] de caracter
@@ -208,9 +208,8 @@ inicio
       escreval(_dadosTela[_contador]:_espacamento,declaracaoCompleta[_contador])
    fimpara
    escreval(linha)
-
-
 FimProcedimento
+
 
 Procedimento EntradaDadosTipoDeclaracao
 var
@@ -249,6 +248,7 @@ inicio
    cadastroPessoa[13]:=Numpcarac(_tipoDeclaracao)
 FimProcedimento
 
+
 Procedimento TelaDeclaracaoIsento
 var
    _contador,_pausar:inteiro
@@ -270,9 +270,8 @@ inicio
    escreval(linha)
    escreval(" ":10," Pressione Enter para continuar....":52)
    Leia(_pausar)
-
-
 FimProcedimento
+
 
 Procedimento TelaDadosCadastro
 var
@@ -331,8 +330,8 @@ inicio
 
    fimpara
    escreval(linha)
-
 FimProcedimento
+
 
 Procedimento EntradaDadosTelaCadastro
 var
@@ -455,8 +454,8 @@ inicio
       fimse
 
    Fimse
-
 FimProcedimento
+
 
 Procedimento TelaAterarDados(_indiceCadastro:inteiro)
 var
@@ -466,7 +465,8 @@ inicio
    TelaDadosCadastro
 FimProcedimento
 
-procedimento MensagemRodape(_tipoMensagem,_textoMensagem: caracter)
+
+Procedimento MensagemRodape(_tipoMensagem,_textoMensagem: caracter)
 var
 
 inicio
@@ -478,7 +478,8 @@ inicio
    PausaFake(20000)
 FimProcedimento
 
-Procedimento ExecutarFuncao
+
+Procedimento ExecutarFuncaoMenuPrincipal
 var
    _opcaoMenu:inteiro
 inicio
@@ -490,7 +491,7 @@ inicio
    Caso 1
       EntradaDadosTelaCadastro
    Caso 2
-      Relatorios
+      TelaSubMenuRelatorios
    Caso 3
       TelaSobre
    Caso 4
@@ -499,10 +500,11 @@ inicio
       MensagemRodape("Erro","Funcao encolhida nao e valida")
    FimEscolha
 
-Fimprocedimento
+FimProcedimento
+
 //_______________Procedimentos__Auxiliares___________________________
 
-procedimento PausaFake(_loopPausa:inteiro)
+Procedimento PausaFake(_loopPausa:inteiro)
 var
    _numeroloop,_contador:inteiro
 
@@ -511,9 +513,9 @@ inicio
       // loop somente para simular uma pausa
       _numeroloop:=_numeroloop+1
    Fimpara
-Fimprocedimento
+FimProcedimento
 
-// Procedimento para atender a transferencia de valor por referencia
+
 Procedimento PreencherComEspacos(var _conteudoCampo:caracter;_espacos:inteiro):caracter
 var
    _contador:inteiro
@@ -523,6 +525,7 @@ Inicio
    fimpara
 
 FimProcedimento
+
 
 Procedimento InicializarVariaveisGlobais
 var
@@ -584,6 +587,7 @@ inicio
          _cabecalho:=1
       fimse
 
+      // caso seja vazio acabou os dados já cadastrados
       se (bancoDeDados[_indice,1]<>"") entao
          _cpf:=bancoDeDados[_indice,1]
          _nome:=copia(bancoDeDados[_indice,2];1,14)
@@ -693,6 +697,7 @@ inicio
 
 FimProcedimento
 
+
 Procedimento TelaSubMenuRelatorio(_numeroLinhas,_numeroColunas,_numeroCampo,_espacamento:inteiro)
 var
    _contador,_contador1,_numeroDescricao:inteiro
@@ -737,6 +742,7 @@ Inicio
 
 FimProcedimento
 
+
 Procedimento TelaReimpressaoRecibo
 var
 inicio
@@ -744,7 +750,8 @@ inicio
    escreval(linha)
    escreval("":5,"REIMPRESSAO DE RECIBO DE I.R.P.F ANO-CALENDARIO 2019 ")
    escreval(linha)
-Fimprocedimento
+FimProcedimento
+
 
 Procedimento ReimpressaoRecibo
 var
@@ -772,7 +779,8 @@ inicio
       EmitirRecibo(_indice)
    fimse
 
-Fimprocedimento
+FimProcedimento
+
 
 Procedimento ExecutarSubMenuRelatorio(_opcao:inteiro)
 var
@@ -789,9 +797,10 @@ inicio
    outrocaso
       MensagemRodape("Erro","Funcao escolhida nao e valida")
    fimescolha
-Fimprocedimento
+FimProcedimento
 
-Procedimento Relatorios
+
+Procedimento TelaSubMenuRelatorios
 var
    _opcao:inteiro
 inicio
@@ -836,6 +845,7 @@ inicio
 
 Fimfuncao
 
+
 Funcao TelaCadastroExiste():inteiro
 var
    // 1- alterar, 2-excluir, 3-Sair
@@ -854,6 +864,7 @@ inicio
    retorne _acao
 
 FimFuncao
+
 
 Funcao ValidarCampoEstadoCivil(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
@@ -892,6 +903,7 @@ inicio
 
 FimFuncao
 
+
 Funcao ValidarCampoNumericoComZero(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
    _campoNumerico:inteiro
@@ -901,6 +913,7 @@ inicio
 
    retorne Numpcarac(_campoNumerico)
 FimFuncao
+
 
 Funcao ValidarCampoAlfaNumero(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
@@ -927,6 +940,7 @@ inicio
 
 FimFuncao
 
+
 Funcao ValidarValorMonetario(_textoCampo:caracter;_espacamento:inteiro;obrigatorio:logico):caracter
 var
    _numero:real
@@ -948,6 +962,7 @@ inicio
    retorne FormataValorMonetario(_numero,".")
 
 FimFuncao
+
 
 Funcao FormataValorMonetario(_valor:real;_separadorDecimal:caracter):caracter
 var
@@ -1005,6 +1020,7 @@ inicio
    retorne _valorCaracterFormatado
 
 FimFuncao
+
 
 Funcao ValidarCampoAlfabetico(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
@@ -1065,6 +1081,7 @@ inicio
 
 FimFuncao
 
+
 Funcao ValidarCampoCpf(_textoCampo:caracter;_espacamento:inteiro;_telaCadastro:logico):caracter
 var
    _cpfValido,_contador,_charAscii:inteiro
@@ -1072,6 +1089,7 @@ var
 inicio
 
    enquanto verdadeiro faca
+
       se _telaCadastro=verdadeiro entao
          TelaDadosCadastro
       senao
@@ -1135,6 +1153,7 @@ Procedimento GravarDadosContribuinte(var _indice:inteiro)
 var
    _contador:inteiro
 inicio
+   // Procura o primeiro cadastro vazio no banco de dados
    se _indice=0 entao
       para _contador de 1 ate 100 faca
          se BancoDeDados[_contador,1]="" entao
@@ -1144,6 +1163,7 @@ inicio
       fimpara
    fimse
 
+   // Efetua a gravação dos dados
    para _contador de 1 ate 13 faca
       BancoDeDados[_indice,_contador]:=cadastroPessoa[_contador]
       cadastroPessoa[_contador]:=""
@@ -1160,6 +1180,7 @@ Inicio
       bancoDeDados[_indiceExcluir,_contador]:=""
    Fimpara
 
+   // Reordena dados da Matriz (Banco de dados)
    Para _contador de _indiceExcluir ate 100 faca
 
       Para _contador1 de 1 ate 13 faca
@@ -1174,6 +1195,7 @@ Inicio
    Fimpara
 
 FimProcedimento
+
 
 Funcao PesquisarContribuinte(_dadosCampo: caracter;_indiceCampo:inteiro): inteiro
 Var
@@ -1190,6 +1212,7 @@ Inicio
 
 FimFuncao
 
+
 Procedimento RecuperarDadosDeclaracao(_indice:inteiro)
 var
    _contador:inteiro
@@ -1199,8 +1222,7 @@ inicio
       cadastroPessoa[_contador]:=BancoDeDados[_indice,_contador]
    Fimpara
 
-
-Fimprocedimento
+FimProcedimento
 
 
 Procedimento EmitirRecibo(_indice:inteiro)
@@ -1270,6 +1292,7 @@ inicio
 
 FimProcedimento
 
+
 Procedimento DadosIniciais
 var
    _linhaDado:caracter
@@ -1297,7 +1320,8 @@ inicio
       ExtrairDados(_linhaDado,_NumeroRegistro)
    fimenquanto
 
-Fimprocedimento
+FimProcedimento
+
 
 Procedimento ExtrairDados(_linhaDados:caracter;_NumeroRegistro:inteiro)
 var
@@ -1305,6 +1329,8 @@ var
    _posicaoInicial,_posicaoFinal,_contador,_quantidadeDados:inteiro
 inicio
    _posicaoInicial:=1
+
+   // Formata informações do banco de dados inicial
    Para _contador de 1 ate 13 faca
       _posicaoFinal:=Pos("|",_linhaDados)-1
       _dadosTemporario:=copia(_linhaDados;_posicaoInicial,_posicaoFinal)
@@ -1312,7 +1338,7 @@ inicio
       _quantidadeDados:=QuantidadeCaracter(_linhaDados)
       _linhaDados:=copia(_linhaDados;(_posicaoFinal+2),_quantidadeDados)
    fimpara
-Fimprocedimento
+FimProcedimento
 
 
 //________________________Grupo_3_MODULO_3____________________________
@@ -1323,16 +1349,20 @@ var
    _dependentes:inteiro
 
 Inicio
+   // conversão de tipo de variaveis
    _dependentes:=Caracpnum(cadastroPessoa[5])
    _salarioBruto:=RemoverFormatacaoMonetaria(cadastroPessoa[6])
    _impostoRetidoFonte:=RemoverFormatacaoMonetaria(cadastroPessoa[7])
    _lucroInvestimento:=RemoverFormatacaoMonetaria(cadastroPessoa[8])
    _despesasDedutiveis:=RemoverFormatacaoMonetaria(cadastroPessoa[9])
+
+   // processa os valores da declaração
    _deducaoInss:=CalculaDeducaoInss(_salarioBruto)
    _impostoSimplificado:=CalcularDeclaracaoSimplificada(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
    _impostoCompleto:=CalcularDeclaracaoCompleta(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
 
 FimProcedimento
+
 
 Funcao CalcularDeclaracaoSimplificada(_dependentes:inteiro;_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss:real):real
 var
@@ -1341,8 +1371,10 @@ var
 
 inicio
    _deducao:=Deduzir(1,_dependentes, _salarioBruto ,_despesasDedutiveis)
+
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
+
    _imposto:=_baseCalculo*_aliquota
 
    se _aliquota<>0 entao
@@ -1374,6 +1406,7 @@ inicio
 
 FimFuncao
 
+
 Funcao CalcularDeclaracaoCompleta(_dependentes:inteiro;_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss:real):real
 var
    _deducao,_baseCalculo,_aliquota,_aliquotaCalculada,_imposto:real
@@ -1381,6 +1414,7 @@ var
 
 inicio
    _deducao:=Deduzir(2,_dependentes, _salarioBruto ,_despesasDedutiveis)
+
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
 
@@ -1413,6 +1447,7 @@ inicio
 
 FimFuncao
 
+
 Funcao Aliquota(_baseCalculo:real):real
 var
    _aliquota:real
@@ -1438,6 +1473,7 @@ inicio
 
 FimFuncao
 
+
 Funcao CalculaDeducaoInss(_salarioBruto:real):real
 var
    _aliquotaInss:inteiro
@@ -1460,6 +1496,7 @@ inicio
    retorne _valorDeducao
 
 Fimfuncao
+
 
 Funcao RemoverFormatacaoMonetaria(_numero:caracter):real
 var
@@ -1504,6 +1541,7 @@ inicio
 
 FimFuncao
 
+
 Funcao DeducaoSimplificada(_redimentoAnual,_despesasDedutiveis,_totalDeducaoDependente:real):real
 var
    _limiteDeducaoSimplificada,_maximoDeducao:real
@@ -1534,6 +1572,7 @@ inicio
 
 FimFuncao
 
+
 Funcao DeducaoCompleta(_despesasDedutiveis,_totalDeducaoDependente:real):real
 var
 
@@ -1545,7 +1584,6 @@ inicio
    retorne (_despesasDedutiveis + _totalDeducaoDependente)
 
 Fimfuncao
-
 
 //________________________Grupo_5_MODULO_5____________________________
 
@@ -1563,21 +1601,22 @@ inicio
       se BancoDeDados[_indice,1]="" entao
          interrompa
       fimse
+      // acumula valores do banco de dados
       _totalSalarioBruto:=_totalSalarioBruto+RemoverFormatacaoMonetaria(bancoDeDados[_indice,6])
-       _totalImpostoRetido:=_totalImpostoRetido+RemoverFormatacaoMonetaria(bancoDeDados[_indice,7])
+      _totalImpostoRetido:=_totalImpostoRetido+RemoverFormatacaoMonetaria(bancoDeDados[_indice,7])
       _totalInvestimento:=_totalInvestimento+RemoverFormatacaoMonetaria(bancoDeDados[_indice,8])
       _toalDespesas:=_toalDespesas+RemoverFormatacaoMonetaria(bancoDeDados[_indice,9])
       _totalImpostoPago:=_totalImpostoPago+RemoverFormatacaoMonetaria(bancoDeDados[_indice,11])
       _totalImpostoReceber:=_totalImpostoReceber+RemoverFormatacaoMonetaria(bancoDeDados[_indice,12])
    fimpara
 
+   // formatação de valores
    _totalSalarioBrutoC:=FormataValorMonetario(_totalSalarioBruto,".")
    _totalImpostoRetidoC:=FormataValorMonetario(_totalImpostoRetido,".")
    _totalInvestimentoC:=FormataValorMonetario(_totalInvestimento,".")
    _toalDespesasC:=FormataValorMonetario(_toalDespesas,".")
    _totalImpostoPagoC:=FormataValorMonetario(_totalImpostoPago,".")
    _totalImpostoReceberC:=FormataValorMonetario(_totalImpostoReceber,".")
-
 
    Limpatela
    escreval(" ",linha)
@@ -1617,10 +1656,9 @@ Inicio
    // loop principal
    enquanto finalizarPrograma=falso faca
       TelaMenu
-      ExecutarFuncao
+      ExecutarFuncaoMenuPrincipal
       Limpatela
    fimenquanto
-
 
    TelaLogoff
 
