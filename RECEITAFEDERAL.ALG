@@ -301,9 +301,9 @@ inicio
    _tamanhocampo[9]:=15
 
    Limpatela
-   escreval(linha)
-   escreval("":5,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
-   escreval(linha)
+   escreval("==",linha,"==")
+   escreval("":8,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
+   escreval("==",linha,"==")
 
    // Desenha tela conforme configuração dos vetores:
    //_camposTela = descrição do campo na tela
@@ -328,7 +328,7 @@ inicio
       fimse
 
    fimpara
-   escreval(linha)
+   escreval("==",linha,"==")
 FimProcedimento
 
 
@@ -748,9 +748,9 @@ Procedimento TelaReimpressaoRecibo
 var
 inicio
    Limpatela
-   escreval(linha)
-   escreval("":5,"REIMPRESSAO DE RECIBO DE I.R.P.F ANO-CALENDARIO 2019 ")
-   escreval(linha)
+   escreval("==",linha,"==")
+   escreval("":6,"REIMPRESSAO DE RECIBO DE I.R.P.F ANO-CALENDARIO 2019 ")
+   escreval("==",linha,"==")
 FimProcedimento
 
 
@@ -1275,16 +1275,16 @@ inicio
    escreval ("Secretaria da Receita            Exercicio 2020")
    escreval ("Federal do Brasil                Ano-Calendario 2019")
    escreval ("="+linha+"=")
-   escreval ("=========== Recibo Nº  ",_numeroRecibo," da IRPF/2020 ===================")
+   escreval ("============= Recibo Nº  ",_numeroRecibo," da IRPF/2020 =================")
    escreval ("="+linha+"=")
    escreval ("Sr(a) ", cadastroPessoa[2], ", inscrito no CPF de Nº ", cadastroPessoa[1])
    escreval ("Residente no endereco: ", cadastroPessoa[3])
    escreval("":25,"DECLARO POSSUIR")
    escreval ("")
-   escreval("Nº de dependentes :",cadastroPessoa[5],"  Salario bruto: ",cadastroPessoa[6])
+   escreval("Nº de Dependentes :",cadastroPessoa[5],"  Salario Bruto: ",cadastroPessoa[6])
    escreval("Imposto Retido :",cadastroPessoa[7]," Investimento:",cadastroPessoa[8])
    escreval("Despesas Dedutiveis :",cadastroPessoa[9],"  Aliquota: ",cadastroPessoa[10])
-   escreval("Imposto a Pagar :",cadastroPessoa[11]," Imposto a Recebar : ",cadastroPessoa[12])
+   escreval("Imposto a Pagar :",cadastroPessoa[11]," Imposto a Receber : ",cadastroPessoa[12])
    escreval("Tipo Declaracao :",_tipoDeclaracao)
    escreval("="+linha+"=")
    escreva(" ":10," Pressione Enter para continuar....":52)
