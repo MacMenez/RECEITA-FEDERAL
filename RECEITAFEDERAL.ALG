@@ -14,7 +14,6 @@ Algoritmo "ReceitaFederal"
 //        github.com/MacMenez/RECEITA-FEDERAL
 // -------------------------------------------------------------------
 // Arquivo com dados iniciais
-// Ativar em ambiente de Produção
 arquivo "D:\eng.computacao\LP\trabalho_receita_federal\BaseDadosInicial.csv"
 Var
    finalizarPrograma:logico
@@ -390,6 +389,7 @@ inicio
                TelaAterarDados(_indiceCpfExistente)
             caso 2
                ExcluirDadosContribuinte(_indiceCpfExistente)
+               MensagemRodape("OK","Dados Excluidos com Sucesso!")
                interrompa
             caso 3
                interrompa
@@ -445,6 +445,7 @@ inicio
 
          //  Modulo 2
          GravarDadosContribuinte(_indiceCpfExistente)
+         MensagemRodape("OK","Dados Gravados com Sucesso!")
 
          // Modulo 2
          EmitirRecibo(_indiceCpfExistente)
@@ -472,7 +473,7 @@ var
 inicio
 
    escreval("|",linha,"|")
-   escreval("|[",_tipoMensagem,"]":5,_textoMensagem,"|")
+   escreval("|[",_tipoMensagem,"]":5,_textoMensagem)
    escreval("|",linha,"|")
    escreva(" ")
    PausaFake(20000)
