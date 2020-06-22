@@ -6,6 +6,15 @@ entrada conforme o layout determinado pelo projeto, cada tipo de dado deve ser v
 conforme foi disposto no layout e gravado em memória para ser enviado ao final do processo
 para o banco de dados
 
+## Integração dos Módulos:
+
+A integração deve utilizar os módulos conforme a sua usabilidade dentro do projeto.
+O modulo 1 deve processar os dados no Modulo 3 e 4 e enviar o resultado ao Modulo 2 para que seja gravado os dados no banco de dados.
+O modulo 1 deve disponibilizar maneiras de que os dados sejam transparentes para o modulo 5 utilizar para a geração dos relatórios necessários.
+
+## Features:
+Foram acrescentadas varias features para que melhorar a (UX) experiencia do usuário no ambiente gráfico disponibilizado pelo sistema VisualG, como por exemplo mensagens de alertas, visualização geral dos dados digitados, gráficos, etc..
+
 ## Equipe de Desenvolvimento:
 - Fabricio Gomes (Desenvolvedor)
 - Paulo Costa (Desenvolvedor)
