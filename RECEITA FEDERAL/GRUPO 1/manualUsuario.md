@@ -72,7 +72,7 @@ O sistema possui quatro tipos de relatórios implementados .
 
 4- Reimpressão do recibo de entrega de declaração 
 
-imagem
+![tela grafico](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela12.jpg)
 
 SOBRE
 
