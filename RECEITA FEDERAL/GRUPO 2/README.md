@@ -10,7 +10,7 @@ Um banco de dados armazena na memória do dispositivo os dados inseridos de mane
 
 Para fins acadêmicos foi utilizado a ***Linguagem de Português Estruturado (Portugol)*** a IDE (Ambiente de Desenvolvimento Integrado) denominada ***VisualG*** para se desenvolver o código correspondente ao projeto de software desenvolvido.
 
-![Tela do VisualG](\_img-BD\tela_madeira1)
+![Tela do VisualG](/_img-BD/tela_madeira1.png)
 
 Devido a disponibilidade e opções que a linguagem e a IDE disponibilizam, foi pensado em um ***desenvolvimento de dados de maneira temporária*** (enquanto a IDE estiver em funcionamento). Está foi a melhor opção encontrada pela equipe para se desenvolver o banco de dados. 
 
