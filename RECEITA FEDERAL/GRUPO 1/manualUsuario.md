@@ -1,5 +1,17 @@
 # Manual do usuário 
 
+## Instalação
+
+Passo 1 - Efetuar o download dos seguintes arquivos:
+
+    RECEITAFEDERAL.ALG 
+
+    BaseDadosInicial.csv
+
+Passo 2 - Alterar o diretório do Banco de Dados inicial na linha 18 do arquivo RECEITAFEDERAL.ALG 
+
+    Exemplo: arquivo "c:\dadosIniciais\BaseDadosInicial.csv"
+
 ## Inicialização do sistema:
 
 O sistema primeiramente realiza a importação do banco de dados com informações de exemplo, ao final é apresentada a tela Splash Screen 
@@ -43,14 +55,19 @@ Caso já exista o cadastro do CPF o usuário será solicitação a escolher uma 
 ![tela cadastro](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela10.jpg)
 
 
-
 Após o cadastro, será processada a declaração e o usuário deve escolher entre realizar a declaração por desconto simplificado ou por deduções legais (completa) .
+
+Caso o contribuinte seja isento, o sistema emiti a seguinte tela
+
+![tela simulado](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela13.jpg)
+
+Caso o contribuinte não seja isento o sistema emitira a simulação dos tipos de declarações possíveis 
 
 ![tela simulado](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela4.jpg)
 
 Assim que o usuário escolha o tipo de declaração será emitido o recibo de declaração de imposto de renda.
 
-[imagem do recibo]
+![telasubmenu](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela11.jpg)
 
 ## Relatório
 
@@ -64,7 +81,7 @@ O sistema possui quatro tipos de relatórios implementados .
 
 2- Relatório sintético das declarações
 
-imagem
+![tela grafico](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela14.jpg)
 
 3- Gráfico de percentual de alíquotas cadastradas
 
@@ -72,7 +89,7 @@ imagem
 
 4- Reimpressão do recibo de entrega de declaração 
 
-imagem
+![tela grafico](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/img/tela12.jpg)
 
 SOBRE
 

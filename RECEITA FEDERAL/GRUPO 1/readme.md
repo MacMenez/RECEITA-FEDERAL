@@ -1,4 +1,44 @@
-# Tarefas para Desenvolvimento
+# Descrição do Modulo 1
+Entrada de dados:
+
+O modulo 1 consiste nas entradas de dados fornecidos pelo usuário, validando os dados de
+entrada conforme o layout determinado pelo projeto, cada tipo de dado deve ser validado
+conforme foi disposto no layout e gravado em memória para ser enviado ao final do processo
+para o banco de dados
+
+## Integração dos Módulos:
+
+A integração deve utilizar os módulos conforme a sua usabilidade dentro do projeto.
+O modulo 1 deve processar os dados no Modulo 3 e 4 e enviar o resultado ao Modulo 2 para que seja gravado os dados no banco de dados.
+O modulo 1 deve disponibilizar maneiras de que os dados sejam transparentes para o modulo 5 utilizar para a geração dos relatórios necessários.
+
+## Features:
+Foram acrescentadas varias features para que melhorar a (UX) experiencia do usuário no ambiente gráfico disponibilizado pelo sistema VisualG, como por exemplo mensagens de alertas, visualização geral dos dados digitados, gráficos, etc..
+
+## Equipe de Desenvolvimento:
+- Fabricio Gomes (Desenvolvedor)
+- Paulo Costa (Desenvolvedor)
+- Janine Santos (Desenvolvedora, Designer)
+- Luiz (Desenvolvedor)
+- Gabriel Santos (Desenvolvedor)
+- Tiago Augusto (Tester)
+- Kevin (Desenvolvedor)
+
+| work Item  | Data Inicio | Data de entrega |Status |
+| --- |  :---: |  :---: | ---|
+|1 |03/06/2020| 05/06/2020|Entregue|
+|2 |03/06/2020| 05/06/2020| Entregue|
+|3 |03/06/2020| 08/06/2020| Entregue|
+|4 |03/06/2020| 08/06/2020| Entregue|
+|5 |03/06/2020| 10/06/2020| Entregue|
+|6 |03/06/2020| 10/06/2020| Entregue|
+|7 |03/06/2020| 11/06/2020| Entregue|
+|8 |09/06/2020| 15/06/2020| Entregue|
+|9 |09/06/2020| 16/06/2020| Entregue|
+|10 |09/06/2020| 16/06/2020| Entregue|
+|11 |17/06/2020| 19/06/2020| Atrasada|
+
+## Tarefas para Desenvolvimento
 ___
 1- Processo de escolha de função: **Fabricio**
 
@@ -27,3 +67,21 @@ ___
 7- Tela de boas vindas **Janine**
 
 será desenhado um tela que ficará por 2 segundos na tela do usuário antes de iniciar o programa, explicando sobre o programa: Título, Curso, Matéria, etc.. 
+___
+
+8- Formatação de valores Monetário **Paulo Costa**
+
+Esse processo deve receber um valor monetário em uma variável do tipo real e formatar em uma variável do tipo caractere retornando o valor formatado 
+___
+
+9- Validação de CPF **Fabricio**
+
+Esse processo deve validar somente o tamanho de 11 caracteres e retorna o cpf formatado
+___
+10 - Percentual de alíquota **Luiz**
+
+Esse processo deve somar todos os tipos de alíquotas disponíveis e gerar um vetor com o percentual de cada alíquota
+___
+11- Teste do Sistema **Tiago** 
+
+Esse processo deve ser testar as entrada de dados e validando as saída, conforme layout disponibilizado no repositório do GitHub

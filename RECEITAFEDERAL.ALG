@@ -14,8 +14,7 @@ Algoritmo "ReceitaFederal"
 //        github.com/MacMenez/RECEITA-FEDERAL
 // -------------------------------------------------------------------
 // Arquivo com dados iniciais
-// Ativar em ambiente de Produção
-//arquivo "D:\eng.computacao\LP\trabalho_receita_federal\BaseDadosInicial.csv"
+arquivo "D:\eng.computacao\LP\trabalho_receita_federal\BaseDadosInicial.csv"
 Var
    finalizarPrograma:logico
 
@@ -74,7 +73,6 @@ escreval("":5," |_) |_ /  |_  |  |   /\    |_ |_ | \ |_ |_)  /\   |     ")
 escreval("":5," | \ |_ \_ |_  |  |  /--\   |  |_ |_/ |_ | \ /--\  |_    ")
 escreval("","")
 
-
 _carregando:=" * * * * * * * * * "
 escreva("":20,"Carregando")
 
@@ -85,6 +83,7 @@ fimpara
 
 MudaCor("Preto","Fundos")
 FimProcedimento
+
 
 Procedimento TelaMenu
 
@@ -107,8 +106,7 @@ inicio
    escreval ("|        |_________________|    ","   |_________________|         |")
    escreval ("|                                                              |")
    escreval ("|"+linha+"|")
-
-Fimprocedimento
+FimProcedimento
 
 Procedimento TelaSobre
 var
@@ -127,14 +125,14 @@ inicio
    escreval("":10,"| \(/_(_ (/_ |  | (_|   |  (/_(_|(/_ | (_| |")
    escreval("")
    escreval("":10,"PROFESSOR : Andre Augusto de Abreu Rodrigues ")
-   escreval("":10,"CURSO     : ANÁLISE E DESENVOLVIMETNO DE SISTEMAS")
+   escreval("":10,"CURSO     : ANÁLISE E DESENVOLVIMENTO DE SISTEMAS")
    escreval("":10,"            ENGENHARIA DA COMPUTACAO")
-   escreval("":20, " 2020 - 1o PERIODO")
-   escreval("":25, "Versao 1.0")
+   escreval("":20, " 2020 - 1º PERIODO")
+   escreval("":25, "Versao 1.1")
    escreval(" ":10," Pressione Enter para continuar....":52)
    Leia(_pausar)
-
 FimProcedimento
+
 
 Procedimento TelaLogoff
 var
@@ -181,39 +179,40 @@ inicio
    Limpatela
 FimProcedimento
 
+
 Procedimento TelaTipoDeclaracao
 var
    _dadosTela:vetor [1..3] de caracter
    _contador,_espacamento:inteiro
 inicio
    _dadosTela[1]:="Aliquota Efetiva :"
-   _dadosTela[2]:="imposto a Pagar :"
-   _dadosTela[3]:="imposto a Receber :"
+   _dadosTela[2]:="Imposto a Pagar :"
+   _dadosTela[3]:="Imposto a Receber :"
 
    Limpatela
-   escreval(linha)
-   escreval("":20,"TRIBUTACAO POR DEDUCOES LEGAIS")
 
-   para _contador de 1 ate 3 faca
-      _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
-      escreval(_dadosTela[_contador]:_espacamento,declaracaoCompleta[_contador])
-   fimpara
-
-   escreval(linha)
-
-   escreval("":20,"TRIBUTACAO POR DESCONTO SIMPLIFICADO")
+   escreval("==",linha,"==")
+   escreval("":15,"1- TRIBUTACAO POR DESCONTO SIMPLIFICADO")
 
    para _contador de 1 ate 3 faca
       _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
       escreval(_dadosTela[_contador]:_espacamento,declaracaoSimplificada[_contador])
    fimpara
-   escreval(linha)
+   escreval("==",linha,"==")
 
+   escreval("":15,"2- TRIBUTACAO POR DEDUCOES LEGAIS")
+
+   para _contador de 1 ate 3 faca
+      _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
+      escreval(_dadosTela[_contador]:_espacamento,declaracaoCompleta[_contador])
+   fimpara
+   escreval("==",linha,"==")
 FimProcedimento
+
 
 Procedimento EntradaDadosTipoDeclaracao
 var
-   _tipoDeclaracao:inteiro
+   _tipoDeclaracao,_contador:inteiro
 inicio
 
    enquanto _tipoDeclaracao<=0 faca
@@ -240,8 +239,14 @@ inicio
       cadastroPessoa[12]:=declaracaoCompleta[3]
    fimse
 
+   Para _contador de 1 ate 3 faca
+      declaracaoSimplificada[_contador]:=""
+      declaracaoCompleta[_contador]:=""
+   Fimpara
+
    cadastroPessoa[13]:=Numpcarac(_tipoDeclaracao)
 FimProcedimento
+
 
 Procedimento TelaDeclaracaoIsento
 var
@@ -252,7 +257,7 @@ inicio
    Limpatela
    escreval(linha)
    escreval("":5,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
-    escreval(linha)
+   escreval(linha)
    Para _contador de 1 ate 12 faca
       se _contador=7 entao
          escreval("|":10,_isento:52,"|")
@@ -264,9 +269,8 @@ inicio
    escreval(linha)
    escreval(" ":10," Pressione Enter para continuar....":52)
    Leia(_pausar)
-
-
 FimProcedimento
+
 
 Procedimento TelaDadosCadastro
 var
@@ -297,9 +301,9 @@ inicio
    _tamanhocampo[9]:=15
 
    Limpatela
-   escreval(linha)
-   escreval("":5,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
-   escreval(linha)
+   escreval("==",linha,"=")
+   escreval("":8,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
+   escreval("==",linha,"=")
 
    // Desenha tela conforme configuração dos vetores:
    //_camposTela = descrição do campo na tela
@@ -324,9 +328,9 @@ inicio
       fimse
 
    fimpara
-   escreval(linha)
-
+   escreval("=",linha,"=")
 FimProcedimento
+
 
 Procedimento EntradaDadosTelaCadastro
 var
@@ -341,6 +345,11 @@ var
    _tipoDados:vetor [1..9] de inteiro
 
 inicio
+   //Limpa Dados
+   Para _contador de 1 ate 13 faca
+      cadastroPessoa[_contador]:=""
+   Fimpara
+
    _tipoDados[1]:=0
    _tipoDados[2]:=2
    _tipoDados[3]:=3
@@ -367,9 +376,9 @@ inicio
       escolha _tipoDados[_contador]
          _espacamento:=QuantidadeCaracter(_entradaDados[_contador])+3
       caso 0
-         cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],_espacamento)
+         cadastroPessoa[_contador]:=ValidarCampoCpf(_entradaDados[_contador],_espacamento,verdadeiro)
 
-         _indiceCpfExistente:=PesquisarContribuinte(cadastroPessoa[_contador])
+         _indiceCpfExistente:=PesquisarContribuinte(cadastroPessoa[_contador],1)
 
          se _indiceCpfExistente>0 entao
             _controleAlterarExcluir:=TelaCadastroExiste()
@@ -379,7 +388,8 @@ inicio
             caso 1
                TelaAterarDados(_indiceCpfExistente)
             caso 2
-               TelaExcluirDados(_indiceCpfExistente)
+               ExcluirDadosContribuinte(_indiceCpfExistente)
+               MensagemRodape("OK","Dados Excluidos com Sucesso!")
                interrompa
             caso 3
                interrompa
@@ -429,42 +439,48 @@ inicio
       ProcessarDeclaracao(_impostoSimplificado,_impostoCompleto)
 
       se (_impostoSimplificado+_impostoCompleto)>0 entao
+
          //Modulo 1
          EntradaDadosTipoDeclaracao
 
+         //  Modulo 2
+         GravarDadosContribuinte(_indiceCpfExistente)
+         MensagemRodape("OK","Dados Gravados com Sucesso!")
+
          // Modulo 2
-         EmitirRecibo
+         EmitirRecibo(_indiceCpfExistente)
       senao
+
          TelaDeclaracaoIsento
       fimse
-      
-      // GravarDados
 
    Fimse
-
 FimProcedimento
+
 
 Procedimento TelaAterarDados(_indiceCadastro:inteiro)
 var
 
 inicio
-   AlterarDadosContribuinte(_indiceCadastro)
+   RecuperarDadosDeclaracao(_indiceCadastro)
    TelaDadosCadastro
 FimProcedimento
 
-procedimento MensagemRodape(_tipoMensagem,_textoMensagem: caracter)
+
+Procedimento MensagemRodape(_tipoMensagem,_textoMensagem: caracter)
 var
 
 inicio
 
    escreval("|",linha,"|")
-   escreval("|[",_tipoMensagem,"]":5,_textoMensagem,"|")
+   escreval("|[",_tipoMensagem,"]":5,_textoMensagem)
    escreval("|",linha,"|")
    escreva(" ")
    PausaFake(20000)
 FimProcedimento
 
-Procedimento ExecutarFuncao
+
+Procedimento ExecutarFuncaoMenuPrincipal
 var
    _opcaoMenu:inteiro
 inicio
@@ -476,7 +492,7 @@ inicio
    Caso 1
       EntradaDadosTelaCadastro
    Caso 2
-      Relatorios
+      TelaSubMenuRelatorios
    Caso 3
       TelaSobre
    Caso 4
@@ -485,10 +501,11 @@ inicio
       MensagemRodape("Erro","Funcao encolhida nao e valida")
    FimEscolha
 
-Fimprocedimento
+FimProcedimento
+
 //_______________Procedimentos__Auxiliares___________________________
 
-procedimento PausaFake(_loopPausa:inteiro)
+Procedimento PausaFake(_loopPausa:inteiro)
 var
    _numeroloop,_contador:inteiro
 
@@ -497,9 +514,9 @@ inicio
       // loop somente para simular uma pausa
       _numeroloop:=_numeroloop+1
    Fimpara
-Fimprocedimento
+FimProcedimento
 
-// Procedimento para atender a transferencia de valor por referencia
+
 Procedimento PreencherComEspacos(var _conteudoCampo:caracter;_espacos:inteiro):caracter
 var
    _contador:inteiro
@@ -509,6 +526,7 @@ Inicio
    fimpara
 
 FimProcedimento
+
 
 Procedimento InicializarVariaveisGlobais
 var
@@ -565,16 +583,17 @@ inicio
          escreval (_linha)
          escrevaL("|":20,"LISTA DECLARAÇÕES ":44,"|")
          escreval (_linha)
-         escrevaL("|":6,"CPF":9,"|":6,"NOME":10,"|":2,"ALIQ":6,"|":6,"IMPOSTO","|":2,"TIPO":7,"|")
+         escrevaL("|":7,"CPF":10,"|":7,"NOME":9,"|":3,"ALIQ":6,"|":4,"IMPOSTO":10,"|":2,"TIPO":6,"|")
          escreval (_linha)
          _cabecalho:=1
       fimse
 
+      // caso seja vazio acabou os dados já cadastrados
       se (bancoDeDados[_indice,1]<>"") entao
          _cpf:=bancoDeDados[_indice,1]
          _nome:=copia(bancoDeDados[_indice,2];1,14)
          _aliquota:=bancoDeDados[_indice,10]
-         _imposto:=bancoDeDados[_indice,11]
+
          _tipoDeclaracao:=bancoDeDados[_indice,13]
 
          se _tipoDeclaracao="1" entao
@@ -583,10 +602,10 @@ inicio
             _tipoDeclaracao:="Comp."
          fimse
 
-         se _imposto="0" entao
+         se bancoDeDados[_indice,12]<>"" entao
             _imposto:="R "+bancoDeDados[_indice,12]
          senao
-            _imposto:="P "+_imposto
+            _imposto:="P "+bancoDeDados[_indice,11]
          fimse
 
          _espacamento:=12-QuantidadeCaracter(_imposto)
@@ -595,12 +614,12 @@ inicio
          _espacamento:=14-QuantidadeCaracter(_nome)
          PreencherComEspacos(_nome,_espacamento)
 
-         _espacamento:=5-QuantidadeCaracter(_aliquota)
+         _espacamento:=6-QuantidadeCaracter(_aliquota)
          PreencherComEspacos(_aliquota,_espacamento)
 
 
-         escreva ("|",_cpf," | ",_nome,"| ",_aliquota," | ",_imposto,"| ",_tipoDeclaracao)
-         escreval ("|")
+         escreva ("| ",_cpf," | ",_nome,"| ",_aliquota," | ",_imposto,"| ",_tipoDeclaracao)
+         escreval (" |")
       senao
          _contador:=0
       fimse
@@ -679,6 +698,7 @@ inicio
 
 FimProcedimento
 
+
 Procedimento TelaSubMenuRelatorio(_numeroLinhas,_numeroColunas,_numeroCampo,_espacamento:inteiro)
 var
    _contador,_contador1,_numeroDescricao:inteiro
@@ -723,6 +743,46 @@ Inicio
 
 FimProcedimento
 
+
+Procedimento TelaReimpressaoRecibo
+var
+inicio
+   Limpatela
+   escreval("==",linha,"==")
+   escreval("":6,"REIMPRESSAO DE RECIBO DE I.R.P.F ANO-CALENDARIO 2019 ")
+   escreval("==",linha,"==")
+FimProcedimento
+
+
+Procedimento ReimpressaoRecibo
+var
+   _indice,_continuar:inteiro
+   _cpf:caracter
+inicio
+
+   enquanto _indice=0 faca
+      TelaReimpressaoRecibo
+      _cpf:=ValidarCampoCpf("o Numero do CPF",28,falso)
+      _indice:=PesquisarContribuinte(_cpf,1)
+
+      se _indice=0 entao
+         MensagemRodape("Erro","Cpf informado nao localizado")
+         escreval("Digite enter para Continuar ou 1 para Retornar")
+         leia(_continuar)
+         se _continuar=1 entao
+            interrompa
+         fimse
+      fimse
+
+   fimenquanto
+
+   se _indice>0 entao
+      EmitirRecibo(_indice)
+   fimse
+
+FimProcedimento
+
+
 Procedimento ExecutarSubMenuRelatorio(_opcao:inteiro)
 var
 inicio
@@ -730,17 +790,18 @@ inicio
    caso 1
       ListagemDeclaracoes
    caso 2
-      //RelatorioSintetico
+      RelatorioSintetico
    caso 3
       GraficoPercentualAliquota
    caso 4
-      //ReimpressaoRecibo
+      ReimpressaoRecibo
    outrocaso
       MensagemRodape("Erro","Funcao escolhida nao e valida")
    fimescolha
-Fimprocedimento
+FimProcedimento
 
-Procedimento Relatorios
+
+Procedimento TelaSubMenuRelatorios
 var
    _opcao:inteiro
 inicio
@@ -785,6 +846,7 @@ inicio
 
 Fimfuncao
 
+
 Funcao TelaCadastroExiste():inteiro
 var
    // 1- alterar, 2-excluir, 3-Sair
@@ -803,6 +865,7 @@ inicio
    retorne _acao
 
 FimFuncao
+
 
 Funcao ValidarCampoEstadoCivil(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
@@ -841,6 +904,7 @@ inicio
 
 FimFuncao
 
+
 Funcao ValidarCampoNumericoComZero(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
    _campoNumerico:inteiro
@@ -850,6 +914,7 @@ inicio
 
    retorne Numpcarac(_campoNumerico)
 FimFuncao
+
 
 Funcao ValidarCampoAlfaNumero(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
@@ -876,6 +941,7 @@ inicio
 
 FimFuncao
 
+
 Funcao ValidarValorMonetario(_textoCampo:caracter;_espacamento:inteiro;obrigatorio:logico):caracter
 var
    _numero:real
@@ -897,6 +963,7 @@ inicio
    retorne FormataValorMonetario(_numero,".")
 
 FimFuncao
+
 
 Funcao FormataValorMonetario(_valor:real;_separadorDecimal:caracter):caracter
 var
@@ -954,6 +1021,7 @@ inicio
    retorne _valorCaracterFormatado
 
 FimFuncao
+
 
 Funcao ValidarCampoAlfabetico(_textoCampo:caracter;_espacamento:inteiro):caracter
 var
@@ -1014,14 +1082,20 @@ inicio
 
 FimFuncao
 
-Funcao ValidarCampoCpf(_textoCampo:caracter;_espacamento:inteiro):caracter
+
+Funcao ValidarCampoCpf(_textoCampo:caracter;_espacamento:inteiro;_telaCadastro:logico):caracter
 var
    _cpfValido,_contador,_charAscii:inteiro
    _cpfFormatado,_cpf,_char:caracter
 inicio
 
    enquanto verdadeiro faca
-      TelaDadosCadastro
+
+      se _telaCadastro=verdadeiro entao
+         TelaDadosCadastro
+      senao
+         TelaReimpressaoRecibo
+      fimse
       escreva("| Informe "+_textoCampo+" :":_espacamento)
 
       leia(_cpf)
@@ -1076,36 +1150,149 @@ Fimfuncao
 
 //________________________Grupo_2_MODULO_2____________________________
 
-Procedimento GravarDadosContribuinte
+Procedimento GravarDadosContribuinte(var _indice:inteiro)
 var
-Inicio
-
-FimProcedimento
-
-Procedimento AlterarDadosContribuinte(_indiceCadastro:inteiro)
-var
-Inicio
-
-FimProcedimento
-
-Funcao ExcluirDadosContribuinte(_cpf:caracter):logico
-var
-Inicio
-
-FimFuncao
-
-Funcao PesquisarContribuinte(_cpf:caracter):inteiro
-var
-Inicio
-
-   retorne 0
-
-FimFuncao
-
-Procedimento EmitirRecibo
-var
+   _contador:inteiro
 inicio
+   // Procura o primeiro cadastro vazio no banco de dados
+   se _indice=0 entao
+      para _contador de 1 ate 100 faca
+         se BancoDeDados[_contador,1]="" entao
+            _indice:=_contador
+            Interrompa
+         fimse
+      fimpara
+   fimse
+
+   // Efetua a gravação dos dados
+   para _contador de 1 ate 13 faca
+      BancoDeDados[_indice,_contador]:=cadastroPessoa[_contador]
+      cadastroPessoa[_contador]:=""
+   FIMPARA
+
 FimProcedimento
+
+
+Procedimento ExcluirDadosContribuinte(_indiceExcluir:inteiro)
+var
+   _contador1, _contador:inteiro
+Inicio
+   Para _contador de 1 ate 13 faca
+      bancoDeDados[_indiceExcluir,_contador]:=""
+   Fimpara
+
+   // Reordena dados da Matriz (Banco de dados)
+   Para _contador de _indiceExcluir ate 100 faca
+
+      Para _contador1 de 1 ate 13 faca
+         bancoDeDados[_contador,_contador1]:=bancoDeDados[(_contador+1),_contador1]
+         bancoDeDados[(_contador+1),_contador1]:=""
+      Fimpara
+
+      se bancoDeDados[_contador,1]="" entao
+         Interrompa
+      fimse
+
+   Fimpara
+
+FimProcedimento
+
+
+Funcao PesquisarContribuinte(_dadosCampo: caracter;_indiceCampo:inteiro): inteiro
+Var
+   _contador,_indice: inteiro
+Inicio
+   para _contador de 1 ate 100 faca
+      se BancoDeDados [_contador,_indiceCampo] = _dadosCampo entao
+         _indice := _contador
+         Interrompa
+      fimse
+   fimpara
+
+   Retorne _indice
+
+FimFuncao
+
+
+Procedimento RecuperarDadosDeclaracao(_indice:inteiro)
+var
+   _contador:inteiro
+inicio
+
+   Para _contador de 1 ate 13 faca
+      cadastroPessoa[_contador]:=BancoDeDados[_indice,_contador]
+   Fimpara
+
+FimProcedimento
+
+
+Procedimento EmitirRecibo(_indice:inteiro)
+var
+   _tamanhocampo:vetor[1..12] de inteiro
+   _contador,_quantidadeCaracteres:inteiro
+   _conteudoCampo,_tipoDeclaracao,_numeroRecibo,_pausar:caracter
+inicio
+   RecuperarDadosDeclaracao(_indice)
+   _numeroRecibo:=Numpcarac(_indice)
+   _quantidadeCaracteres:=QuantidadeCaracter(_numeroRecibo)
+   _numeroRecibo:=copia("00000000";1,(8-_quantidadeCaracteres))+_numeroRecibo
+
+   _tamanhocampo[1]:=14
+   _tamanhocampo[2]:=20
+   _tamanhocampo[3]:=40
+   _tamanhocampo[4]:=15
+   _tamanhocampo[5]:=2
+   _tamanhocampo[6]:=15
+   _tamanhocampo[7]:=15
+   _tamanhocampo[8]:=15
+   _tamanhocampo[9]:=15
+   _tamanhocampo[10]:=5
+   _tamanhocampo[11]:=15
+   _tamanhocampo[12]:=15
+
+   para _contador de 1 ate 12 faca
+      _conteudoCampo:=cadastroPessoa[_contador]
+      _quantidadeCaracteres:=QuantidadeCaracter(_conteudoCampo)
+      _quantidadeCaracteres:=_tamanhocampo[_contador]-_quantidadeCaracteres
+
+      // Prenche com espaço para atenter a formatação do campo
+      // confermo configurado vetor _tamanhocampo
+      se _quantidadeCaracteres>0 entao
+         PreencherComEspacos(_conteudoCampo,_quantidadeCaracteres)
+      fimse
+      cadastroPessoa[_contador]:=copia(_conteudoCampo;1,_tamanhocampo[_contador])
+   fimpara
+
+   se cadastroPessoa[13]="1" entao
+      _tipoDeclaracao:="Simplificada"
+   senao
+      _tipoDeclaracao:="Completa"
+   fimse
+
+   Limpatela
+   escreval ("="+linha+"=")
+   escreval ("Ministerio da Fazenda            Imposto - Pessoa Fisica")
+   escreval ("Secretaria da Receita            Exercicio 2020")
+   escreval ("Federal do Brasil                Ano-Calendario 2019")
+   escreval ("="+linha+"=")
+   escreval ("============= Recibo Nº  ",_numeroRecibo," da IRPF/2020 =================")
+   escreval ("="+linha+"=")
+   escreval ("Sr(a) ", cadastroPessoa[2], ", inscrito no CPF de Nº ", cadastroPessoa[1])
+   escreval ("Residente no endereco: ", cadastroPessoa[3])
+   escreval("":25,"DECLARO POSSUIR")
+   escreval ("")
+   escreval("Nº de Dependentes :",cadastroPessoa[5],"  Salario Bruto: ",cadastroPessoa[6])
+   escreval("Imposto Retido :",cadastroPessoa[7]," Investimento:",cadastroPessoa[8])
+   escreval("Despesas Dedutiveis :",cadastroPessoa[9],"  Aliquota: ",cadastroPessoa[10])
+   escreval("Imposto a Pagar :",cadastroPessoa[11]," Imposto a Receber : ",cadastroPessoa[12])
+   escreval("Tipo Declaracao :",_tipoDeclaracao)
+   escreval("="+linha+"=")
+   escreva(" ":10," Pressione Enter para continuar....":52)
+   Leia(_pausar)
+
+
+FimProcedimento
+
 
 Procedimento DadosIniciais
 var
@@ -1113,16 +1300,29 @@ var
    _NumeroRegistro:inteiro
 
 inicio
+   escreval("Digite Enter para verificar o erro")
    enquanto verdadeiro faca
       leia(_linhaDado)
       se _linhaDado="FIMxBANCOxDADOS" entao
          interrompa
       fimse
+      se Pos("|",_linhaDado)=0 entao
+         MensagemRodape("Erro","Bando de Dados Incial não foi configurado")
+         finalizarPrograma:=verdadeiro
+         interrompa
+      fimse
+
+      se _NumeroRegistro=0 entao
+         limpatela
+         escreva("carregando Banco de Dados... ":1)
+      fimse
+
       _NumeroRegistro:=_NumeroRegistro+1
       ExtrairDados(_linhaDado,_NumeroRegistro)
    fimenquanto
 
-Fimprocedimento
+FimProcedimento
+
 
 Procedimento ExtrairDados(_linhaDados:caracter;_NumeroRegistro:inteiro)
 var
@@ -1130,6 +1330,8 @@ var
    _posicaoInicial,_posicaoFinal,_contador,_quantidadeDados:inteiro
 inicio
    _posicaoInicial:=1
+
+   // Formata informações do banco de dados inicial
    Para _contador de 1 ate 13 faca
       _posicaoFinal:=Pos("|",_linhaDados)-1
       _dadosTemporario:=copia(_linhaDados;_posicaoInicial,_posicaoFinal)
@@ -1137,7 +1339,7 @@ inicio
       _quantidadeDados:=QuantidadeCaracter(_linhaDados)
       _linhaDados:=copia(_linhaDados;(_posicaoFinal+2),_quantidadeDados)
    fimpara
-Fimprocedimento
+FimProcedimento
 
 
 //________________________Grupo_3_MODULO_3____________________________
@@ -1148,16 +1350,20 @@ var
    _dependentes:inteiro
 
 Inicio
+   // conversão de tipo de variaveis
    _dependentes:=Caracpnum(cadastroPessoa[5])
    _salarioBruto:=RemoverFormatacaoMonetaria(cadastroPessoa[6])
    _impostoRetidoFonte:=RemoverFormatacaoMonetaria(cadastroPessoa[7])
    _lucroInvestimento:=RemoverFormatacaoMonetaria(cadastroPessoa[8])
    _despesasDedutiveis:=RemoverFormatacaoMonetaria(cadastroPessoa[9])
+
+   // processa os valores da declaração
    _deducaoInss:=CalculaDeducaoInss(_salarioBruto)
    _impostoSimplificado:=CalcularDeclaracaoSimplificada(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
    _impostoCompleto:=CalcularDeclaracaoCompleta(_dependentes,_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss)
 
 FimProcedimento
+
 
 Funcao CalcularDeclaracaoSimplificada(_dependentes:inteiro;_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss:real):real
 var
@@ -1166,11 +1372,13 @@ var
 
 inicio
    _deducao:=Deduzir(1,_dependentes, _salarioBruto ,_despesasDedutiveis)
+
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
+
    _imposto:=_baseCalculo*_aliquota
-   
-   se _aliquota>0 entao
+
+   se _aliquota<>0 entao
       _imposto:=_baseCalculo*_aliquota
    fimse
 
@@ -1179,12 +1387,14 @@ inicio
 
    se  _aliquotaCalculada > (_aliquota*100) entao
       _aliquotaCalculada:=_aliquota
-   senao
+   fimse
+
+   se  _aliquotaCalculada <0 entao
       _aliquotaCalculada:=0
    fimse
 
    _aliquotaEfetiva:=Numpcarac(_aliquotaCalculada)
-   declaracaoSimplificada[1]:=copia(_aliquotaEfetiva;1:5)+" %"
+   declaracaoSimplificada[1]:=copia(_aliquotaEfetiva;1:5)+"%"
 
    se _imposto<0 entao
       _imposto:=_imposto*-1
@@ -1197,6 +1407,7 @@ inicio
 
 FimFuncao
 
+
 Funcao CalcularDeclaracaoCompleta(_dependentes:inteiro;_salarioBruto,_impostoRetidoFonte,_lucroInvestimento,_despesasDedutiveis,_deducaoInss:real):real
 var
    _deducao,_baseCalculo,_aliquota,_aliquotaCalculada,_imposto:real
@@ -1204,10 +1415,11 @@ var
 
 inicio
    _deducao:=Deduzir(2,_dependentes, _salarioBruto ,_despesasDedutiveis)
+
    _baseCalculo:=(_salarioBruto+_lucroInvestimento)-(_deducao+_deducaoInss)
    _aliquota:=Aliquota(_baseCalculo)
 
-   se _aliquota>0 entao
+   se _aliquota<>0 entao
       _imposto:=_baseCalculo*_aliquota
    fimse
 
@@ -1216,12 +1428,14 @@ inicio
 
    se  _aliquotaCalculada > (_aliquota*100) entao
       _aliquotaCalculada:=_aliquota
-   senao
+   fimse
+
+   se  _aliquotaCalculada <0 entao
       _aliquotaCalculada:=0
    fimse
 
    _aliquotaEfetiva:=Numpcarac(_aliquotaCalculada)
-   declaracaoCompleta[1]:=copia(_aliquotaEfetiva;1:5)+" %"
+   declaracaoCompleta[1]:=copia(_aliquotaEfetiva;1:5)+"%"
 
    se _imposto<0 entao
       _imposto:=_imposto*-1
@@ -1233,6 +1447,7 @@ inicio
    retorne _imposto
 
 FimFuncao
+
 
 Funcao Aliquota(_baseCalculo:real):real
 var
@@ -1259,6 +1474,7 @@ inicio
 
 FimFuncao
 
+
 Funcao CalculaDeducaoInss(_salarioBruto:real):real
 var
    _aliquotaInss:inteiro
@@ -1281,6 +1497,7 @@ inicio
    retorne _valorDeducao
 
 Fimfuncao
+
 
 Funcao RemoverFormatacaoMonetaria(_numero:caracter):real
 var
@@ -1325,6 +1542,7 @@ inicio
 
 FimFuncao
 
+
 Funcao DeducaoSimplificada(_redimentoAnual,_despesasDedutiveis,_totalDeducaoDependente:real):real
 var
    _limiteDeducaoSimplificada,_maximoDeducao:real
@@ -1355,6 +1573,7 @@ inicio
 
 FimFuncao
 
+
 Funcao DeducaoCompleta(_despesasDedutiveis,_totalDeducaoDependente:real):real
 var
 
@@ -1367,12 +1586,58 @@ inicio
 
 Fimfuncao
 
-
 //________________________Grupo_5_MODULO_5____________________________
 
-Procedimento GerarRelatorio
+Procedimento RelatorioSintetico
 var
+   _indice,_quantidadeCaracteres:inteiro
+   _totalSalarioBruto,_totalImpostoRetido,_totalInvestimento:real
+   _toalDespesas,_totalImpostoPago,_totalImpostoReceber:real
+   _totalSalarioBrutoC,_totalImpostoRetidoC,_totalInvestimentoC:caracter
+   _toalDespesasC,_totalImpostoPagoC,_totalImpostoReceberC,_pausar:caracter
+
 inicio
+
+   Para _indice de 1 ate 100 faca
+      se BancoDeDados[_indice,1]="" entao
+         interrompa
+      fimse
+      // acumula valores do banco de dados
+      _totalSalarioBruto:=_totalSalarioBruto+RemoverFormatacaoMonetaria(bancoDeDados[_indice,6])
+      _totalImpostoRetido:=_totalImpostoRetido+RemoverFormatacaoMonetaria(bancoDeDados[_indice,7])
+      _totalInvestimento:=_totalInvestimento+RemoverFormatacaoMonetaria(bancoDeDados[_indice,8])
+      _toalDespesas:=_toalDespesas+RemoverFormatacaoMonetaria(bancoDeDados[_indice,9])
+      _totalImpostoPago:=_totalImpostoPago+RemoverFormatacaoMonetaria(bancoDeDados[_indice,11])
+      _totalImpostoReceber:=_totalImpostoReceber+RemoverFormatacaoMonetaria(bancoDeDados[_indice,12])
+   fimpara
+
+   // formatação de valores
+   _totalSalarioBrutoC:=FormataValorMonetario(_totalSalarioBruto,".")
+   _totalImpostoRetidoC:=FormataValorMonetario(_totalImpostoRetido,".")
+   _totalInvestimentoC:=FormataValorMonetario(_totalInvestimento,".")
+   _toalDespesasC:=FormataValorMonetario(_toalDespesas,".")
+   _totalImpostoPagoC:=FormataValorMonetario(_totalImpostoPago,".")
+   _totalImpostoReceberC:=FormataValorMonetario(_totalImpostoReceber,".")
+
+   Limpatela
+   escreval(" ",linha)
+   escreval("|":5,"RELATORIO DE VALORES DE I.R.P.F ANO-CALENDARIO 2019 ":58,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Salario Bruto ..: ",_totalSalarioBrutoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Imposto Retido .: ",_totalImpostoRetidoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Investimento ...: ",_totalInvestimentoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Despesas .......: ",_toalDespesasC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Imposto Pago ...: ",_totalImpostoPagoC:38,"|")
+   escreval("|",linha,"|")
+   escreval("|Total Imposto Receber : ",_totalImpostoReceberC:38,"|")
+   escreval("|",linha,"|")
+
+   escreval(" ":10," Pressione Enter para continuar....":52)
+   Leia(_pausar)
 
 FimProcedimento
 
@@ -1380,15 +1645,19 @@ FimProcedimento
 
 //________________________Programa_Principal__________________________
 Inicio
-   //Ativar em ambiente de Produção
-   //DadosIniciais
-   InicializarVariaveisGlobais
-   //Ativar em ambiente de Produção
-   //TelaAbertura
 
+   // carrega do banco de dados inicial
+   DadosIniciais
+
+   se finalizarPrograma=falso entao
+      InicializarVariaveisGlobais
+      TelaAbertura
+   fimse
+
+   // loop principal
    enquanto finalizarPrograma=falso faca
       TelaMenu
-      ExecutarFuncao
+      ExecutarFuncaoMenuPrincipal
       Limpatela
    fimenquanto
 

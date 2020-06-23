@@ -6,6 +6,7 @@
 - [Requisitos de Software](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/requisitos.md) 
 - [Diagrama de Processos](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/DiagramaProcesso.md) 
 - [Instruções Úteis para Geração de Relatório](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%205/Readme.md)
+- [Relatório de Teste](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/relatorioTeste.md)
 - [Manual de Usuário](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/manualUsuario.md)
 
 # Referências:
@@ -19,6 +20,9 @@ Idealizar um programa que realize as funções semelhantes as da Receita Federal
 # OBJETIVO:
 O objetivo é demostrar como será o dia-a-dia dos programadores ao pegarem códigos incompletos de terceiros ou antigos programadores e fazerem com que funcione dentro do ambiente de trabalho.
 # Grupo 1
+
+[Documentação](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%201/readme.md)
+
     INTEGRAÇÃO: Responsáveis por produzir a Entrada de Dados
     MEMBROS:
         Fabricio(Líder)
@@ -29,6 +33,9 @@ O objetivo é demostrar como será o dia-a-dia dos programadores ao pegarem cód
         Tiago
         Kevin
 # Grupo 2
+ 
+ [Documentação](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%202/README.md)
+
     INTEGRAÇÃO: Responsável por Armazenar os Dados do Programa
     MEMBROS:
         Davi(Líder)
@@ -57,6 +64,9 @@ O objetivo é demostrar como será o dia-a-dia dos programadores ao pegarem cód
         Thales 
         Leandro
 # Grupo 5
+
+[Documentação](https://github.com/MacMenez/RECEITA-FEDERAL/blob/master/RECEITA%20FEDERAL/GRUPO%205/Readme.md)
+
     INTEGRAÇÃO: Responsável pelo Processamento
     MEMBROS:
         Caroline(Líder)
