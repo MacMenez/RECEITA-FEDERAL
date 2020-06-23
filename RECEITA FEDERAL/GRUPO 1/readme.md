@@ -36,7 +36,7 @@ Foram acrescentadas varias features para que melhorar a (UX) experiencia do usuÃ
 |8 |09/06/2020| 15/06/2020| Entregue|
 |9 |09/06/2020| 16/06/2020| Entregue|
 |10 |09/06/2020| 16/06/2020| Entregue|
-|11 |17/06/2020| 19/06/2020| Atrasada|
+|11 |17/06/2020| 19/06/2020| Entregue Atrasada (22/06/2020) |
 
 ## Tarefas para Desenvolvimento
 ___
