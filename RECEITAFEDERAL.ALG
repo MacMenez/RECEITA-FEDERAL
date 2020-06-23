@@ -1533,7 +1533,7 @@ inicio
    fimpara
 
    se _tipodeDeclaracao=1 entao
-      _deducao:=DeducaoSimplificada(_redimentoAnual,_despesasDedutiveis,_totalDeducaoDependente)
+      _deducao:=DeducaoSimplificada(_redimentoAnual)
    senao
       _deducao:=DeducaoCompleta(_despesasDedutiveis,_totalDeducaoDependente)
    fimse
@@ -1543,17 +1543,10 @@ inicio
 FimFuncao
 
 
-Funcao DeducaoSimplificada(_redimentoAnual,_despesasDedutiveis,_totalDeducaoDependente:real):real
+Funcao DeducaoSimplificada(_redimentoAnual:real):real
 var
-   _limiteDeducaoSimplificada,_maximoDeducao:real
-   _totalDeducaoCalculada,_deducao:real
-   _contador:inteiro
-
+   _limiteDeducaoSimplificada,_maximoDeducao,_deducao:real
 inicio
-
-   // Regra interna para limite de despesas dedutiveis
-   // será no maximo 80% do total de despesas
-   _despesasDedutiveis:=_despesasDedutiveis*0.8
 
    _limiteDeducaoSimplificada:=16754.34
    _maximoDeducao:=_redimentoAnual*0.2
@@ -1561,13 +1554,8 @@ inicio
    se _maximoDeducao<_limiteDeducaoSimplificada entao
       _limiteDeducaoSimplificada:=_maximoDeducao
    fimse
-   _totalDeducaoCalculada:=_despesasDedutiveis+_totalDeducaoDependente
 
-   se _totalDeducaoCalculada>_limiteDeducaoSimplificada entao
-      _deducao:=_limiteDeducaoSimplificada
-   senao
-      _deducao:= _totalDeducaoCalculada
-   fimse
+   _deducao:=_limiteDeducaoSimplificada
 
    retorne _deducao
 
@@ -1579,8 +1567,8 @@ var
 
 inicio
    // Regra interna para limite de despesas dedutiveis
-   // será no maximo 20% do total de despesas
-   _despesasDedutiveis:=_despesasDedutiveis*0.2
+   // será no maximo 40% do total de despesas
+   _despesasDedutiveis:=_despesasDedutiveis*0.4
 
    retorne (_despesasDedutiveis + _totalDeducaoDependente)
 
