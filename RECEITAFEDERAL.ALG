@@ -191,22 +191,22 @@ inicio
 
    Limpatela
 
-   escreval(linha)
-   escreval("":20,"1- TRIBUTACAO POR DESCONTO SIMPLIFICADO")
+   escreval("==",linha,"==")
+   escreval("":15,"1- TRIBUTACAO POR DESCONTO SIMPLIFICADO")
 
    para _contador de 1 ate 3 faca
       _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
       escreval(_dadosTela[_contador]:_espacamento,declaracaoSimplificada[_contador])
    fimpara
-   escreval(linha)
+   escreval("==",linha,"==")
 
-   escreval("":20,"2- TRIBUTACAO POR DEDUCOES LEGAIS")
+   escreval("":15,"2- TRIBUTACAO POR DEDUCOES LEGAIS")
 
    para _contador de 1 ate 3 faca
       _espacamento:=QuantidadeCaracter(_dadosTela[_contador])
       escreval(_dadosTela[_contador]:_espacamento,declaracaoCompleta[_contador])
    fimpara
-   escreval(linha)
+   escreval("==",linha,"==")
 FimProcedimento
 
 
@@ -301,9 +301,9 @@ inicio
    _tamanhocampo[9]:=15
 
    Limpatela
-   escreval("==",linha,"==")
+   escreval("==",linha,"=")
    escreval("":8,"CADASTRO DE DADOS DE I.R.P.F ANO-CALENDARIO 2019 ")
-   escreval("==",linha,"==")
+   escreval("==",linha,"=")
 
    // Desenha tela conforme configuração dos vetores:
    //_camposTela = descrição do campo na tela
@@ -328,7 +328,7 @@ inicio
       fimse
 
    fimpara
-   escreval("==",linha,"==")
+   escreval("=",linha,"=")
 FimProcedimento
 
 
